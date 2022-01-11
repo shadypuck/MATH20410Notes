@@ -1,0 +1,103 @@
+\documentclass[../notes.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
+\stepcounter{chapter}
+
+\begin{document}
+
+
+
+
+\chapter{Differentiation}
+\section{Notes}
+\begin{itemize}
+    \item \marginnote{1/10:}Since manifolds look like Euclidean spaces locally, we basically only need to study differentiation on Euclidean spaces.
+    \item Set up: Let $U\subset\R^n$ be open, and $f:U\to\R^n$ be a function.
+    \item Idea: The derivative of $f$ at some point $\vec{a}\in U$ is "the best linear approximation" to $f$ at $\vec{a}$.
+    \item \textbf{Differentiable} (function $f$ at $\vec{a}$): A function $f$ for which there exists a linear transformation $A:\R^n\to\R^m$ such that
+    \begin{equation*}
+        \lim_{\vec{h}\to\bm{0}}\frac{f(\vec{a}+\vec{h})-f(\vec{a})-A\vec{h}}{\norm{\vec{h}}} = \bm{0}
+    \end{equation*}
+    \item \textbf{Total derivative} (of $f$ at $\vec{a}$): The linear transformation $A$ corresponding to a differentiable function $f$. \emph{Denoted by} $\bm{Df(\vec{a})}$.
+    \item Questions to ask:
+    \begin{enumerate}
+        \item When does the total derivative exist?
+        \item When it does exist, can there be multiple?
+        \item When it exists and is unique, how do I calculate it?
+    \end{enumerate}
+    \item Proposition: If $A,B$ are linear transformations that both satisfy the definition, then $A=B$.
+    \begin{itemize}
+        \item We have
+        \begin{align*}
+            \lim_{\vec{h}\to\bm{0}}\frac{f(\vec{a}+\vec{h})-f(\vec{a})-A\vec{h}}{\norm{\vec{h}}} &= \bm{0}&
+            \lim_{\vec{h}\to\bm{0}}\frac{f(\vec{a}+\vec{h})-f(\vec{a})-B\vec{h}}{\norm{\vec{h}}} &= \bm{0}
+        \end{align*}
+        \item It follows by subtracting the right equation above from the left one that
+        \begin{equation*}
+            \lim_{\vec{h}\to\bm{0}}\frac{A\vec{h}-B\vec{h}}{\norm{\vec{h}}} = \bm{0}
+        \end{equation*}
+        \item Apply linearity: For $\vec{v}\in\R^n$ and $t\in\R$, $t>0$, we have
+        \begin{equation*}
+            \frac{A(t\vec{v})-B(t\vec{v})}{t} = A\vec{v}-B\vec{v}
+        \end{equation*}
+        \item Therefore, since $t\vec{v}\to 0$ as $t\to 0$, we have by the above that
+        \begin{align*}
+            \bm{0} &= \lim_{t\to 0}\frac{A(t\vec{v})-B(t\vec{v})}{\norm{t\vec{v}}}\\
+            &= \lim_{t\to 0}\frac{A\vec{v}-B\vec{v}}{\norm{\vec{v}}}\\
+            \bm{0}\cdot\norm{\vec{v}} &= \lim_{t\to 0}(A\vec{v}-B\vec{v})\\
+            \bm{0} &= A\vec{v}-B\vec{v}\\
+            B\vec{v} &= A\vec{v}
+        \end{align*}
+    \end{itemize}
+    \item Example: Let $f:\R^n\to\R^m$ be linear, i.e., $f(\vec{v})=A\vec{v}$ for some linear transformation $A$. Then for all $\vec{a}\in\R^n$, $Df(\vec{a})=A$ is constant.
+    \begin{itemize}
+        \item We have from the definition that
+        \begin{align*}
+            \lim_{\vec{h}\to\bm{0}}\frac{f(\vec{a}+\vec{h})-f(\vec{a})-A\vec{h}}{\norm{\vec{h}}} &= \lim_{\vec{h}\to\bm{0}}\frac{f(\vec{a})+f(\vec{h})-f(\vec{a})-f(\vec{h})}{\norm{\vec{h}}}\\
+            &= \lim_{\vec{h}\to\bm{0}}\frac{\bm{0}}{\norm{\vec{h}}}\\
+            &= \bm{0}
+        \end{align*}
+    \end{itemize}
+    \item Theorem: If $f$ is differentiable at $\vec{a}$, then $f$ is continuous at $\vec{a}$.
+    \begin{itemize}
+        \item By definition, there exists a linear transformation $A$ such that
+        \begin{equation*}
+            \lim_{\vec{h}\to\bm{0}}\frac{f(\vec{a}+\vec{h})-f(\vec{a})-A\vec{h}}{\norm{\vec{h}}} = \bm{0}
+        \end{equation*}
+        \item Additionally, we have that
+        \begin{equation*}
+            f(\vec{a}+\vec{h}) = f(\vec{a})+A\vec{h}+\norm{\vec{h}}\left( \frac{f(\vec{a}+\vec{h})-f(\vec{a})-A\vec{h}}{\norm{\vec{h}}} \right)
+        \end{equation*}
+        \item As $\vec{h}\to\bm{0}$, the right-hand side of the above equation goes to $f(\vec{a})$.
+        \begin{itemize}
+            \item As a linear transformation, $A\vec{h}\to\bm{0}$ as $\vec{h}\to\bm{0}$.
+            \item Clearly $\norm{\vec{h}}\to\bm{0}$ as $\vec{h}\to\bm{0}$.
+            \item And we have by definition that the last term goes to $\bm{0}$ as $\vec{h}\to\bm{0}$.
+        \end{itemize}
+        \item Therefore, $f$ is continuous at $\vec{a}$.
+    \end{itemize}
+    \item Observation: A function $f:U\to\R^m$ is given by an $m$-tuple of functions $f_1:U\to\R$ known as components. $f=(f_1,\dots,f_m)$.
+    \item Proposition: $f$ is differentiable at $\vec{a}\in U$ iff each component function $f_i$ is differentiable at $\vec{a}$. In this case,
+    \begin{equation*}
+        Df(\vec{a}) = (Df_1(\vec{a}),\dots,Df_m(\vec{a}))
+    \end{equation*}
+    \begin{itemize}
+        \item We know that
+        \begin{equation*}
+            \lim_{\vec{h}\to\bm{0}}\frac{f(\vec{a}+\vec{h})-f(\vec{a})-A\vec{h}}{\norm{\vec{h}}} \in \R^m
+        \end{equation*}
+        \item Thus, the limit is zero iff the limit of each component is zero.
+        \item We have that the $i^\text{th}$ component of the vector on the left below is equal to the number on the right; we call the common value $L_i(\vec{h})$.
+        \begin{equation*}
+            \left( \frac{f(\vec{a}+\vec{h})-f(\vec{a})-A\vec{h}}{\norm{\vec{h}}} \right)_i = \frac{f_i(\vec{a}+\vec{h})-f_i(\vec{a})-(A\vec{h})_i}{\norm{\vec{h}}}
+        \end{equation*}
+        \item The upshot is that $f$ is differentiable at $\vec{a}$ iff $\lim_{\vec{h}\to\bm{0}}L_i(\vec{h})=\bm{0}$ iff the linear transformation $\vec{h}\mapsto(A\vec{h})_i:\R^m\to\R$ is the total derivative of $f_i$.
+    \end{itemize}
+    \item Now, each $f_i$ is a function of $n$ variables, i.e., $f_i(x_1,\dots,x_n)$ where $x_1,\dots,x_n$ are coordinates on $\R^n$.
+\end{itemize}
+
+
+
+
+\end{document}

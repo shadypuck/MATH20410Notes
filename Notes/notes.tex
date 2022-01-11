@@ -22,8 +22,13 @@
 
 \pagenumbering{arabic}
 \pagestyle{main}
-\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
+\renewcommand{\chaptermark}[1]{\markboth{Chapter 1 (The Algebra and Topology of $\R^n$)}{}}
 \subfile{Chapter1/chapter1.tex}
+
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
+\subfile{Chapter2/chapter2.tex}
+
+\printbibliography[heading=bibintoc]
 
 
 
