@@ -1,0 +1,23 @@
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{marginnote}
+\usepackage{amsmath,amssymb}
+\usepackage{amsbsy,bm}
+\usepackage[hidelinks]{hyperref}
+
+\fancypagestyle{main}{
+    \fancyhf{}
+    \fancyhead[L]{\leftmark}
+    \fancyhead[R]{MATH 20800}
+    \fancyfoot[R]{Labalme\ \thepage}
+}
+\fancypagestyle{plain}{
+    \fancyhead{}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+\reversemarginpar
+
+\newcommand{\R}{\mathbb{R}}
+
+\usepackage{subfiles}
