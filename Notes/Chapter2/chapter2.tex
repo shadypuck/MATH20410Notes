@@ -95,6 +95,104 @@
         \item The upshot is that $f$ is differentiable at $\vec{a}$ iff $\lim_{\vec{h}\to\bm{0}}L_i(\vec{h})=\bm{0}$ iff the linear transformation $\vec{h}\mapsto(A\vec{h})_i:\R^m\to\R$ is the total derivative of $f_i$.
     \end{itemize}
     \item Now, each $f_i$ is a function of $n$ variables, i.e., $f_i(x_1,\dots,x_n)$ where $x_1,\dots,x_n$ are coordinates on $\R^n$.
+    \item \marginnote{1/12:}\textbf{Partial derivative} (of $f$ wrt. $x_i$ at $\vec{a}\in U$): The following quantity. \emph{Denoted by} $\bm{\partial f/\partial x_i}$. \emph{Given by}
+    \begin{equation*}
+        \pdv{f}{x_i}(\vec{a}) = \lim_{h\to 0}\frac{f(a_1,\dots,a_{i-1},a_i+h,a_{i+1},\dots,a_n)-f(\vec{a})}{h}
+    \end{equation*}
+    \begin{itemize}
+        \item The partial derivative is easy to calculate if you're good at calculating single-variable derivatives.
+    \end{itemize}
+    \item Questions:
+    \begin{enumerate}
+        \item If the partial derivatives all exist, does the total derivative also exist?
+        \item If partial derivatives exist, is $f$ continuous?
+    \end{enumerate}
+    \item The answer is no to both --- it's too weak a condition.
+    \begin{itemize}
+        \item Counter example: Consider $f:\R^2\to\R$ given by
+        \begin{equation*}
+            f(x,y) =
+            \begin{cases}
+                \frac{x^2y}{x^4+y^4} & (x,y)\neq\bm{0}\\
+                0 & (x,y)=\bm{0}
+            \end{cases}
+        \end{equation*}
+        \item All partial derivatives exist at $(0,0)$ but $f$ is not continuous at $(0,0)$.
+        \item We'll consider this in the homework.
+    \end{itemize}
+    \item Now we try taking derivatives in infinitely many directions, as opposed to just $n$ many.
+    \item \textbf{Directional derivative} (of $f$ at $\vec{a}$ in the direction of $\vec{v}\in\R^n$): The following quantity. \emph{Denoted by} $\bm{D_\vec{v}f(\vec{a})}$, $\bm{\partial f/\partial\vec{v}}$. \emph{Given by}
+    \begin{equation*}
+        D_\vec{v}f(\vec{a}) = \pdv{f}{\vec{v}} = \lim_{h\to 0}\frac{f(\vec{a}+h\vec{v})-f(\vec{a})}{h}
+    \end{equation*}
+    \begin{itemize}
+        \item We always take $\norm{\vec{v}}=1$.
+        \item The partial derivative is just a directional derivative along the standard basis vectors. Alternatively, the directional derivative is just a generalization of the partial derivatives.
+    \end{itemize}
+    \item This still isn't a strong enough condition --- the above counterexample has all directional derivatives at $(0,0)$ but still isn't continuous.
+    \item Proposition: Suppose $f$ is differentiable at $\vec{a}\in U$. Then all directional derivatives of $f$ at $\vec{a}$ exist and for all $\vec{v}\in\R^n$,
+    \begin{equation*}
+        \pdv{f}{\vec{v}}(\vec{a}) = Df(\vec{a})(\vec{v})
+    \end{equation*}
+    \begin{itemize}
+        \item The total derivative says that the derivative exists from all sequences of approach. We're just going to pick a particular vector direction of approach.
+        \item Mathematically, by the definition of the total derivative,
+        \begin{align*}
+            \bm{0} &= \lim_{h\to 0}\frac{f(\vec{a}+h\vec{v})-f(\vec{a})-Df(\vec{a})(h\vec{v})}{h}\\
+            &= \lim_{h\to 0}\frac{f(\vec{a}+h\vec{v})-f(\vec{a})}{h}-Df(\vec{a})(\vec{v})\\
+            Df(\vec{a})(\vec{v}) &= \pdv{f}{\vec{v}}
+        \end{align*}
+    \end{itemize}
+    \item A particular consequence is that
+    \begin{equation*}
+        \pdv{f}{x_i}(\vec{a}) = Df(\vec{a})(e_i)
+    \end{equation*}
+    \begin{itemize}
+        \item But the total derivative, as a linear transformation, is completely defined by its behavior on the basis vectors.
+        \item Thus, it is defined by the $m$-by-$n$ matrix
+        \begin{equation*}
+            Df(\vec{a}) = \left( \pdv{f_j}{x_i} \right)_{\substack{1\leq j\leq m\\1\leq i\leq n}}
+        \end{equation*}
+    \end{itemize}
+    \item \textbf{Jacobian matrix} (of $f$ at $\vec{a}$): The above matrix, representing the total derivative of $f$ at $\vec{a}$.
+    \item Theorem: Suppose $f:U\to\R^m$ is a function on an open set $U\subset\R^n$. If all partial derivatives of $f$ exist and are continuous on $U$, then $f$ is differentiable on $U$.
+    \begin{itemize}
+        \item Recall the mean value theorem (MVT): Suppose $g:[a,b]\to\R$ is a continuous function which is differentiable on $(a,b)$. Then there exists $c\in(a,b)$ such that $g'(c)=[g(b)-g(a)]/[b-a]$.
+        \item WLOG let $m=1$ (if we prove this case, we can use the proposition relating $f$ to its components to prove the general case).
+        \item Rewrite
+        \begin{equation*}
+            \begin{split}
+                f(\vec{a}+\vec{h})-f(\vec{a}) ={}& f(a_1+h_1,a_2+h_2,a_3+h_3,\dots,a_n+h_n)-f(a_1,a_2+h_2,a_3+h_3,\dots,a_n+h_n)\\
+                &+ f(a_1,a_2+h_2,a_3+h_3,\dots,a_n+h_n)-f(a_1,a_2,a_3+h_3,\dots,a_n+h_n)\\
+                &+ \cdots\\
+                &+ f(a_1,\dots,a_{n-1},a_n+h_n)-f(\vec{a})
+            \end{split}
+        \end{equation*}
+        where $\vec{a}=(a_1,\dots,a_n)$ and $\vec{h}=(h_1,\dots,h_n)$.
+        \item Apply the MVT to each term to get
+        \begin{equation*}
+            f(a_1,\dots,a_i+h_i,\dots,a_n+h_n)-f(a_1,\dots,a_i,\dots,a_n+h_n) = h_i{\pdv{f}{x_i}}(a_1,\dots,c_i(\vec{h}),\dots,a_n+h_n)
+        \end{equation*}
+        for some $c_i(\vec{h})\in(a_i,a_i+h_i)\cup(a_i+h_i,a_i)$.
+        \item Now let $A$ be the Jacobian matrix of $f$ at $\vec{a}$.
+        \item WTS:
+        \begin{equation*}
+            \lim_{\vec{h}\to\bm{0}}\frac{f(\vec{a}+\vec{h})-f(\vec{a})-A\vec{h}}{\norm{\vec{h}}} = \bm{0}
+        \end{equation*}
+        \item We have
+        \begin{equation*}
+            f(\vec{a}+\vec{h})-f(\vec{a}) = \sum_{i=1}^nh_i{\pdv{f}{x_i}}(a_1,\dots,c_i(\vec{h}),\dots,a_n+h_n)
+        \end{equation*}
+        \item Let $\pi_i:\R^n\to\R^n$ be the linear map $(x_1,\dots,x_n)\mapsto(0,\dots,x_i,\dots,0)$. Clearly, $\vec{x}=\sum_{i=1}^n\pi_i\vec{x}$.
+        \item Thus, $A\vec{h}=\sum_{i=1}^nA\pi_i\vec{h}$ and $A\pi_i\vec{h}={\pdv{f}{x_i}}(\vec{a})\cdot h_i$.
+        \item Applying, we have
+        \begin{align*}
+            \frac{f(\vec{a}+\vec{h})-f(\vec{a})-A\vec{h}}{\norm{\vec{h}}} &= \sum_{i=1}^n\frac{1}{\norm{\vec{h}}}\left( h_i{\pdv{f}{x_i}}(a_1,\dots,a_{i-1},c_i(\vec{h}),a_{i+1}+h_{i+1},\dots,a_n+h_n)-{\pdv{f}{x_i}}(\vec{a})\cdot h_i \right)\\
+            &= \sum_{i=1}^n\frac{h_i}{\norm{\vec{h}}}\left( {\pdv{f}{x_i}}(a_1,\dots,a_{i-1},c_i(\vec{h}),a_{i+1}+h_{i+1},\dots,a_n+h_n)-{\pdv{f}{x_i}}(\vec{a}) \right)
+        \end{align*}
+        \item We know that $-1\leq h_i/\norm{\vec{h}}\leq 1$, so we need only show that the difference above goes to zero as $\vec{h}\to\bm{0}$. But we know this by the continuity of the partial derivatives.
+    \end{itemize}
+    \item Note that this theorem gives a sufficient condition but not a necessary condition for $f$ to be differentiable.
 \end{itemize}
 
 
