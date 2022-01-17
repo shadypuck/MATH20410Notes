@@ -32,5 +32,63 @@
 
 
 
+\section[The Algebra and Topology of \texorpdfstring{$\R^n$}{TEXT}]{The Algebra and Topology of \texorpdfstring{$\pmb{\R}^{\bm{n}}$}{TEXT}}
+\emph{From \textcite{bib:Munkres}.}
+\begin{itemize}
+    \item \marginnote{1/17:}"In the first part of this book, $\R^n$ and its subspaces are the only vector spaces with which we shall be concerned. In later chapters, we shall deal with more general vector spaces" \parencite[2]{bib:Munkres}.
+    \item \textbf{Inner product}: \emph{Denoted by} $\bm{\langle\vec{x},\vec{y}\rangle}$.
+    \item \textbf{Euclidean norm}: The following norm. \emph{Denoted by} $\pmb{\parallel}\!\vec{x}\!\pmb{\parallel}$. \emph{Given by}
+    \begin{equation*}
+        \norm{\vec{x}} = \sqrt{x_1^2+\cdots+x_n^2}
+    \end{equation*}
+    \item \textbf{Sup norm} (of $n$-tuples): The following norm. \emph{Denoted by} $\pmb{|}\vec{x}\pmb{|}$. \emph{Given by}
+    \begin{equation*}
+        |\vec{x}| = \max\{|x_1|,\dots,|x_n|\}
+    \end{equation*}
+    \item Note that the Euclidean norm and sup norm satisfy the inequalities
+    \begin{equation*}
+        |\vec{x}| \leq \norm{\vec{x}} \leq \sqrt{n}|\vec{x}|
+    \end{equation*}
+    for all $\vec{x}\in\R^n$.
+    \item \textbf{Sup norm} (of matrices): The following norm. \emph{Denoted by} $\pmb{|}\bm{A}\pmb{|}$. \emph{Given by}
+    \begin{equation*}
+        |A| = \max\{|a_{ij}|:i\in[n],\ j\in[m]\}
+    \end{equation*}
+    \item Theorem 1.3: If $A$ has size $n$ by $m$ and $B$ has size $m$ by $p$, then
+    \begin{equation*}
+        |A\cdot B| \leq m|A|\,|B|
+    \end{equation*}
+    \item \textbf{Echelon form}: \emph{Also known as} \textbf{stairstep form}.
+    \item \textbf{Transpose} (of $A$): \emph{Denoted by} $\bm{A^\textbf{tr}}$.
+    \item Theorem 2.1: Let $A$ be an $n$-by-$m$ matrix. Any elementary row operation on $A$ may be carried out by premultiplying $A$ by the corresponding elementary matrix.
+    \begin{itemize}
+        \item "We will use this result later on when we prove the change of variables theorem for a multiple integral" \parencite[12]{bib:Munkres}.
+    \end{itemize}
+    \item \textbf{Determinant} (of $A$): \emph{Denoted by} $\textbf{det}\,\bm{A}$. \emph{Not denoted by} $|A|$.
+    \item \textbf{Determinant function}: A function that assigns to each $n$-by-$n$ matrix $A$ a real number denoted $\det A$ and satisfies the following axioms.
+    \begin{enumerate}
+        \item If $B$ is the matrix obtained by exchanging any two rows of $A$, then $\det B=-\det A$.
+        \item Given $i$, the function $\det A$ is linear as a function of the $i^\text{th}$ row alone.
+        \item $\det I_n=1$.
+    \end{enumerate}
+    \item Corollary 2.9: The determinant function is uniquely characterized by its three axioms.
+    \item \textbf{$\bm{\epsilon}$-neighborhood} (of $x_0$): The following set, where $X$ is a metric space with metric $d$, $x_0\in X$, and $\epsilon>0$. \emph{Also known as} \textbf{$\bm{\epsilon}$-neighborhood centered at $\bm{x_0}$}. \emph{Denoted by} $\bm{U(x_0;\epsilon)}$. \emph{Given by}
+    \begin{equation*}
+        U(x_0;\epsilon) = \{x\mid d(x,x_0)<\epsilon\}
+    \end{equation*}
+    \item \textbf{Topological property} (of $X$): A property of a metric space $X$ that depends only on the collection of open sets of $X$, rather than on the specific metric involved.
+    \begin{itemize}
+        \item Examples include limits, continuity, and compactness.
+    \end{itemize}
+    \item \textbf{Interior} (of $A\subset\R^n$): The union of all open sets of $\R^n$ that are contained in $A$. \emph{Denoted by} $\textbf{Int}\,\bm{A}$.
+    \item \textbf{Exterior} (of $A\subset\R^n$): The union of all open sets of $\R^n$ that are disjoint from $A$. \emph{Denoted by} $\textbf{Ext}\,\bm{A}$.
+    \item \textbf{Boundary} (of $A\subset\R^n$): The set of all points of $\R^n$ that are contained in neither $\Int A$ nor $\Ext A$. \emph{Denoted by} $\textbf{Bd}\,\bm{A}$.
+    \begin{itemize}
+        \item $\vec{x}\in\Bd A$ iff every open set containing $\vec{x}$ intersects both $A$ and $\R^n\setminus A$.
+    \end{itemize}
+\end{itemize}
+
+
+
 
 \end{document}
