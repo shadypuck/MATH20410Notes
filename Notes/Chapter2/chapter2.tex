@@ -193,6 +193,117 @@
         \item We know that $-1\leq h_i/\norm{\vec{h}}\leq 1$, so we need only show that the difference above goes to zero as $\vec{h}\to\bm{0}$. But we know this by the continuity of the partial derivatives.
     \end{itemize}
     \item Note that this theorem gives a sufficient condition but not a necessary condition for $f$ to be differentiable.
+    \item \marginnote{1/14:}Theorem (Chain Rule): Suppose $f:U\to\R^m$ and $g:V\to\R^p$ are functions defined on open sets $U\subset\R^n$, $V\subset\R^m$ with $f(U)\subset V$. Suppose that $f$ is differentiable at $\vec{a}\in U$ and $g$ is differentiable at $\vec{b}=f(\vec{a})\in V$. Then the composite function $g\circ f:U\to\R^p$ is differentiable at $\vec{a}$ and $D(g\circ f)(\vec{a})=Dg(\vec{b})\circ Df(\vec{a}):\R^n\to\R^p$.
+    \begin{itemize}
+        \item Note that $f:U\to\R^m$ is differentiable at $\vec{a}\in U$ with derivative $A$ iff $f(\vec{a}+\vec{h})=f(\vec{a})+A\vec{h}+\tilde{f}(\vec{h})$ such that
+        \begin{equation*}
+            \lim_{\vec{h}\to\bm{0}}\frac{\tilde{f}(\vec{h})}{\norm{\vec{h}}} = \bm{0}
+        \end{equation*}
+        where $\tilde{f}$ is an error function.
+        \begin{itemize}
+            \item We're just rearranging terms here.
+            \item If you like, $\tilde{f}$ is the numerator from the definition of the total derivative.
+        \end{itemize}
+        \item Let $A=Df(\vec{a})$, $B=Dg(\vec{b})$. Then
+        \begin{equation*}
+            f(\vec{a}+\vec{h}) = f(\vec{a})+A\vec{h}+\tilde{f}(\vec{h})
+        \end{equation*}
+        so
+        \begin{align*}
+            (g\circ f)(\vec{a}+\vec{h}) &= g(f(\vec{a}+\vec{h}))\\
+            &= g(f(\vec{a}))+A\vec{h}+\tilde{f}(\vec{h})\\
+            &= g(f(\vec{a}))+B(A\vec{h}+\tilde{f}(\vec{h}))+\tilde{g}(A\vec{h}+\tilde{f}(\vec{h}))\\
+            &= g(f(\vec{a}))+BA\vec{h}+B\tilde{f}(\vec{h})+\tilde{g}(A\vec{h}+\tilde{f}(\vec{h}))
+        \end{align*}
+        \item WTS: $\lim_{\vec{h}\to\bm{0}}[B\tilde{f}(\vec{h})+\tilde{g}(A\vec{h}+\tilde{f}(\vec{h}))]/\norm{\vec{h}}=\bm{0}$.
+        \item For the first half of the fraction,
+        \begin{equation*}
+            \frac{B\tilde{f}(\vec{h})}{\norm{\vec{h}}} = B\left( \frac{\tilde{f}(\vec{h})}{\norm{\vec{h}}} \right) \to \bm{0}
+        \end{equation*}
+        as $\vec{h}\to\bm{0}$ since the argument goes to $\bm{0}$ as $\vec{h}\to\bm{0}$ and $B$ is a linear transformation (in particular, $B(\vec{0})=\vec{0}$).
+        \item For the second half of the fraction,
+        \begin{equation*}
+            \lim_{\vec{h}\to\bm{0}}\frac{\tilde{g}(A\vec{h}+\tilde{f}(\vec{h}))}{\norm{\vec{h}}} = \lim_{\vec{h}\to\bm{0}}\frac{\tilde{g}(A\vec{h}+\tilde{f}(\vec{h}))}{\norm{A\vec{h}+\tilde{f}(\vec{h})}}\cdot\frac{\norm{A\vec{h}+\tilde{f}(\vec{h})}}{\norm{\vec{h}}}
+        \end{equation*}
+        \begin{itemize}
+            \item The left fraction on the right side of the equality goes to zero as $\vec{h}\to\bm{0}$ by the definition of $\tilde{g}$.
+            \item The right fraction on the right side of the equality is bounded since
+            \begin{equation*}
+                \frac{\norm{A\vec{h}+\tilde{f}(\vec{h})}}{\norm{\vec{h}}} \leq \frac{\norm{A\vec{h}}}{\norm{\vec{h}}}+\frac{\norm{\tilde{f}(\vec{h})}}{\norm{\vec{h}}}
+                \leq \norm{A}+\frac{\norm{\tilde{f}(\vec{h})}}{\norm{\vec{h}}}
+            \end{equation*}
+            where $\norm{A}$ is the operator norm and $\norm{\tilde{f}(\vec{h})}/\norm{\vec{h}}\to 0$ as $\vec{h}\to\bm{0}$ by the definition of $\tilde{f}$.
+            \item Thus, the second half of the fraction goes to zero as well.
+        \end{itemize}
+    \end{itemize}
+    \item Theorem: Let $U\subset\R^m$ be an open subset.
+    \begin{enumerate}
+        \item Suppose $f,g:U\to\R^m$ are functions that are differentiable at $\vec{a}\in U$. Then $f+g$ is also differentiable at $\vec{a}\in U$ and
+        \begin{equation*}
+            D(f+g)(\vec{a}) = Df(\vec{a})+Dg(\vec{a})
+        \end{equation*}
+        \item Suppose $f,g:U\to\R$ are both differentiable at $\vec{a}\in U$. Then $f\cdot g$ is also differentiable at $\vec{a}$, and
+        \begin{equation*}
+            D(f\cdot g)(\vec{a}) = Df(\vec{a})\cdot g(\vec{a})+f(\vec{a})\cdot Dg(\vec{a})
+        \end{equation*}
+        \item Suppose $f:U\to\R$ is differentiable at $\vec{a}\in U$ and $f(\vec{a})\neq 0$. Then $1/f$ is differentiable at $\vec{a}\in U$ and
+        \begin{equation*}
+            D(1/f)(\vec{a}) = -\frac{Df(\vec{a})}{f(\vec{a})^2}
+        \end{equation*}
+    \end{enumerate}
+    \begin{itemize}
+        \item Proof of 1: Consider the functions $F:U\to\R^{2m}$ and $G:\R^m\times\R^m\to\R^m$ defined by
+        \begin{align*}
+            F(\vec{x}) &= (f(\vec{x}),g(\vec{x}))&
+            G(\vec{y},\vec{z}) &= \vec{y}+\vec{z}
+        \end{align*}
+        so that
+        \begin{equation*}
+            f+g = G\circ F
+        \end{equation*}
+        \begin{itemize}
+            \item $F$ is differentiable because its components are differentiable.
+            \item $G$ is differentiable because it's linear. This also implies that $DG(\vec{x})=G$.
+            \item Apply the chain rule to learn that $G\circ F$ is differentiable with derivative
+            \begin{align*}
+                D(f+g)(\vec{a}) &= D(G\circ F)(\vec{a})\\
+                &= DG(F(\vec{a}))\circ DF(\vec{a})\\
+                &= G(DF(\vec{a}))\\
+                &= G(Df(\vec{a}),Dg(\vec{a}))\\
+                &= Df(\vec{a})+Dg(\vec{a})
+            \end{align*}
+        \end{itemize}
+        \item Prove the others the same way.
+    \end{itemize}
+    \item Theorem (Mean Value Theorem): Suppose $f:U\to\R$ is differentiable for all $\vec{a}\in U$ and that $U$ contains the line segment joining $\vec{a},\vec{a}+\vec{h}\in U$. Then there exists $t_0\in(0,1)$ such that
+    \begin{equation*}
+        f(\vec{a}+\vec{h})-f(\vec{a}) = Df(\vec{a}+t_0\vec{h})(\vec{h})
+    \end{equation*}
+    \begin{itemize}
+        \item Define $\phi(t)=f(\vec{a}+t\vec{h})$ for $t\in[0,1]$.
+        \item Apply the usual MVT to $\phi$ to learn that there exists $t_0\in(0,1)$ such that $\phi(1)-\phi(0)=\phi'(t_0)$.
+        \item Then using the chain rule, $\phi'(t_0)=Df(\vec{a}+t_0\vec{h})(\vec{h})$.
+    \end{itemize}
+    \item We now discuss higher order derivatives.
+    \item \textbf{Differentiable} ($f$ on $U$): A function $f$ that is differentiable at every $\vec{a}\in U$.
+    \item If $f$ is differentiable on $U$, then the total derivative gives a map $Df:U\to\lin{\R^n}{\R^m}$.
+    \begin{itemize}
+        \item Note that $\lin{\R^n}{\R^m}$ is isomorphic to the set of all $m$-by-$n$ matrices, and $\R^{mn}$.
+    \end{itemize}
+    \item We can ask for $Df$ to itself be differentiable. We define
+    \begin{equation*}
+        D^2f = D(Df)
+    \end{equation*}
+    if it exists and, more generally,
+    \begin{equation*}
+        D^kf = D(D^{k-1}f)
+    \end{equation*}
+    \item \textbf{Class $\bm{\mathcal{C}^k}$} (function): A function $f:U\to\R^m$ for which $Df,\dots,D^kf$ all exist and are continuous on $U$.
+    \begin{itemize}
+        \item Note that we technically need only require that $D^kf$ exist, as this implies the existence of $Df,\dots,D^{k-1}f$.
+        \item A function $f:U\to\R^m$ is of class $\mathcal{C}^k$ iff all partial derivatives $\pdv*{f}{x_i}:U\to\R^m$ exist and are of class $\mathcal{C}^{k-1}$ (this follows from the theorem relating partial derivatives and differentiability).
+    \end{itemize}
+    \item \textbf{Smooth} (function): A function of class $\mathcal{C}^\infty$.
 \end{itemize}
 
 
