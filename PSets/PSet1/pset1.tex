@@ -2,13 +2,133 @@
 
 \pagestyle{main}
 \renewcommand{\leftmark}{Problem Set \thesection}
+\setenumerate[1]{label={\textbf{\arabic*.}}}
 
 \begin{document}
 
 
 
 
-\section{???}
+\section{Norms and Differentiation}
+\begin{enumerate}
+    \item \marginnote{1/21:}Let $V$ be a vector space over $\R$. Recall that a norm on $V$ is a function
+    \begin{equation*}
+        \norm{\ }:V\to\R
+    \end{equation*}
+    such that
+    \begin{itemize}
+        \item $\norm{\lambda\vec{v}}=|\lambda|\cdot\norm{\vec{v}}$ for all $\lambda\in\R$, $\vec{v}\in V$;
+        \item $\norm{\vec{v}+\vec{w}}\leq\norm{\vec{v}}+\norm{\vec{w}}$ for all $\vec{v},\vec{w}\in V$;
+        \item $\norm{\vec{v}}=0$ iff $\vec{v}=\bm{0}$.
+    \end{itemize}
+    A norm defines a metric on $V$ given by $d(\vec{v},\vec{w})=\norm{\vec{v}-\vec{w}}$. We will say that two norms $\norm{\ }_1$ and $\norm{\ }_2$ are equivalent if there exist constants $C_1,C_2\in\R$ with $0<C_1\leq C_2$ such that for all $\vec{v}\in V$,
+    \begin{equation*}
+        C_1\norm{\vec{v}}_2 \leq \norm{\vec{v}}_1 \leq C_2\norm{\vec{v}}_2
+    \end{equation*}
+    In this problem, you will show that any two norms on a finite dimensional vector space are equivalent.
+    \begin{enumerate}
+        \item Show that if $\norm{\ }_1$ and $\norm{\ }_2$ are two equivalent norms on $V$, then a subset $U\subset V$ is open with respect to $\norm{\ }_1$ iff it is open with respect to $\norm{\ }_2$. (Recall that a subset $U\subset V$ is open with respect to a norm $\norm{\ }$ if for every $\vec{v}\in U$, there exists an $\epsilon>0$ such that for every $\vec{w}\in V$ satisfying $\norm{\vec{v}-\vec{w}}<\epsilon$, $\vec{w}\in U$.)
+        \item Let $V$ be a finite dimensional vector space over $\R$ with basis $\vec{e}_1,\dots,\vec{e}_n$. Let
+        \begin{equation*}
+            \norm{\ }_1:V\to\R
+        \end{equation*}
+        denote the function given by
+        \begin{equation*}
+            \norm{a_1\vec{e}_1+\cdots+a_n\vec{e}_n}_1 = \sum_{i=1}^n|a_i|
+        \end{equation*}
+        Show that $\norm{\ }_1$ defines a norm on $V$.
+        \item Let $V$ and $\norm{\ }_1$ be as in the previous part, and let
+        \begin{equation*}
+            \norm{\ }:V\to\R
+        \end{equation*}
+        be another norm on $V$. Show that the function $\norm{\ }:V\to\R$ is continuous with respect to the metric defined by $\norm{\ }_1$. Deduce that there exist constants $C_1,C_2\in\R$ such that for all $\vec{v}\in V$ with $\norm{\vec{v}}_1=1$,
+        \begin{equation*}
+            C_1 \leq \norm{\vec{v}} \leq C_2
+        \end{equation*}
+        (Hint: Use the fact that the unit sphere with respect to $\norm{\ }_1$ is compact.)
+        \item Prove that any two norms on a finite dimensional vector space are equivalent.
+    \end{enumerate}
+    \item Let $U\subset\R^n$ be an open subset, and suppose that a function
+    \begin{equation*}
+        f:U\to\R^m
+    \end{equation*}
+    is differentiable at a point $\vec{x}_0\in U$. For a real number $\lambda>0$, let $g_\lambda$ denote the function
+    \begin{equation*}
+        g_\lambda(\vec{x}) = \frac{f(\vec{x}_0+\lambda(\vec{x}-\vec{x}_0))-f(\vec{x}_0)}{\lambda}
+    \end{equation*}
+    Prove that $g_\lambda$ converges to the linear function $g(\vec{x})=Df(\vec{x}_0)(\vec{x}-\vec{x}_0)$ as $\lambda\to 0$, where the limit is taken in the topology of uniform convergence on compact sets. In other words, for every compact subset $K\subset\R^n$, prove that the restriction $g_\lambda|_K$ converges uniformly to $g|_K$. This is a precise formulation of the idea that a differentiable function looks linear when "zoomed in" at a point.
+    \item 
+    \begin{enumerate}
+        \item Let
+        \begin{equation*}
+            f(x,y) =
+            \begin{cases}
+                \frac{x^2y}{x^4+y^2} & (x,y)\neq(0,0)\\
+                0 & (x,y)=(0,0)
+            \end{cases}
+        \end{equation*}
+        Prove that $D_\vec{v}f(0)$ exists for all vectors $\vec{v}\in\R^2$ but that $f$ is not continuous at $(0,0)$ (and in particular, not differentiable there).
+        \item Let
+        \begin{equation*}
+            f(x,y) =
+            \begin{cases}
+                (x^2+y^2)\sin\left( \frac{1}{\sqrt{x^2+y^2}} \right) & (x,y)\neq(0,0)\\
+                0 & (x,y)=(0,0)
+            \end{cases}
+        \end{equation*}
+        Prove that $f$ is differentiable at zero but both partial derivatives are not continuous at zero.
+    \end{enumerate}
+    \item Let $U\subset\R^n$ be an open subset, and $f:U\to\R$ a function. Suppose that for $\vec{a}\in U$, the partial derivatives $\pdv*{f}{x_i}$ ($i=1,\dots,n$) exist and are bounded in a neighborhood of $\vec{a}$. Prove that $f$ is continuous at $\vec{a}$.
+    \item Let
+    \begin{equation*}
+        f(x,y) =
+        \begin{cases}
+            \frac{xy(x^2-y^2)}{x^2+y^2} & (x,y)\neq(0,0)\\
+            0 & (x,y)=(0,0)
+        \end{cases}
+    \end{equation*}
+    \begin{enumerate}
+        \item Show that $f$ is of class $C^1$ on $\R^2$.
+        \item Show that both $\pdv*[2]{f}{x}{y}$ and $\pdv*[2]{f}{y}{x}$ exist at $(0,0)$, but that
+        \begin{equation*}
+            {\pdv[2]{f}{x}{y}}(0,0) \neq {\pdv[2]{f}{y}{x}}(0,0)
+        \end{equation*}
+    \end{enumerate}
+    \item Let $M_n$ denote the space of $n$-by-$n$ matrices (which can be identified with $\R^{n^2}$), and let
+    \begin{equation*}
+        \GL{n} \subset M_n
+    \end{equation*}
+    denote the subset of invertible matrices. In this problem, you will show that the operation of matrix inverse $\inv:\GL{n}\to\GL{n}$ defined by
+    \begin{equation*}
+        \inv(A) = A^{-1}
+    \end{equation*}
+    is smooth and compute its derivative.
+    \begin{enumerate}
+        \item Let $H\in M_n$ be a matrix such that $\norm{H}<1$ (where $\norm{\ }$ denotes the operator norm). Show that $I+H$ is invertible (where $I\in M_n$ is the identity matrix). Use this to show that $\GL{n}\subset M_n$ is open. In particular, for a matrix $A\in\GL{n}$, if $\inv$ is differentiable at $A$, then the total derivative can be regarded as a linear function
+        \begin{equation*}
+            D\inv(A):M_n\to M_n
+        \end{equation*}
+        \item Show directly that $\inv$ is differentiable at the identity $I$ with derivative
+        \begin{equation*}
+            D\inv(I)(X) = -X
+        \end{equation*}
+        for $X\in M_n$. (Hint: Show that for $\norm{H}<1$, $(I+H)^{-1}-I+H=H^2(I+H)^{-1}$.)
+        \item Let $\mult:M_n\times M_n\to M_n$ be the function defined by matrix multiplication, i.e.,
+        \begin{equation*}
+            \mult(A_1,A_2) = A_1A_2
+        \end{equation*}
+        Show that $\mult$ is smooth and the derivative at $(A_1,A_2)\in M_n\times M_n$ is given by
+        \begin{equation*}
+            D\mult((A_1,A_2))(H_1,H_2) = A_1H_2+H_1A_2
+        \end{equation*}
+        for $(H_1,H_2)\in M_n\times M_n$.
+        \item Use the chain rule to show that $\inv$ is differentiable at every $A\in\GL{n}$ and that
+        \begin{equation*}
+            D\inv(A)(X) = -A^{-1}XA^{-1}
+        \end{equation*}
+        Deduce that $\inv$ is smooth.
+    \end{enumerate}
+\end{enumerate}
 
 
 
