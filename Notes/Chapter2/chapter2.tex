@@ -37,7 +37,7 @@
         \begin{equation*}
             \lim_{\vec{h}\to\bm{0}}\frac{A\vec{h}-B\vec{h}}{\norm{\vec{h}}} = \bm{0}
         \end{equation*}
-        \item Apply linearity: For $\vec{v}\in\R^n$ and $t\in\R$, $t>0$, we have
+        \item Apply linearity: For an arbitrary $\vec{v}\in\R^n$ and $t\in\R$, $t>0$, we have
         \begin{equation*}
             \frac{A(t\vec{v})-B(t\vec{v})}{t} = A\vec{v}-B\vec{v}
         \end{equation*}
@@ -304,6 +304,150 @@
         \item A function $f:U\to\R^m$ is of class $C^k$ iff all partial derivatives $\pdv*{f}{x_i}:U\to\R^m$ exist and are of class $C^{k-1}$ (this follows from the theorem relating partial derivatives and differentiability).
     \end{itemize}
     \item \textbf{Smooth} (function): A function of class $C^\infty$.
+\end{itemize}
+
+
+
+% \section{Office Hours (Rozenblyum)}
+% \begin{itemize}
+%     \item Intuition for the total derivative?
+%     \item Correct domain for $F$ in the sum, product, reciprocal rule theorem?
+%     \item Why is it not necessary for $\vec{v}$ in the definition of the directional derivative to be a unit vector? Are we defining multiple directional derivatives in each direction, one for each scalar multiple of a given unit vector?
+% \end{itemize}
+
+
+
+\section{Chapter 2: Differentiation}
+\emph{From \textcite{bib:Munkres}.}
+\begin{itemize}
+    \item \marginnote{1/18:}\textbf{Directional derivative} (of $f$ at $\vec{a}$ with respect to $\vec{u}$): The following limit, where $A\subset\R^m$ contains a neighborhood of $\vec{a}$, $f:A\to\R^n$, and $\vec{u}\in\R^m$ is nonzero. \emph{Denoted by} $\bm{f'(\vec{a};\vec{u})}$. \emph{Given by}
+    \begin{equation*}
+        f'(\vec{a};\vec{u}) = \lim_{t\to 0}\frac{f(\vec{a}+t\vec{u})-f(\vec{a})}{t}
+    \end{equation*}
+    \begin{itemize}
+        \item Note that it is not necessary for $\vec{u}$ to be a unit vector.
+    \end{itemize}
+    \item If we choose as our definition of differentiability "$f$ is differentiable at $\vec{a}$ if $f'(\vec{a};\vec{u})$ exists for every $\vec{u}\neq\bm{0}$," we would not have results such as differentiability implies continuity and the chain rule.
+    \begin{itemize}
+        \item Thus, we need a stronger definition.
+    \end{itemize}
+    \item As an alternate definition of differentiability in the one-variable case, consider the following.
+    \item \textbf{Differentiable} (single-variable real function at $a$): A function $\phi:A\to\R$, where $A\subset\R$ contains a neighborhood of $a$, for which there exists a number $\lambda$ such that
+    \begin{equation*}
+        \frac{\phi(a+t)-\phi(a)-\lambda t}{t} \to 0
+        \quad\text{as}\quad
+        t \to 0
+    \end{equation*}
+    \item \textbf{Derivative} (of a single-variable real function at $a$): The unique number $\lambda$ in the above definition. \emph{Denoted by} $\phi'(a)$.
+    \item "This formulation of the definition makes explicit the fact that if $\phi$ is differentiable, then the linear function $\lambda t$ is a good approximation to the \textbf{increment function} $\phi(a+t)-\phi(a)$; we often call $\lambda t$ the \textbf{first-order approximation} or \textbf{linear approximation} to the increment function" \parencite[43]{bib:Munkres}.
+    \item \textbf{Increment function}: The function $\phi(a+t)-\phi(a)$.
+    \item \textbf{First-order approximation}: The function $\lambda t$. \emph{Also known as} \textbf{linear approximation}.
+    \item To generalize the idea of a first-order/linear approximation to the increment function $f(\vec{a}+\vec{h})-f(\vec{a})$, we take a function that is linear in the sense of linear algebra.
+    \item Note that either the sup norm or the Euclidean norm can be used in the definition of the total derivative.
+    \item Theorem 5.1: Let $A\subset\R^m$, and let $f:A\to\R^n$. If $f$ is differentiable at $\vec{a}$, then all the directional derivatives of $f$ at $\vec{a}$ exist, and
+    \begin{equation*}
+        f'(\vec{a};\vec{u}) = Df(\vec{a})\cdot\vec{u}
+    \end{equation*}
+    \item Theorem 5.2: Let $A\subset\R^m$, and let $f:A\to\R^n$. If $f$ is differentiable at $\vec{a}$, then $f$ is continuous at $\vec{a}$.
+    \item \textbf{$\bm{j^\textbf{th}}$ partial derivative} (of $f$ at $\vec{a}$): The directional derivative of $f$ at $\vec{a}$ with respect to the vector $\vec{e}_j$, provided this derivative exists. \emph{Denoted by} $\bm{D_jf(\vec{a})}$.
+    \item Theorem 5.3. Let $A\subset\R^m$, and let $f:A\to\R$. If $f$ is differentiable at $\vec{a}$, then
+    \begin{equation*}
+        Df(\vec{a}) =
+        \begin{bmatrix}
+            D_1f(\vec{a}) & \cdots & D_mf(\vec{a})\\
+        \end{bmatrix}
+    \end{equation*}
+    \item Theorem 5.4: Let $A\subset\R^m$, and let $f:A\to\R^n$. Suppose $A$ contains a neighborhood of $\vec{a}$. Let $f_i:A\to\R$ be the $i^\text{th}$ component function of $f$ so that
+    \begin{equation*}
+        f(\vec{x}) =
+        \begin{bmatrix}
+            f_1(\vec{x})\\
+            \vdots\\
+            f_n(\vec{x})\\
+        \end{bmatrix}
+    \end{equation*}
+    \begin{enumerate}[label={(\alph*)}]
+        \item The function $f$ is differentiable at $\vec{a}$ if and only if each component function $f_i$ is differentiable at $\vec{a}$.
+        \item If $f$ is differentiable at $\vec{a}$, then its derivative is the $n$-by-$m$ matrix whose $i^\text{th}$ row is the derivative of the function $f_i$, i.e.,
+        \begin{equation*}
+            Df(\vec{a}) =
+            \begin{bmatrix}
+                Df_1(\vec{a})\\
+                \vdots\\
+                Df_n(\vec{a})\\
+            \end{bmatrix}
+        \end{equation*}
+        or, in other words, $Df(\vec{a})$ is the matrix whose entry in row $i$ and column $j$ is $D_jf_i(\vec{a})$.
+    \end{enumerate}
+    \item "It is possible for the partial derivatives, and hence the Jacobian matrix, to exist \emph{without} it following that $f$ is differentiable at $\vec{a}$" \parencite[47]{bib:Munkres}.
+    \begin{itemize}
+        \item As per the example outlined in class.
+    \end{itemize}
+    \item Special cases ($m=1$ or $n=1$).
+    \begin{itemize}
+        \item If $f:\R^1\to\R^3$, $f$ is often interpreted as a parameterized curve and
+        \begin{equation*}
+            \renewcommand{\arraystretch}{1.2}
+            Df(t) =
+            \begin{bmatrix}
+                f_1'(t)\\
+                f_2'(t)\\
+                f_3'(t)\\
+            \end{bmatrix}
+        \end{equation*}
+        is the velocity vector of the curve.
+        \item If $g:\R^3\to\R^1$, $g$ is often interpreted as a scalar field, and the vector field
+        \begin{equation*}
+            Dg(\vec{x}) =
+            \begin{bmatrix}
+                D_1g(\vec{x}) & D_2g(\vec{x}) & D_3g(\vec{x})\\
+            \end{bmatrix}
+        \end{equation*}
+        is called the gradient of $g$.
+        \begin{itemize}
+            \item In this case, the directional derivative of $g$ with respect to $\vec{u}$ is written in calculus as the dot product of the vectors $\stackrel{\rightarrow}{\nabla}g$ and $\vec{u}$.
+        \end{itemize}
+    \end{itemize}
+    \item Theorem 6.1 (Mean Value Theorem): If $\phi:[a,b]\to\R$ is continuous at each point of the closed interval $[a,b]$, and differentiable at each point of the open interval $(a,b)$, then there exists a point $c$ of $(a,b)$ such that
+    \begin{equation*}
+        \phi(b)-\phi(a) = \phi'(c)(b-a)
+    \end{equation*}
+    \item Theorem 6.2: Let $A$ be open in $\R^m$. Suppose that the partial derivatives $D_jf_i(\vec{x})$ of the component functions of $f$ exist at each point $\vec{x}$ of $A$ and are continuous on $A$. Then $f$ is differentiable at each point of $A$.
+    \item \textbf{Continuously differentiable} (function on $A$): A function $f$ for which the partial derivatives $D_jf_i(\vec{x})$ of the component functions of $f$ exist at each point $\vec{x}\in A$ and are continuous on $A$, where $A\subset\R^m$ is open. \emph{Also known as} \textbf{class $\bm{C^1}$} (function on $A$).
+    \item There are differentiable functions that are not of class $C^1$, but we will not concern ourselves with them.
+    \item Theorem 6.3\footnote{See Theorem 15.3 in \textcite{bib:CAAGThomasNotes}.}: Let $A$ be open in $\R^m$, and let $f:A\to\R$ be a function of class $C^2$ on $A$. Then for each $\vec{a}\in A$,
+    \begin{equation*}
+        D_kD_jf(\vec{a}) = D_jD_kf(\vec{a})
+    \end{equation*}
+    \item Theorem 7.1 (Chain Rule): Let $A\subset\R^m$, $B\subset\R^n$, $f:A\to\R^n$, $g:B\to\R^p$, $f(A)\subset B$, and $\vec{b}=f(\vec{a})$. If $f$ is differentiable at $\vec{a}$ and $g$ is differentiable at $\vec{b}$, then the composite function $g\circ f$ is differentiable at $\vec{a}$. Furthermore,
+    \begin{equation*}
+        D(g\circ f)(\vec{a}) = Dg(\vec{b})\cdot Df(\vec{a})
+    \end{equation*}
+    where the indicated product is matrix multiplication.
+    \item Corollary 7.2: Let $A$ be open in $\R^m$, and let $B$ be open in $\R^n$. Let $f:A\to\R^n$ and $g:B\to\R^p$ with $f(A)\subset B$. If $f$ and $g$ are of class $C^r$, so is the composite function $g\circ f$.
+    \item Theorem 7.3 (Mean Value Theorem): Let $A$ be open in $\R^m$, and let $f:A\to\R$ be differentiable on $A$. If $A$ contains the line segment with end points $\vec{a}$ and $\vec{a}+\vec{h}$, then there is a point $\vec{c}=\vec{a}+t_0\vec{h}$ with $0<t_0<1$ of this line segment such that
+    \begin{equation*}
+        f(\vec{a}+\vec{h})-f(\vec{a}) = Df(\vec{c})\cdot\vec{h}
+    \end{equation*}
+    \item Theorem 7.4: Let $A$ be open in $\R^n$, $f:A\to\R^n$, and $\vec{b}=f(\vec{a})$. Suppose that $g$ maps a neighborhood of $\vec{b}$ into $\R^n$, that $g(\vec{b})=\vec{a}$, and $g(f(\vec{x}))=\vec{x}$ for all $\vec{x}$ in a neighborhood of $\vec{a}$. If $f$ is differentiable at $\vec{a}$ and if $g$ is differentiable at $\vec{b}$, then
+    \begin{equation*}
+        Dg(\vec{b}) = [Df(\vec{a})]^{-1}
+    \end{equation*}
+    \begin{proof}
+        Let $i:\R^n\to\R^n$ be the identity function. It has total derivative $I_n$. But since $g(f(\vec{x}))=i(\vec{x})$ for all $\vec{x}$ in a neighborhood of $\vec{a}$, the Chain Rule implies that
+        \begin{align*}
+            Dg(\vec{b})\cdot Df(\vec{a}) &= I_n\\
+            Dg(\vec{b}) &= [Df(\vec{a})]^{-1}
+        \end{align*}
+        as desired.
+    \end{proof}
+    \item It follows from Theorem 7.4 that for $f^{-1}$ to be differentiable at $\vec{a}$, it is \emph{necessary} that $Df(\vec{a})$ is invertible.
+    \begin{itemize}
+        \item We will later prove that this condition is also \emph{sufficient} for a function $f$ of class $C^1$ to have a differentiable inverse.
+    \end{itemize}
+    \item \textbf{Functional notation}: Notation such as $\phi'$ for a derivative.
+    \item \textbf{Operator notation}: Notation such as $D\phi$ for a derivative.
+    \item \textcite{bib:Munkres} argues that Leibniz notation is a relic of a "time when the focus of every physical and mathematical problem was on the \emph{variables} involved, and when \emph{functions} as such were hardly even thought about" (p. 60).
 \end{itemize}
 
 
