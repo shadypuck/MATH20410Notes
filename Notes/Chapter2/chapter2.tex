@@ -304,16 +304,37 @@
         \item A function $f:U\to\R^m$ is of class $C^k$ iff all partial derivatives $\pdv*{f}{x_i}:U\to\R^m$ exist and are of class $C^{k-1}$ (this follows from the theorem relating partial derivatives and differentiability).
     \end{itemize}
     \item \textbf{Smooth} (function): A function of class $C^\infty$.
+    \item \marginnote{1/19:}Theorem: Let $U\subset\R^n$ be open, and let $f:U\to\R^m$ be a $C^2$ function. Then for any $i,j$,
+    \begin{equation*}
+        \pdv{x_i}(\pdv{f}{x_j}) = \pdv{x_j}(\pdv{f}{x_i})
+    \end{equation*}
+    \begin{itemize}
+        \item WLOG, let $n=2$ (because only two variables play a role in this theorem; we don't need the others) and $m=1$ (we can do this for each component separately).
+        \item See the figure/proof associated with Theorem 15.3 in \textcite{bib:CAAGThomasNotes}.
+    \end{itemize}
+    \item Note that there is a homework problem giving an example of a function for which the above quantities are defined but not equal. This doesn't violate the theorem, though, because the function isn't $C^2$.
+    \item Next goal: One of the most important theorems in this class --- the inverse function theorem.
+    \item Theorem (Inverse function theorem): Suppose $U\subset\R^n$ is open, $f:U\to\R^n$ is a $C^k$ function for $k\geq 1$, and $\vec{a}\in U$ such that $Df(\vec{a}):\R^n\to\R^n$ is invertible. Then there exist open neighborhoods $V\subset U$ of $\vec{a}$ and $W$ of $\vec{b}=f(\vec{a})\in\R^n$ and a $C^k$ function $g:W\to V$ such that $f(V)=W$, $g(W)=V$, $g(f(\vec{x}))=\vec{x}$ for all $\vec{x}\in V$, and $f(g(\vec{y}))=\vec{y}$ for all $\vec{y}\in W$. Moreover, $Dg(\vec{y})=Df(g(\vec{y}))^{-1}$ for all $y\in W$.
+    \begin{itemize}
+        \item The proof will be reasonably involved because we have to deal with the construction of the open neighborhoods. The proof will be reasonably nonconstructive?
+        \item Intuition: If $n=1$, $f'(\vec{a})\neq 0$ implies that $f$ is increasing or decreasing in a neighborhood of $\vec{a}$; in either case, there's a local inverse.
+        \begin{itemize}
+            \item In higher dimensions, the derivative won't be up or down but will look like a linear transformation.
+        \end{itemize}
+        \item Idea of proof: Given $\vec{y}\in\R^n$ near $\vec{b}=f(\vec{a})$, we want to find $\vec{x}\in U$ near $\vec{a}$ such that $f(\vec{x})=\vec{y}$.
+        \begin{itemize}
+            \item First guess: Take $\vec{x}_0=\vec{a}-A^{-1}(\vec{b}-\vec{y})$ where $A=Df(\vec{a})$.
+            \item Hope: $f(\vec{x}_0)$ is closer to $\vec{y}$ than $\vec{b}=f(\vec{a})$.
+            \item Then we iterate; do this again and again to get a sequence that converges to the point we want. In particular, $\vec{x}_1=\vec{x}_0-A^{-1}(f(\vec{x}_0)-\vec{y})$, and on and on.
+            \item We're going to formalize this idea of iteration using the \textbf{contraction mapping theorem} (aka the Banach fixed point theorem).
+            \item Let $\vec{y}\in\R^n$ be fixed near $\vec{b}=f(\vec{a})$. $F_\vec{y}(\vec{x})=\vec{x}-A^{-1}(f(\vec{x})-\vec{y})$. Note: $f(\vec{x})=\vec{y}$ iff $F_\vec{y}(\vec{x})=\vec{x}$.
+            \item Goal: Find a fixed point of $F_\vec{y}(\vec{x})$ (another way of iterating the sequence is that at some point you will get a fixed point, i.e., a point that you can plug into the recursion relation and get the same point back out).
+        \end{itemize}
+    \end{itemize}
+    \item Theorem (Contraction mapping theorem): Let $X$ be a complete metric space, and suppose $T:X\to X$ is a function for which there exists a constant $r<1$ such that for all $\vec{x},\vec{y}\in X$, $d(T(\vec{x}),T(\vec{y}))\leq r\cdot d(\vec{x},\vec{y})$. Then $T$ has a unique fixed point.
+    \item The way you find a fixed point is by starting with an arbitrary point and then just iterating $T$ to it. Then show that in the limit it converges to something, and that something is a fixed point.
+    \item You can't have more than one fixed point.
 \end{itemize}
-
-
-
-% \section{Office Hours (Rozenblyum)}
-% \begin{itemize}
-%     \item Intuition for the total derivative?
-%     \item Correct domain for $F$ in the sum, product, reciprocal rule theorem?
-%     \item Why is it not necessary for $\vec{v}$ in the definition of the directional derivative to be a unit vector? Are we defining multiple directional derivatives in each direction, one for each scalar multiple of a given unit vector?
-% \end{itemize}
 
 
 
