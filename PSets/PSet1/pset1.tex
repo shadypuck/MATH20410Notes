@@ -28,6 +28,16 @@
     In this problem, you will show that any two norms on a finite dimensional vector space are equivalent.
     \begin{enumerate}
         \item Show that if $\norm{\ }_1$ and $\norm{\ }_2$ are two equivalent norms on $V$, then a subset $U\subset V$ is open with respect to $\norm{\ }_1$ iff it is open with respect to $\norm{\ }_2$. (Recall that a subset $U\subset V$ is open with respect to a norm $\norm{\ }$ if for every $\vec{v}\in U$, there exists an $\epsilon>0$ such that for every $\vec{w}\in V$ satisfying $\norm{\vec{v}-\vec{w}}<\epsilon$, $\vec{w}\in U$.)
+        \begin{proof}
+            Suppose first that $U\subset V$ is open with respect to $\norm{\ }_1$. To prove that $U$ is open with respect to $\norm{\ }_2$, it will suffice to show that for every $\vec{v}\in U$, there exists an $\epsilon>0$ such that for every $\vec{w}\in V$ satisfying $\norm{\vec{v}-\vec{w}}_2<\epsilon$, $\vec{w}\in U$. Let $\vec{v}\in U$ be arbitrary. By hypothesis, there exists an $\epsilon'>0$ such that for every $\vec{w}\in V$ satisfying $\norm{\vec{v}-\vec{w}}_1<\epsilon'$, $\vec{w}\in U$. Additionally, since $\norm{\ }_1$ and $\norm{\ }_2$ are equivalent, we know that there exists a $C_2\in\R$ with $0<C_2$ such that for all $\vec{v}\in V$, $\norm{\vec{v}}_1\leq C_2\norm{\vec{v}}_2$. Thus, if we choose $\epsilon=\epsilon'/C_2$ and let $\vec{w}$ be an arbitrary element of $V$ that satisfies $\norm{\vec{v}-\vec{w}}_2<\epsilon$, we have that
+            \begin{equation*}
+                \norm{\vec{v}-\vec{w}}_1 \leq C_2\norm{\vec{v}-\vec{w}}_2
+                < C_2\epsilon
+                = \epsilon'
+            \end{equation*}
+            This implies that $\vec{w}\in U$, as desired.\par
+            The proof is symmetric in the reverse direction.
+        \end{proof}
         \item Let $V$ be a finite dimensional vector space over $\R$ with basis $\vec{e}_1,\dots,\vec{e}_n$. Let
         \begin{equation*}
             \norm{\ }_1:V\to\R
@@ -37,6 +47,37 @@
             \norm{a_1\vec{e}_1+\cdots+a_n\vec{e}_n}_1 = \sum_{i=1}^n|a_i|
         \end{equation*}
         Show that $\norm{\ }_1$ defines a norm on $V$.
+        \begin{proof}
+            To prove that $\norm{\ }_1$ defines a norm on $V$, it will suffice to verify that $\norm{\ }_1$ satisfies the three norm criteria. Let's begin.\par\smallskip
+            For the first one, let $\lambda\in\R$ and $(a_1\vec{e}_1+\cdots+a_n\vec{e}_n)\in V$ be arbitrary. Then
+            \begin{align*}
+                \norm{\lambda(a_1\vec{e}_1+\cdots+a_n\vec{e}_n)}_1 &= \norm{\lambda a_1\vec{e}_1+\cdots+\lambda a_n\vec{e}_n}_1\\
+                &= \sum_{i=1}^n|\lambda a_i|\\
+                &= |\lambda|\cdot\sum_{i=1}^n|a_i|\\
+                &= |\lambda|\cdot\norm{a_1\vec{e}_1+\cdots+a_n\vec{e}_n}_1
+            \end{align*}
+            as desired.\par
+            For the second one, let $(a_1\vec{e}_1+\cdots+a_n\vec{e}_n),(b_1\vec{e}_1+\cdots+b_n\vec{e}_n)\in V$ be arbitrary. Then
+            \begin{align*}
+                \norm{(a_1\vec{e}_1+\cdots+a_n\vec{e}_n)+(b_1\vec{e}_1+\cdots+b_n\vec{e}_n)}_1 &= \norm{(a_1+b_1)\vec{e}_1+\cdots+(a_n+b_n)\vec{e}_n}\\
+                &= \sum_{i=1}^n|a_i+b_i|\\
+                &= \sum_{i=1}^n|a_i|+\sum_{i=1}^n|b_i|\\
+                &= \norm{a_1\vec{e}_1+\cdots+a_n\vec{e}_n}_1+\norm{b_1\vec{e}_1+\cdots+b_n\vec{e}_n}_1
+            \end{align*}
+            as desired.\par
+            For the third one, suppose first that $\norm{a_1\vec{e}_1+\cdots+a_n\vec{e}_n}_1=0$. Then $|a_1|+\cdots+|a_n|=0$, so we must have $a_i=0$ for all $i$ by the properties of the absolute value. This implies that
+            \begin{equation*}
+                a_1\vec{e}_1+\cdots+a_n\vec{e}_n = 0\vec{e}_1+\cdots+0\vec{e}_n
+                = \bm{0}
+            \end{equation*}
+            as desired. On the other hand, suppose that $a_1\vec{e}_1+\cdots+a_n\vec{e}_n=\bm{0}$. Then since $\vec{e}_1,\dots,\vec{e}_n$ is a basis (hence linearly independent), we must have that $a_1=\cdots=a_n=0$. This implies that
+            \begin{equation*}
+                \norm{a_1\vec{e}_1+\cdots+a_n\vec{e}_n}_1 = \norm{0\vec{e}_1+\cdots+0\vec{e}_n}
+                = \sum_{i=1}^n|0|
+                = 0
+            \end{equation*}
+            as desired.
+        \end{proof}
         \item Let $V$ and $\norm{\ }_1$ be as in the previous part, and let
         \begin{equation*}
             \norm{\ }:V\to\R
@@ -46,7 +87,80 @@
             C_1 \leq \norm{\vec{v}} \leq C_2
         \end{equation*}
         (Hint: Use the fact that the unit sphere with respect to $\norm{\ }_1$ is compact.)
+        \begin{proof}
+            % Preimage definition of continuity? Closed subsets of compact sets are compact? $\lim_{\vec{y}\to\vec{x}}\norm{\vec{y}}=\norm{\vec{x}}$. For every $\epsilon>0$, there exists a $\delta>0$ such that if $\vec{y}\in V$ and $\norm{\vec{y}-\vec{x}}_1<\delta$, then $|\norm{\vec{y}}-\norm{\vec{x}}|<\epsilon$. Use the reverse triangle inequality; then done.
+
+            % $\lim_{\vec{h}\to\bm{0}}\norm{\vec{x}+\vec{h}}=\norm{\vec{x}}$
+            % Prove its continuous at $\bm{0}$, i.e., $\lim_{\vec{h}\to\bm{0}}\norm{\vec{h}}=\norm{\bm{0}}$.
+
+            % Alternatively, for every open $U\in\R$, the preimage $(\norm{\ })^{-1}(U)$ is open in $V$.
+
+            % To prove that $\norm{\ }$ is continuous with respect to $\norm{\ }_1$, it will suffice to show that it is continuous at every $\vec{x}\in V$. Let $\vec{x}\in V$ be arbitrary. We want to demonstrate that for every $\epsilon>0$, there exists a $\delta>0$ such that if $\vec{y}\in V$ and $\norm{\vec{y}-\vec{x}}_1<\delta$, then $|\norm{\vec{y}}-\norm{\vec{x}}|<\epsilon$. Let $\epsilon>0$ be arbitrary. Choose $\delta=\epsilon$. Let 
+
+            % We should be able to show that $\norm{\ }$ and $\norm{\ }_1$ are equivalent, i.e., that for all $\vec{v}\in V$, $C_1\norm{\vec{v}}_1\leq\norm{\vec{v}}\leq C_2\norm{\vec{v}}_1$. If we can do this, we can show that a preimage subset of $V$ is open under $\norm{\ }_1$ (which is a continuous function); hence open under $\norm{\ }$ via (a).
+
+            % To prove that $\norm{\ }$ is continuous with respect to $\norm{\ }_1$, it will suffice to show that for every open $U\subset\R$, the preimage $(\norm{\ })^{-1}(U)$ is open. Let $U$ be an arbitrary open subset of $\R$. To show that $(\norm{\ })^{-1}(U)$ is open, it will suffice to verify that it is open with respect to $\norm{\ }_1$. In particular, we must verify that for every $\vec{v}\in(\norm{\ })^{-1}(U)$, there exists an $\epsilon>0$ such that for every $\vec{w}\in V$ satisfying $\norm{\vec{v}-\vec{w}}_1<\epsilon$, $\vec{w}\in(\norm{\ })^{-1}(U)$.
+
+
+            First off, note that for every $(a_1\vec{e}_1+\cdots+a_n\vec{e}_n)\in V$,
+            \begin{align*}
+                \norm{a_1\vec{e}_1+\cdots+a_n\vec{e}_n} &\leq \sum_{i=1}^n|a_i|\cdot\norm{\vec{e}_i}\\
+                &\leq \max\norm{\vec{e}_i}\cdot\sum_{i=1}^n|a_i|\\
+                &= \max\norm{\vec{e}_i}\cdot\norm{a_1\vec{e}_1+\cdots+a_n\vec{e}_n}_1
+            \end{align*}
+            To prove that $\norm{\ }$ is continuous with respect to $\norm{\ }_1$, it will suffice to show that it is continuous at every $\vec{x}\in V$. Let $\vec{x}\in V$ be arbitrary. We want to demonstrate that for every $\epsilon>0$, there exists a $\delta>0$ such that if $\vec{y}\in V$ and $\norm{\vec{y}-\vec{x}}_1<\delta$, then $|\norm{\vec{y}}-\norm{\vec{x}}|<\epsilon$. Let $\epsilon>0$ be arbitrary. Choose $\delta=\epsilon/\max\norm{\vec{e}_i}$. Let $\vec{y}\in V$ be such that $\norm{\vec{y}-\vec{x}}_1<\delta$. Then
+            \begin{equation*}
+                |\norm{\vec{y}}-\norm{\vec{x}}| \leq \norm{\vec{y}-\vec{x}}
+                \leq \max\norm{\vec{e}_i}\cdot\norm{\vec{y}-\vec{x}}_1
+                < \max\norm{\vec{e}_i}\cdot\delta
+                = \epsilon
+            \end{equation*}
+            as desired.\par
+            A particular result of the above argument is that $\norm{\ }_1$ is continuous. Consequently, we know that the unit sphere with respect to $\norm{\ }_1$, i.e., the set $(\norm{\ }_1)^{-1}([0,1])$ is closed. Additionally, we know that it is bounded by the unit shell $\norm{\vec{x}}_1=1$. Thus, since $V$ is equivalent to $\R^n$ via an isomorphism, we can apply the Heine-Borel theorem to the image of the unit sphere of $V$ in $\R^n$ and then go back.\par
+            Having established that $\norm{\ }$ is continuous with respect to the metric defined by $\norm{\ }_1$, we now turn our attention to the second part of the problem. Since $\norm{\ }$ is a continuous real function and the unit sphere with respect to $\norm{\ }_1$ is compact, we have that the image of the unit sphere under $\norm{\ }$ is closed and bounded. It follows since the unit shell $\{\vec{v}\in V:\norm{\vec{v}}=1\}$ is a subset of the unit sphere that the image of the unit shell under $\norm{\ }$ is bounded. Consequently, we may choose $C_1,C_2\in\R$ such that for all $\vec{v}\in V$, $C_1\leq\norm{\vec{v}}\leq C_2$.
+        \end{proof}
         \item Prove that any two norms on a finite dimensional vector space are equivalent.
+        \begin{proof}
+            % Thus, we have the inequalities
+            % \begin{align*}
+            %     0 &< C_{1a} \leq C_{1b}&
+            %     0 &< C_{2a} \leq C_{2b}
+            % \end{align*}
+            % which together yield the combined inequality
+            % \begin{align*}
+            %     0 &< C_{1a}C_{2a} \leq C_{1b}C_{2b}\\
+            %     0 &< \frac{C_{2a}}{C_{1b}} \leq \frac{C_{2b}}{C_{1a}}
+            % \end{align*}
+            
+            % $\norm{\vec{v}}\geq 0$ for all $\vec{v}\in V$ and $\vec{v}\neq 0$ for any $\vec{v}$ in the unit shell, $\norm{\vec{v}}>0$ for all 
+
+
+            Let $\norm{\ }_a$ and $\norm{\ }_b$ be norms on a finite dimensional vector space $V$. By part (c), there exist constants $C_{1a},C_{2a},C_{1b},C_{2b}\in\R$ such that for all $\vec{v}\in V$ with $\norm{\vec{v}}_1=1$,
+            \begin{align*}
+                C_{1a} &\leq \norm{\vec{v}}_a \leq C_{2a}&
+                C_{1b} &\leq \norm{\vec{v}}_b \leq C_{2b}
+            \end{align*}
+            Multiplying through the above inequalities by select positive constants gives
+            \begin{align*}
+                \frac{C_{1b}}{C_{2a}}C_{1a} &\leq \frac{C_{1b}}{C_{2a}}\norm{\vec{v}}_a \leq \frac{C_{1b}}{C_{2a}}C_{2a}&
+                1C_{1b} &\leq 1\norm{\vec{v}}_b \leq 1C_{2b}&
+                \frac{C_{2b}}{C_{1a}}C_{1a} &\leq \frac{C_{2b}}{C_{1a}}\norm{\vec{v}}_a \leq \frac{C_{2b}}{C_{1a}}C_{2a}\\
+                \frac{C_{1b}}{C_{2a}}C_{1a} &\leq \frac{C_{1b}}{C_{2a}}\norm{\vec{v}}_a \leq C_{1b}&
+                C_{1b} &\leq \norm{\vec{v}}_b \leq C_{2b}&
+                C_{2b} &\leq \frac{C_{2b}}{C_{1a}}\norm{\vec{v}}_a \leq \frac{C_{2b}}{C_{1a}}C_{2a}
+            \end{align*}
+            It follows by consecutive applications of the transitive property that
+            \begin{equation*}
+                \frac{C_{1b}}{C_{2a}}\norm{\vec{v}}_a \leq \norm{\vec{v}}_b \leq \frac{C_{2b}}{C_{1a}}\norm{\vec{v}}_a
+            \end{equation*}
+            As suggested by the above equation, choose
+            \begin{align*}
+                C_1 &= \frac{C_{1b}}{C_{2a}}&
+                C_2 &= \max\left( \frac{C_{2b}}{C_{1a}},\frac{C_{1b}}{C_{2a}} \right)
+            \end{align*}
+            By our choice of $C_1$ and $C_2$, we know that $C_1\leq C_2$; we now confirm that they are both strictly positive. To do so, it will suffice to show that $C_{1a},C_{2a},C_{1b},C_{2b}$ are strictly positive.\par
+            First, note that since every norm is continuous (part (c)) and the unit shell is a closed subset of a compact set (hence compact itself), the image of the unit shell under any norm is compact. Moreover, since the norm is a nonnegative function and $\bm{0}$ is not an element of the unit shell, the elements of the image are strictly positive. This combined with the fact that 0 cannot be a limit point of the image (which is closed by the Heine-Borel theorem) proves that there exists a positive lower bound on the image. Therefore, we may take $C_{1a},C_{2a},C_{1b},C_{2b}$ to be strictly positive.
+        \end{proof}
     \end{enumerate}
     \item Let $U\subset\R^n$ be an open subset, and suppose that a function
     \begin{equation*}
@@ -57,6 +171,46 @@
         g_\lambda(\vec{x}) = \frac{f(\vec{x}_0+\lambda(\vec{x}-\vec{x}_0))-f(\vec{x}_0)}{\lambda}
     \end{equation*}
     Prove that $g_\lambda$ converges to the linear function $g(\vec{x})=Df(\vec{x}_0)(\vec{x}-\vec{x}_0)$ as $\lambda\to 0$, where the limit is taken in the topology of uniform convergence on compact sets. In other words, for every compact subset $K\subset\R^n$, prove that the restriction $g_\lambda|_K$ converges uniformly to $g|_K$. This is a precise formulation of the idea that a differentiable function looks linear when "zoomed in" at a point.
+    \begin{proof}
+        % $K$ compact means $f(K)$ compact; thus, there is an $\vec{x}\in K$ such that $f(\vec{x})$ will be greatest. Choose this $\vec{x}$ with which to bound $\lambda$.
+
+        % We know since the domain of $f$ is compact and $f$ is differentiable (hence continuous) that $f(K)$ is compact (hence closed and bounded). This allows for uniformity, likely through Rudin Theorem 7.9.
+
+        % We can work with the directional derivative at each point, but this will only achieve pointwise convergence.
+
+        % $f$ differentiable at $\vec{x}_0$ implies all directional derivatives of $f$ at $\vec{x}_0$ exist.
+        % \begin{align*}
+        %     D_{\vec{x}-\vec{x}_0}f(\vec{x_0}) &= \lim_{\lambda\to 0}\frac{f(\vec{x}_0+\lambda(\vec{x}-\vec{x}_0))-f(\vec{x}_0)}{\lambda}
+        %     % \lim_{\lambda\to 0}g_\lambda(\vec{x})-g(\vec{x})
+        % \end{align*}
+
+
+        Let $K$ be an arbitrary compact subset of $\R^n$. To prove that $g_\lambda|_K$ converges uniformly to $g|_K$, it will suffice to show that for every $\epsilon>0$, there exists a $\delta>0$ such that if $\lambda<\delta$, then $\big| g_\lambda|_K(\vec{x})-g|_K(\vec{x}) \big|<\epsilon$ for all $\vec{x}\in K\cap U$. Let's begin.\par
+        Let $\epsilon>0$ be arbitrary. First off, since $K$ is compact (hence bounded), we know that there exists some $M\in\R$ such that $\norm{\vec{x}-\vec{x}_0}\leq M$ for all $\vec{x}\in K$. Additionally, since $f$ is differentiable at $\vec{x}_0$, we know that
+        \begin{equation*}
+            \lim_{\lambda(\vec{x}-\vec{x}_0)\to\bm{0}}\frac{f(\vec{x}_0+\lambda(\vec{x}-\vec{x}_0))-f(\vec{x}_0)-Df(\vec{x}_0)(\lambda(\vec{x}-\vec{x}_0))}{\norm{\lambda(\vec{x}-\vec{x}_0)}} = \bm{0}
+        \end{equation*}
+        for all $\vec{x}\in K$. In particular, going forward let $\vec{x}$ denote the element of $K\cap U$ that maximizes $f$ near $\vec{x}_0$ (we know that such an element exists by the compactness of $K$ and the differentiability [hence continuity] of $f$ at $\vec{x}_0$). Note that we will also take $\vec{x}\neq\vec{x}_0$ since the other case is trivial. With this particular $\vec{x}$ in mind and the help of the above limit, we know that there exists a $\delta'>0$ such that if $\lambda(\vec{x}-\vec{x}_0)<\delta'$, then
+        \begin{equation*}
+            \norm{\frac{f(\vec{x}_0+\lambda(\vec{x}-\vec{x}_0))-f(\vec{x}_0)-Df(\vec{x}_0)(\lambda(\vec{x}-\vec{x}_0))}{\norm{\lambda(\vec{x}-\vec{x}_0)}}} < \frac{\epsilon}{M}
+        \end{equation*}
+        at this $\vec{x}$ and every other element of the domain within a sufficiently small neighborhood. Now choose $\delta=\delta'/M$. Suppose $\lambda<\delta$. Then
+        \begin{align*}
+            \lambda(\vec{x}-\vec{x}_0) &\leq \lambda\cdot M\\
+            &< \delta\cdot M\\
+            &= \delta'
+        \end{align*}
+        so we may utilize the above inequality. In particular, it follows that under this supposition,
+        \begin{align*}
+            \norm{g_\lambda|_K(\vec{x})-g|_K(\vec{x})} &= \norm{\frac{f(\vec{x}_0+\lambda(\vec{x}-\vec{x}_0))-f(\vec{x}_0)}{\lambda}-Df(\vec{x}_0)(\vec{x}-\vec{x}_0)}\\
+            &= \norm{\frac{f(\vec{x}_0+\lambda(\vec{x}-\vec{x}_0))-f(\vec{x}_0)-\lambda Df(\vec{x}_0)(\vec{x}-\vec{x}_0)}{\lambda}\cdot\frac{\norm{\vec{x}-\vec{x}_0}}{\norm{\vec{x}-\vec{x}_0}}}\\
+            &= \norm{\frac{f(\vec{x}_0+\lambda(\vec{x}-\vec{x}_0))-f(\vec{x}_0)-Df(\vec{x}_0)(\lambda(\vec{x}-\vec{x}_0))}{\norm{\lambda(\vec{x}-\vec{x}_0)}}}\cdot\norm{\vec{x}-\vec{x}_0}\\
+            &< \frac{\epsilon}{M}\cdot\norm{\vec{x}-\vec{x}_0}\\
+            &\leq \frac{\epsilon}{M}\cdot M\\
+            &= \epsilon
+        \end{align*}
+        as desired.
+    \end{proof}
     \item 
     \begin{enumerate}
         \item Let
@@ -67,7 +221,37 @@
                 0 & (x,y)=(0,0)
             \end{cases}
         \end{equation*}
-        Prove that $D_\vec{v}f(0)$ exists for all vectors $\vec{v}\in\R^2$ but that $f$ is not continuous at $(0,0)$ (and in particular, not differentiable there).
+        Prove that $D_\vec{v}f(\bm{0})$ exists for all vectors $\vec{v}\in\R^2$ but that $f$ is not continuous at $(0,0)$ (and in particular, not differentiable there).
+        \begin{proof}
+            % See Example 3, Section 2.5 and the following discussion. Also Problem Set 8, Question 4.7 from last quarter.
+
+            Let $\vec{v}=(h,k)\in\R^2$ be an arbitrary nonzero vector. We have that
+            \begin{align*}
+                \frac{f(\bm{0}+t\vec{u})-f(\bm{0})}{t} &= \frac{1}{t}\frac{(th)^2(tk)}{(th)^4+(tk)^2}\\
+                &= \frac{h^2k}{t^2h^4+k^2}
+            \end{align*}
+            Thus, to prove that $D_\vec{v}f(\bm{0})$ exists, it will suffice to show that the above fraction goes to zero as $t\to 0$. We divide into two cases ($k=0$ and $k\neq 0$. If $k=0$, then by the sum, product, and quotient rules of limits, we have that
+            \begin{align*}
+                0 &= \frac{h^2\cdot 0}{0\cdot h^4+0^2}\\
+                &= \frac{h^2k}{(\lim_{t\to 0}t^2)\cdot h^4+k^2}\\
+                &= \lim_{t\to 0}\frac{h^2k}{t^2h^4+k^2}
+            \end{align*}
+            as desired. If $k\neq 0$, then we have by the same rules of limits that
+            \begin{align*}
+                \frac{h^2}{k} &= \frac{h^2k}{0\cdot h^4+k^2}\\
+                &= \frac{h^2k}{(\lim_{t\to 0}t^2)\cdot h^4+k^2}\\
+                &= \lim_{t\to 0}\frac{h^2k}{t^2h^4+k^2}
+            \end{align*}
+            as desired.\par
+            To prove that $f$ is not continuous at $(0,0)$, it will suffice to show that there exists an $\epsilon>0$ such that for all $\delta>0$, there exists $(x,y)\in\R^2$ such that $\norm{(x,y)-(0,0)}<\delta$ and $|f(x,y)-f(0,0)|\geq\epsilon$. Choose $\epsilon=1/2$. Let $\delta>0$ be arbitrary. Choose $(y,y^2)\in\R^2$ such that $\norm{(y,y^2)-(0,0)}=\norm{(y,y^2)}<\delta$. This combined with the fact that
+            \begin{align*}
+                |f(y,y^2)-f(0,0)| &= \left| \frac{(y)^2(y^2)}{(y)^4+(y^2)^2} \right|\\
+                &= \left| \frac{y^4}{2y^4} \right|\\
+                &= \left| \frac{1}{2} \right|\\
+                &= \epsilon
+            \end{align*}
+            completes the proof. It follows by the contrapositive of the proof that differentiability implies continuity that $f$ is not differentiable at $(0,0)$.
+        \end{proof}
         \item Let
         \begin{equation*}
             f(x,y) =
@@ -77,8 +261,61 @@
             \end{cases}
         \end{equation*}
         Prove that $f$ is differentiable at zero but both partial derivatives are not continuous at zero.
+        \begin{proof}
+            % Calculate the Jacobian. Show that partials aren't continuous at zero, but that the transformation defined by the Jacobian satisfies the definition of the limit.
+
+            Let $A$ denote the zero transformation. To prove that $f$ is differentiable at $\bm{0}$ with total derivative $A$, it will suffice to show that $[f(\vec{h})-f(\bm{0})-A\vec{h}]/\norm{\vec{h}}\to 0$ as $\vec{h}\to\bm{0}$. First off, we have that
+            \begin{align*}
+                \frac{f(\vec{h})-f(\bm{0})-A\vec{h}}{\norm{\vec{h}}} &= \frac{(h_1^2+h_2^2)\sin\left( 1/\sqrt{h_1^2+h_2^2} \right)-0-0}{\norm{\vec{h}}}\\
+                &= \frac{\norm{\vec{h}}^2}{\norm{\vec{h}}}\sin\left( \frac{1}{\norm{\vec{h}}} \right)\\
+                &= \norm{\vec{h}}\sin\left( \frac{1}{\norm{\vec{h}}} \right)
+            \end{align*}
+            Thus, since $\norm{\vec{h}}\to 0$ as $\vec{h}\to\bm{0}$ and $\sin(1/\norm{\vec{h}})$ is bounded on $[-1,1]$, we have the desired result.\par
+            As to the other part of the question, we have by the sum, product, and chain rules of derivatives (as well as the power and sine rules, which we'll take without proof) that the partial derivative WLOG with respect to $x$ is
+            \begin{align*}
+                \pdv{f}{x} &= \pdv{x}((x^2+y^2)\sin\left( \frac{1}{\sqrt{x^2+y^2}} \right))\\
+                &= \pdv{x}(x^2+y^2)\cdot\sin\left( \frac{1}{\sqrt{x^2+y^2}} \right)+(x^2+y^2)\pdv{x}(\sin\left( \frac{1}{\sqrt{x^2+y^2}} \right))\\
+                &= \left( \pdv{x}(x^2)+\pdv{x}(y^2) \right)\cdot\sin\left( \frac{1}{\sqrt{x^2+y^2}} \right)+(x^2+y^2)\cdot\pdv{u}(\sin(u))\cdot\pdv{x}((x^2+y^2)^{-1/2})\\
+                &= (2x+0)\cdot\sin\left( \frac{1}{\sqrt{x^2+y^2}} \right)+(x^2+y^2)\cdot\cos\left( \frac{1}{\sqrt{x^2+y^2}} \right)\cdot\pdv{v}(v^{-1/2})\cdot\pdv{x}(x^2+y^2)\\
+                &= 2x\sin\left( \frac{1}{\sqrt{x^2+y^2}} \right)+(x^2+y^2)\cdot\cos\left( \frac{1}{\sqrt{x^2+y^2}} \right)\cdot-\frac{1}{2(x^2+y^2)^{3/2}}\cdot 2x\\
+                &= 2x\sin\left( \frac{1}{\sqrt{x^2+y^2}} \right)-\frac{x}{\sqrt{x^2+y^2}}\cos\left( \frac{1}{\sqrt{x^2+y^2}} \right)
+            \end{align*}
+            when $x\neq 0$ and is equal to 0 when $x=0$ (from the Jacobian of $A$). However, $\pdv*{f}{x}$ is not continuous at zero since if we require $|\pdv*{f}{x}|<1$, we can show that for any $\delta>0$, there exists $\vec{h}$ with $\norm{\vec{h}}<\delta$ such that $(\pdv*{f}{x})_\vec{h}\geq 1$. Indeed, use the Archimedean principle to choose $1/n\pi<\delta$ and let $\vec{h}=(1/n\pi,0)$; it follows that
+            \begin{align*}
+                \left| \left( \pdv{f}{x} \right)_\vec{h} \right| &= \left| 2\cdot\frac{1}{n\pi}\sin\left( \frac{1}{\sqrt{(1/n\pi)^2+0^2}} \right)-\frac{1/n\pi}{\sqrt{(1/n\pi)^2+0^2}}\cos\left( \frac{1}{\sqrt{(1/n\pi)^2+0^2}} \right) \right|\\
+                &= \left| \frac{2}{n\pi}\sin(n\pi)-\frac{1}{1}\cos(n\pi) \right|\\
+                &= \left| \frac{2}{n\pi}\cdot 0-1\cdot\pm 1 \right|\\
+                &= 1
+            \end{align*}
+            as desired.
+        \end{proof}
     \end{enumerate}
-    \item Let $U\subset\R^n$ be an open subset, and $f:U\to\R$ a function. Suppose that for $\vec{a}\in U$, the partial derivatives $\pdv*{f}{x_i}$ ($i=1,\dots,n$) exist and are bounded in a neighborhood of $\vec{a}$. Prove that $f$ is continuous at $\vec{a}$.
+    \item Let $U\subset\R^n$ be an open subset, and $f:U\to\R$ be a function. Suppose that for $\vec{a}\in U$, the partial derivatives $\pdv*{f}{x_i}$ ($i=1,\dots,n$) exist and are bounded in a neighborhood of $\vec{a}$. Prove that $f$ is continuous at $\vec{a}$.
+    \begin{proof}
+        % Same trick we used in class with the continuous partials and the MVT thing. Just make sure you justify why you can use the MVT.
+
+        % The partial derivatives in every direction exist and are bounded, but are not necessarily continuous.
+
+
+        To prove that $f$ is continuous at $\vec{a}$, it will suffice to show that $f(\vec{a}+\vec{h})-f(\vec{a})\to 0$ as $\vec{h}\to\bm{0}$. We have
+        \begin{equation*}
+            \begin{split}
+                f(\vec{a}+\vec{h})-f(\vec{a}) ={}& f(a_1+h_1,a_2+h_2,a_3+h_3,\dots,a_n+h_n)-f(a_1,a_2+h_2,a_3+h_3,\dots,a_n+h_n)\\
+                &+ f(a_1,a_2+h_2,a_3+h_3,\dots,a_n+h_n)-f(a_1,a_2,a_3+h_3,\dots,a_n+h_n)\\
+                &+ \cdots\\
+                &+ f(a_1,\dots,a_{n-1},a_n+h_n)-f(\vec{a})
+            \end{split}
+        \end{equation*}
+        Applying the MVT to each term yields
+        \begin{equation*}
+            f(a_1,\dots,a_i+h_i,\dots,a_n+h_n)-f(a_1,\dots,a_i,\dots,a_n+h_n) = h_i{\pdv{f}{x_i}}(a_1,\dots,c_i(\vec{h}),\dots,a_n+h_n)
+        \end{equation*}
+        for some $c_i(\vec{h})\in(a_i,a_i+h_i)\cup(a_i+h_i,a_i)$. It follows that
+        \begin{equation*}
+            f(\vec{a}+\vec{h})-f(\vec{a}) = \sum_{i=1}^nh_i{\pdv{f}{x_i}}(a_1,\dots,c_i(\vec{h}),\dots,a_n+h_n)
+        \end{equation*}
+        But since the partial derivatives are bounded and the $h_i$'s are decreasing, each term in the summation goes to zero as $\vec{h}\to\bm{0}$, yielding the desired result.
+    \end{proof}
     \item Let
     \begin{equation*}
         f(x,y) =
@@ -89,10 +326,91 @@
     \end{equation*}
     \begin{enumerate}
         \item Show that $f$ is of class $C^1$ on $\R^2$.
+        \begin{proof}
+            % Let $\vec{a}\in\R^2$ be arbitrary. We divide into two cases ($\vec{a}=\bm{0}$ and $\vec{a}=\bm{0}$)
+
+            % WTW: Partial derivatives exist and are continuous.
+
+            % \begin{align*}
+            %     \frac{f(\vec{h})-f(\bm{0})-A\vec{h}}{\norm{\vec{h}}} &= \frac{\frac{h_1h_2(h_1^2-h_2^2)}{h_1^2+h_2^2}-0-A\vec{h}}{\norm{\vec{h}}}\\
+            %     &= \frac{\frac{h_1h_2(h_1^2-h_2^2)}{\norm{\vec{h}}^2}-A\vec{h}}{\norm{\vec{h}}}\\
+            %     &= \frac{h_1h_2(h_1^2-h_2^2)}{\norm{\vec{h}}^3}-\frac{A\vec{h}}{\norm{\vec{h}}}\\
+            %     &= \frac{h_1^3h_2-h_1h_2^3}{(h_1^2+h_2^2)^{3/2}}-\frac{A\vec{h}}{\norm{\vec{h}}}
+            % \end{align*}
+
+
+            To prove that $f$ is of class $C^1$ on $\R^2$, it will suffice to show that the partial derivatives of $f$ exist and are continuous on $\R^2$ (note that by Theorem 6.2 of \textcite{bib:Munkres}, this result would also imply differentiability of $f$ across $\R^2$). As in Problem 3b, we can use the various rules of partial derivatives to determine that
+            \begin{align*}
+                \pdv{f}{x} &= \frac{y(x^4+4x^2y^2-y^4)}{(x^2+y^2)^2}&
+                % &= y\cdot\frac{x^4+2x^2y^2+y^4+2x^2y^2-2y^4}{(x^2+y^2)^2}\\
+                % &= y\cdot\frac{(x^2+y^2)^2+2x^2y^2-2y^4}{(x^2+y^2)^2}\\
+                % &= y+y\cdot\frac{2x^2y^2-2y^4}{(x^2+y^2)^2}
+                \pdv{f}{y} &= \frac{x(x^4-4x^2y^2-y^4)}{(x^2+y^2)^2}
+            \end{align*}
+            for $(x,y)\neq(0,0)$. We now confirm that both partial derivatives evaluate to zero at $(0,0)$. To do so, we can show that the total derivative of $f$ at zero is the zero transformation and pick the values from the Jacobian. To confirm that $f$ is differentiable at $\bm{0}$ with total derivative equal to the zero transformation (again denoted by $A$), it will suffice to show that $[f(\vec{h})-f(\bm{0})-A\vec{h}]/\norm{\vec{h}}\to 0$ as $\vec{h}\to\bm{0}$. First off, we switch to polar coordinates:
+            \begin{align*}
+                \frac{xy(x^2-y^2)}{x^2+y^2} &= \frac{(r\cos\theta)(r\sin\theta)((r\cos\theta)^2-(r\sin\theta)^2)}{r^2}\\
+                &= \frac{r^4\sin\theta\cos\theta(\cos^2\theta-\sin^2\theta)}{r^2}\\
+                &= r^2\cdot\frac{\sin(2\theta)}{2}\cdot\cos(2\theta)\\
+                &= \frac{r^2}{2}\cdot\sin(2\theta)\cos(2\theta)\\
+                &= \frac{r^2}{2}\cdot\frac{\sin(2\cdot 2\theta)}{2}\\
+                &= \frac{r^2}{4}\cdot\sin(4\theta)
+            \end{align*}
+            From here, we have that
+            \begin{align*}
+                \frac{f(\vec{h})-f(\bm{0})-A\vec{h}}{\norm{\vec{h}}} &= \frac{\frac{r^2}{4}\cdot\sin(4\theta)-0-0}{r}\\
+                &= \frac{r}{4}\cdot\sin(4\theta)
+            \end{align*}
+            Thus, since $r\to 0$ as $\vec{h}\to\bm{0}$ and $\sin(4\theta)$ is bounded on $[-1,1]$, we have the desired result.\par
+            We now verify the continuity of the partial derivatives. We divide into two cases ($(x,y)\neq(0,0)$ and $(x,y)=(0,0)$). In the first case, since the expression for each partial derivative is composed of the sums, products, and quotients (with nonzero denominators) of polynomials (continuous functions), we know that both partial derivatives are continuous at every $(x,y)\neq(0,0)$. At $(0,0)$, however, is a different matter. We consider only $\pdv*{f}{x}$ in the following discussion since the argument as it pertains to $\pdv*{f}{y}$ is symmetric. With respect to $\pdv*{f}{x}$, we invoke polar coordinates again to find that
+            \begin{equation*}
+                \pdv{f}{x} = \frac{y(x^4+4x^2y^2-y^4)}{(x^2+y^2)^2}
+                = \frac{r}{4}(3\sin(3\theta)-\sin(5\theta))
+            \end{equation*}
+            It follows that as $\vec{h}\to\bm{0}$, $r\to 0$, and so $\pdv*{f}{x}\to 0$, as desired.
+        \end{proof}
         \item Show that both $\pdv*[2]{f}{x}{y}$ and $\pdv*[2]{f}{y}{x}$ exist at $(0,0)$, but that
         \begin{equation*}
             {\pdv[2]{f}{x}{y}}(0,0) \neq {\pdv[2]{f}{y}{x}}(0,0)
         \end{equation*}
+        \begin{proof}
+            % The limits are $1$ and $-1$.
+
+            % \begin{align*}
+            %     \frac{y(x^4+4x^2y^2-y^4)}{(x^2+y^2)^2} &= \frac{r\sin\theta[(r\cos\theta)^4+4(r\cos\theta)^2(r\sin\theta)^2-(r\sin\theta)^4]}{(r^2)^2}\\
+            %     &= \frac{r\sin\theta[r^4\cos^4\theta+r^4(2\sin\theta\cos\theta)^2-r^4\sin^4\theta]}{r^4}\\
+            %     &= r\sin\theta[\cos^4\theta-\sin^4\theta+\sin^2(2\theta)]\\
+            %     &= r\sin\theta[(\cos^2\theta+\sin^2\theta)(\cos^2\theta-\sin^2\theta)+\sin^2(2\theta)]\\
+            %     &= r\sin\theta[(1)(\cos(2\theta))+\sin^2(2\theta)]\\
+            %     &= \frac{r}{4}(3\sin(3\theta)-\sin(5\theta))
+            % \end{align*}
+            % Let $A(r,\theta)=\theta$.
+            % \begin{align*}
+            %     \frac{\frac{r}{4}(3\sin(3\theta)-\sin(5\theta))-0-\theta}{r} &= \frac{1}{4}(3\sin(3\theta)-\sin(5\theta))-\theta
+            % \end{align*}
+            % $3\sin(3\theta)\leq 9\theta$.
+            % $-\sin(5\theta)\geq -5\theta$.
+
+
+            We have that
+            \begin{align*}
+                {\pdv{f}{x}{y}}(0,0) &= \eval{\pdv{x}(\pdv{f}{y})}_{(0,0)}&
+                    {\pdv{f}{y}{x}}(0,0) &= \eval{\pdv{y}(\pdv{f}{x})}_{(0,0)}\\
+                &= \lim_{h\to 0}\frac{\eval{\pdv{f}{y}}_{(h,0)}-\eval{\pdv{f}{y}}_{(0,0)}}{h}&
+                    &= \lim_{h\to 0}\frac{\eval{\pdv{f}{x}}_{(0,h)}-\eval{\pdv{f}{y}}_{(0,0)}}{h}\\
+                &= \lim_{h\to 0}\frac{\frac{h(h^4-4h^20^2-0^4)}{(h^2+0^2)^2})-0}{h}&
+                    &= \lim_{h\to 0}\frac{\frac{h(0^4+40^2h^2-h^4)}{(0^2+h^2)^2}-0}{h}\\
+                &= \lim_{h\to 0}1&
+                    &= \lim_{h\to 0}-1\\
+                &= 1&
+                    &= -1
+            \end{align*}
+            so that
+            \begin{equation*}
+                {\pdv[2]{f}{x}{y}}(0,0) = 1 \neq -1 = {\pdv[2]{f}{y}{x}}(0,0)
+            \end{equation*}
+            as desired.
+        \end{proof}
     \end{enumerate}
     \item Let $M_n$ denote the space of $n$-by-$n$ matrices (which can be identified with $\R^{n^2}$), and let
     \begin{equation*}
@@ -108,11 +426,130 @@
         \begin{equation*}
             D\inv(A):M_n\to M_n
         \end{equation*}
+        \begin{proof}
+            % You can use eigenvalues, or a proof by contradiction.
+
+            % $\norm{H}<1$ implies $\norm{H\vec{x}}<1$ for all $\norm{\vec{x}}\leq 1$.
+            % $\norm{I}=1$
+            % $\norm{I+H}\leq\norm{I}+\norm{H}$.
+            
+            % Let $\vec{x}\neq\bm{0}$. Suppose $(I+H)\vec{x}=\bm{0}$. Then $H\vec{x}=-\vec{x}$. It follows that $H(\vec{x}/\norm{\vec{x}})=-\vec{x}/\norm{\vec{x}}$. But this implies $\norm{H}\geq 1$, a contradiction.
+            % Then $(I+H)(\vec{x}/\norm{\vec{x}})=\bm{0}$.
+
+            % Full rank, $\det A\neq 0$, $(I+H)^*(I+H)$ is invertible, $n$ distinct eigenvalues. Null space only contains zero.
+            % To prove that $\GL{n}$ is open in $M_n$, it will suffice to show that 
+
+            % $\norm{A\vec{x}}\leq\norm{A}\norm{\vec{x}}$.
+            % If $\norm{H}<1$ and $\norm{x}\leq 1$, then $\norm{H\vec{x}}\leq\norm{H}\norm{\vec{x}}<1$.
+
+            % We can take any matrix, scale down its entries, and add $I$ to it to make it invertible.
+            % Any nonzero scalar multiple of an invertible matrix is invertible.
+            % It is not true that the sum of any two invertible matrices is invertible (sum two to zero).
+
+            % $I$ is invertible. Adding any small perturbation $H$ to $I$ keeps it invertible.
+
+            % To prove that its open, we need to show that the neighborhood of any invertible matrix contains only invertible matrices. Let $A$ be an invertible matrix. Add to it a matrix $H$ with $\norm{H}<1$. Is it still invertible? $A$ is row-equivalent to $I$.
+            
+            % Take $A$, scale it down, perturb it, scale it back up?
+
+            % Let $A$ be an invertible matrix. Consider the matrix $B=A/3\norm{A}$. $B$ is invertible. And $\norm{B}=1/3$. This means that there exists some $H$ with $\norm{H}<1$ such that $B=I+H$. Let $A-I=H$. Prove $\norm{H}<1$? Then there should be a neighborhood (say with radius 0.25) around $B$ composed of other $I+H$'s that is wholly invertible. Scaling this back up yields the desired neighborhood of $A$.
+
+            % Let $\norm{B\vec{x}}=1/3$. We know that $\norm{\vec{x}}=1$. Then $\norm{(B-I)\vec{x}}=\norm{B\vec{x}-\vec{x}}\leq 4/3$
+
+            % Let $A$ be an invertible matrix. Then there exists an $H$ with $\norm{H}<1$ such that $\norm{A}(I+H)=A$.
+
+            % Let $A$ be an invertible matrix. Then it has all nonzero eigenvalues and a linearly independent eigenbasis.
+
+            % For $A$ invertible, let $\epsilon=1/\norm{B-A}$.
+
+
+            Suppose for the sake of contradiction that $I+H$ is not invertible. Then $I+H$ has a nontrivial null space. Let $\vec{x}\in\ker(I+H)$ WLOG have $\norm{\vec{x}}=1$. It follows that
+            \begin{align*}
+                \bm{0} &= (I+H)\vec{x}\\
+                -\vec{x} &= H\vec{x}\\
+                \norm{-\vec{x}} &= \norm{H\vec{x}}\\
+                1 &= \norm{H\vec{x}}\\
+                &\leq \norm{H}\norm{\vec{x}}\\
+                &= \norm{H}
+            \end{align*}
+            a contradiction.\par
+            To prove that $\GL{n}$ is open, it will suffice to show that for every $A\in\GL{n}$, there exists a neighborhood $N_r(A)\subset\GL{n}$. Let $A\in\GL{n}$ be arbitrary. Choose $r=1/\norm{A^{-1}}$. Let $B\in M_n$ be such that $\norm{B-A}<r$. It follows that
+            \begin{align*}
+                \norm{A^{-1}B-I} &= \norm{A^{-1}(B-A)}\\
+                &\leq \norm{A^{-1}}\cdot\norm{B-A}\\
+                &< \norm{A^{-1}}\cdot\frac{1}{\norm{A^{-1}}}\\
+                &= 1
+            \end{align*}
+            Thus, by the first part of the proof, $I+(A^{-1}B-I)=A^{-1}B$ is invertible. This combined with the fact that $A^{-1}$ is invertible proves that $B$ is invertible, as desired.
+        \end{proof}
         \item Show directly that $\inv$ is differentiable at the identity $I$ with derivative
         \begin{equation*}
             D\inv(I)(X) = -X
         \end{equation*}
         for $X\in M_n$. (Hint: Show that for $\norm{H}<1$, $(I+H)^{-1}-I+H=H^2(I+H)^{-1}$.)
+        \begin{proof}
+            % Proving the hint: Let $\vec{x}\in\R^n$ be arbitrary. Then 
+            % \begin{align*}
+            %     [(I+H)^{-1}-I+H]\vec{x} &= (I+H)^{-1}\vec{x}-\vec{x}+H\vec{x}\\
+            %     &= H(H((I+H)^{-1}\vec{x}))
+            % \end{align*}
+
+            % Show that
+            % \begin{equation*}
+            %     \norm{\frac{H^2(I+H)^{-1}}{\norm{H}}} \to 0
+            % \end{equation*}
+            % Let $\vec{x}$ be the less-than-or-equal-to-unit vector that $\frac{H^2(I+H)^{-1}}{\norm{H}}$ maximizes. Then
+            % \begin{align*}
+            %     \norm{\frac{H^2(I+H)^{-1}}{\norm{H}}\vec{x}} \leq 
+            % \end{align*}
+
+
+            % We first prove the hint. Let $H\in M_n$ have $\norm{H}<1$. Then $I+H$ is invertible, as per part (a). Thus, we may consider the Taylor series expansion
+            % \begin{equation*}
+            %     (I+H)^{-1} = I-H+H^2-H^3+\cdots
+            % \end{equation*}
+            % It follows that
+            % \begin{align*}
+            %     (I+H)^{-1}-I+H &= H^2-H^3+\cdots\\
+            %     &= H^2(I-H+\cdots)\\
+            %     &= H^2(I+H)^{-1}
+            % \end{align*}
+            % as desired.\par
+            % To prove that the desired result, it will suffice to show that $[\inv(I+H)-\inv(I)-(-H)]/\norm{H}\to 0$ as $H\to 0$ (where 0 denotes the zero transformation). We have that
+            % \begin{align*}
+            %     \frac{\inv(I+H)-\inv(I)-(-H)}{\norm{H}} &= \frac{H^2(I+H)^{-1}}{\norm{H}}\\
+            %     &= H\circ\left( \frac{1}{\norm{H}}H \right)\circ(I+H)^{-1}
+            % \end{align*}
+            % The first transformation yields a vector with length at most marginally longer than 1 for $H$ sufficiently close to the zero transformation. Then the second transformation either makes the result of the first transformation shorter or keeps it exactly the same length (since its operator norm is equal to 1). Then the last transformation makes it much shorter (again, for $H$ sufficiently close to the zero transformation). Therefore, the above transformation approaches the zero transformation as $H\to 0$, as desired.
+
+
+            We first prove the hint. Let $H\in M_n$ have $\norm{H}<1$. Then $I+H$ is invertible, as per part (a). Thus, we may state that
+            \begin{align*}
+                (I+H)^{-1}-I+H &= [(I+H)^{-1}-I+H](I+H)(I+H)^{-1}\\
+                &= [I-(I+H)+(H+H^2)](I+H)^{-1}\\
+                &= H^2(I+H)^{-1}
+            \end{align*}
+            as desired.\par
+            To prove the desired result, it will suffice to show that $[\inv(I+H)-\inv(I)-(-H)]/\norm{H}\to 0$ as $H\to 0$ (where 0 denotes the zero transformation). However, since $\norm{H}\to 0$ implies $H\to 0$ and $\norm{[\inv(I+H)-\inv(I)-(-H)]/\norm{H}}\to 0$ implies $[\inv(I+H)-\inv(I)-(-H)]/\norm{H}\to 0$, we need only show the normed conditions. Let's begin. We have that
+            \begin{equation*}
+                \frac{\inv(I+H)-\inv(I)-(-H)}{\norm{H}} = \frac{H^2(I+H)^{-1}}{\norm{H}}
+            \end{equation*}
+            and that
+            \begin{align*}
+                \norm{(I+H)^{-1}} &= \norm{I-H+H^2-H^3+\cdots}\\
+                &\leq \norm{I}+\norm{H}+\norm{H^2}+\norm{H^3}+\cdots\\
+                &\leq \norm{I}+\norm{H}+\norm{H}^2+\norm{H}^3+\cdots\\
+                &= \frac{1}{1-\norm{H}}
+            \end{align*}
+            It follows that
+            \begin{align*}
+                \norm{\frac{H^2(I+H)^{-1}}{\norm{H}}} &= \frac{1}{\norm{H}}\cdot\norm{H^2(I+H)^{-1}}\\
+                &\leq \frac{1}{\norm{H}}\cdot\norm{H}\cdot\norm{H}\cdot\norm{(I+H)^{-1}}\\
+                &= \norm{H}\cdot\norm{(I+H)^{-1}}\\
+                &\leq \norm{H}\cdot\frac{1}{1-\norm{H}}
+            \end{align*}
+            Thus, since the bottom term in the above equation is composed of a term that converges to zero as $\norm{H}\to 0$ and a term that is bounded by 1 as $\norm{H}\to 0$ (for sufficiently small $\norm{H}$), we now that it converges to zero as $\norm{H}\to 0$. Therefore, $\norm{H^2(I+H)^{-1}/\norm{H}}\to 0$ as $\norm{H}\to 0$, as desired.
+        \end{proof}
         \item Let $\mult:M_n\times M_n\to M_n$ be the function defined by matrix multiplication, i.e.,
         \begin{equation*}
             \mult(A_1,A_2) = A_1A_2
@@ -122,11 +559,115 @@
             D\mult((A_1,A_2))(H_1,H_2) = A_1H_2+H_1A_2
         \end{equation*}
         for $(H_1,H_2)\in M_n\times M_n$.
+        \begin{proof}
+            % \begin{align*}
+            %     \frac{\mult(A_1+H_1,A_2+H_2)-\mult(A_1,A_2)-(A_1H_2+H_1A_2)}{\norm{(H_1,H_2)}} &= \frac{A_1A_2+A_1H_2+H_1A_2+H_1H_2-A_1A_2-(A_1H_2+H_1A_2)}{\norm{(H_1,H_2)}}\\
+            %     &= \frac{H_1H_2}{\norm{(H_1,H_2)}}
+            % \end{align*}
+            % The top is the norm times the norm, the bottom is the norm plus the norm; the top shrinks faster.\par
+            % For smoothness, taking the derivative of $D\mult((A_1,A_2))$ will just be applying the sum rule and then the same differentiation as before.
+
+            % To show that $\mult$ is smooth, it will suffice to prove that
+            % \begin{equation*}
+            %     D^n\mult((A_1,A_2))(H_1,H_2) = A_1H_2+H_1A_2
+            % \end{equation*}
+            % for all $n\in\N$. To do so, we induct on $n$. Suppose $D^n\mult((A_1,A_2))(H_1,H_2)=A_1H_2+H_1A_2$. Then if $D^{n+1}\mult((A_1,A_2))(H_1,H_2)=A_1H_2+H_1A_2$, it follows that
+            % \begin{align*}
+            %     & \frac{D^n\mult((A_1,A_2))((A_1,A_2)+(H_1,H_2))-D^n\mult((A_1,A_2))((A_1,A_2))-D^{n+1}\mult((A_1,A_2))(H_1,H_2)}{\norm{(H_1,H_2)}}\\
+            %     &= \frac{D^n\mult((A_1,A_2))(A_1+H_1,A_2+H_2)-D^n\mult((A_1,A_2))((A_1,A_2))-D^{n+1}\mult((A_1,A_2))(H_1,H_2)}{\norm{(H_1,H_2)}}\\
+            %     &= \frac{[A_1(A_2+H_2)+(A_1+H_1)A_2]-(A_1A_2+A_1A_2)-(A_1H_2+H_1A_2)}{\norm{(H_1,H_2)}}\\
+            %     &= \frac{(A_1A_2+A_1H_2+A_1A_2+H_1A_2)-(A_1A_2+A_1A_2)-(A_1H_2+H_1A_2)}{\norm{(H_1,H_2)}}\\
+            %     &= \frac{0}{\norm{(H_1,H_2)}}\\
+            %     &= 0
+            % \end{align*}
+            % as desired.
+
+
+            As in part (b), to prove the desired result, it will suffice to show that the norm of
+            \begin{align*}
+                & \frac{\mult((A_1,A_2)+(H_1,H_2))-\mult(A_1,A_2)-D\mult((A_1,A_2))(H_1,H_2)}{\norm{(H_1,H_2)}}\\
+                &= \frac{\mult(A_1+H_1,A_2+H_2)-\mult(A_1,A_2)-(A_1H_2+H_1A_2)}{\norm{(H_1,H_2)}}\\
+                &= \frac{(A_1A_2+A_1H_2+H_1A_2+H_1H_2)-A_1A_2-(A_1H_2+H_1A_2)}{\norm{(H_1,H_2)}}\\
+                &= \frac{H_1H_2}{\norm{(H_1,H_2)}}
+            \end{align*}
+            goes to zero as $\norm{(H_1,H_2)}\to 0$ (note that we define a norm on $M_n\times M_n$ using the product topology, i.e., $\norm{(A,B)}=\norm{A}+\norm{B}$). Indeed, since
+            \begin{align*}
+                \norm{H_1} &\leq \norm{H_1}+\norm{H_2} = \norm{(H_1,H_2)}&
+                \norm{H_2} &\leq \norm{H_1}+\norm{H_2} = \norm{(H_1,H_2)}
+            \end{align*}
+            we have that
+            \begin{align*}
+                \norm{\frac{H_1H_2}{\norm{(H_1,H_2)}}} &\leq \frac{1}{\norm{(H_1,H_2)}}\cdot\norm{H_1}\cdot\norm{H_2}\\
+                &\leq \frac{1}{\norm{(H_1,H_2)}}\cdot\norm{(H_1,H_2)}\cdot\norm{(H_1,H_2)}\\
+                &= \norm{(H_1,H_2)}
+            \end{align*}
+            Thus, since the desired norm is directly bounded by $\norm{(H_1,H_2)}$, clearly it goes to zero as $\norm{(H_1,H_2)}\to 0$, as desired.\par
+            As to smoothness, it follows from the fact that the derivative is as differentiable as the original function that we can continue differentiating forever.
+        \end{proof}
         \item Use the chain rule to show that $\inv$ is differentiable at every $A\in\GL{n}$ and that
         \begin{equation*}
             D\inv(A)(X) = -A^{-1}XA^{-1}
         \end{equation*}
         Deduce that $\inv$ is smooth.
+        \begin{proof}
+            % Similar trick to sum/product/reciprocal rules? mult of $A$ and inv of $A$ equals $I$, so do the chain rule.
+
+            % \begin{align*}
+            %     -X &= D\inv(I)X\\
+            %     &= D\inv(\mult(A,\inv(A)))(X)\\
+            %     &= D(\inv\circ\mult)(A,\inv(A))(X)\\
+            %     &= D\inv(I)\circ D\mult(A,\inv(A))(X)\\
+            %     &= D\inv(I)\circ(A\inv(A)+\inv(A)(A))X
+            % \end{align*}
+
+            % \begin{equation*}
+            %     D\inv(A)(X) = \inv(A)\cdot D\inv(I)(X)\cdot\inv(A)
+            % \end{equation*}
+            % 3-fold chain rule, most likely.
+
+            % \begin{equation*}
+            %     \inv(A) = \mult
+            % \end{equation*}
+
+            % \begin{align*}
+            %     D(\inv\circ\mult)(A,\inv(A)) &= D\inv(\mult(A,\inv(A)))\cdot D\mult(A,\inv(A))\\
+            %     &= D\inv(I)\cdot D\mult(A,\inv(A))(X,X)\\
+            %     &= D\inv(I)\cdot(AX+XA^{-1})\\
+            %     &= -(AX+XA^{-1})
+            % \end{align*}
+
+            % $F(A)=(A,\inv(A))
+            % \begin{align*}
+            %     D(\inv\circ\mult\circ F)(A)(X) &= D\inv((\mult\circ F)(A))\cdot D(\mult\circ F)(A)(X)\\
+            %     &= D\inv(I)\cdot D\mult(F(A))\cdot DF(A)(X)\\
+            %     &= D\inv(I)\cdot D\mult(F(A))\cdot(DA,D\inv(A))
+            % \end{align*}
+
+            % \begin{align*}
+            %     \frac{\inv(A+H)-\inv(A)-D\inv(A)(H)}{\norm{H}} &= \frac{\inv(A+H)-\inv(A)+\inv(A)\cdot H\cdot\inv A}{\norm{H}}\\
+            %     &= \frac{\inv(A+H)-\inv(A)(I+H\cdot\inv A)}{\norm{H}}
+            % \end{align*}
+
+            % $F(\vec{x})=(f(\vec{x}),g(\vec{x}))$
+            % $G(y,z)=y\cdot z$
+            % Let $DG(h_1,h_2)=yh_2+h_1z$.
+            % \begin{align*}
+            %     \frac{G((y,z)+(h_1,h_2))-G(y,z)-DG(h_1,h_2)}{\norm{(h_1,h_2)}} &= \frac{G(y+h_1,z+h_2)-G(y,z)-DG(h_1,h_2)}{\norm{(h_1,h_2)}}\\
+            %     &= \frac{(y+h_1)(z+h_2)-yz-(yh_2+h_1z)}{\norm{(h_1,h_2)}}\\
+            %     &= \frac{yz+yh_2+h_1z+h_1h_2-yz-(yh_2+h_1z)}{\norm{(h_1,h_2)}}\\
+            %     &= \frac{h_1h_2}{\norm{(h_1,h_2)}}\\
+            %     &\to 0
+            % \end{align*}
+            % \begin{align*}
+            %     D(f\cdot g)(\vec{a}) &= D(G\circ F)(\vec{a})\\
+            %     &= DG(F(\vec{a}))\circ DF(\vec{a})\\
+            %     &= DG(f(\vec{a}),g(\vec{a}))(Df(\vec{a}),Dg(\vec{a}))\\
+            %     &= f(\vec{a})\cdot Dg(\vec{a})+Df(\vec{a})\cdot g(\vec{a})
+            % \end{align*}
+
+
+            The derivative is as differentiable as the original function (with the help of mult); thus, $\inv$ is smooth.
+        \end{proof}
     \end{enumerate}
 \end{enumerate}
 
