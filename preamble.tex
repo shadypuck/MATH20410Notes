@@ -1,6 +1,8 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{fancyhdr}
 \usepackage{marginnote}
+\usepackage{enumitem}
+\usepackage[style=apa]{biblatex}
 \usepackage{amsmath,amssymb}
 \usepackage{physics}
 \usepackage[hidelinks]{hyperref}
@@ -17,6 +19,9 @@
 }
 
 \reversemarginpar
+
+\addbibresource{../main.bib}
+\DefineBibliographyStrings{english}{bibliography={References}}
 
 \newcommand{\R}{\mathbb{R}}
 
