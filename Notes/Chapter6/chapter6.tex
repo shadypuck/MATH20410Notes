@@ -12,7 +12,94 @@
 \chapter{The Riemann-Stieltjes Integral}
 \section{Notes}
 \begin{itemize}
-    \item \marginnote{1/28:}
+    \item \marginnote{1/28:}Plan:
+    \begin{enumerate}
+        \item Finish up Fundamental Theorem of Calculus proof.
+        \item Basic consequences.
+        \item Rectifiable curves.
+    \end{enumerate}
+    \item Recall that we're given $f:[a,b]\to\R$ continuous, $f:[a,b]\to\R$, and $x\mapsto\int_a^xf(t)\dd{t}$.
+    \item Goal: Show $F'(x_0)=f(x_0)$.
+    \begin{itemize}
+        \item WTS: Find $\delta$ such that $|x-x_0|<\delta$ implies
+        \begin{align*}
+            \left| \frac{1}{x-x_0}\int_{x_0}^xf(t)\dd{t}-f(x_0) \right| &= \left| \frac{1}{x-x_0} \int_{x_0}^xf(t)\dd{t}-\frac{1}{x-x_0}\int_{x_0}^xf(x_0)\dd{t} \right|\\
+            &= \frac{1}{|x-x_0|}\left| \int_{x_0}^x(f(t)-f(x_0))\dd{t} \right|\\
+            &\leq \frac{1}{|x-x_0|}\int_{x_0}^x|f(t)-f(x_0)|\dd{t}\\
+            &< \epsilon
+        \end{align*}
+        \item Since $f$ is continuous, there exists $\delta$ such that if $|x-x_0|<\delta$, then $|f(x)-f(x_0)|<\epsilon$.
+        \item Now
+        \begin{align*}
+            \frac{1}{|x-x_0|}\int_{x_0}^x|f(t)-f(x_0)|\dd{t} &< \frac{1}{|x-x_0|}\int_{x_0}^x\epsilon\dd{t}\\
+            &= \epsilon
+        \end{align*}
+    \end{itemize}
+    \item Applications:
+    \begin{enumerate}
+        \item Theorem (MVT for integration): $f:[a,b]\to\R$ continuous, then there exists $x_0\in[a,b]$ such that
+        \begin{equation*}
+            f(x_0) = \frac{1}{b-a}\int_a^bf(x)\dd{x}
+        \end{equation*}
+        \begin{itemize}
+            \item Apply MVT to $F(x)=\int_a^xf(t)\dd{t}$. Then
+            \begin{equation*}
+                F'(x_0) = f(x_0) = \frac{F(b)-F(a)}{b-a}
+            \end{equation*}
+            as desired.
+        \end{itemize}
+        \item Theorem (Integration by parts): Let $F,G:[a,b]\to\R$ be differentiable with $F'=f$, $G'=g$ and with $f$ and $g$ both integrable. Then
+        \begin{equation*}
+            \int_a^bFg = F(b)G(b)-F(a)G(a)-\int_a^bfG
+        \end{equation*}
+        \begin{itemize}
+            \item Just use the product rule plus the FTC to prove.
+            \item We have
+            \begin{align*}
+                \int_a^b(FG)' &= \int_a^bfG+\int_a^bFg\\
+                F(b)G(b)-F(a)G(a) &= \int_a^bfG+\int_a^bFg\\
+                \int_a^bFg &= F(b)G(b)-F(a)G(a)-\int_a^bfG
+            \end{align*}
+        \end{itemize}
+        \item Theorem ($u$-substitution).
+        \begin{itemize}
+            \item Follows similarly from the chain rule and FTC.
+        \end{itemize}
+    \end{enumerate}
+    \item Integration of vector-valued functions.
+    \item If $f:[a,b]\to\R^k$, we define $\int_a^bf$ by
+    \begin{equation*}
+        \int_a^bf = \left( \int_a^bf_1,\dots,\int_a^bf_k \right)
+    \end{equation*}
+    \item Alternatively, you can define $\int_a^bf$ using $P$, $U(f,P)$, $L(f,P)$, etc. and then prove that the integral exists iff all $f_i$ are integrable and in this case the above definition holds.
+    \item Rectifiable curves: Let $\gamma:[a,b]\to\R^k$ be a continuous function.
+    \item Plan: Define the length of $\gamma$ and show that we can compute it with an integral.
+    \begin{itemize}
+        \item Idea: For polygonal paths, we know how to define length. So let's approximate $\gamma$ by polygons and take a limit.
+        \item Ref: Given a partition $P$, then define the length of $\gamma$ with respect to $P$ as $\Lambda(\gamma,P)$. Let the length of $\gamma$ be $\Lambda(\gamma)=\sup_P\Lambda(\gamma,P)$ if this limit exists in this case, we call $\gamma$ \textbf{rectifiable}.
+    \end{itemize}
+    \item Fractals are not rectifiable --- their length diverges.
+    \item Theorem: Suppose $\gamma$ is continuously differentiable (i.e., $\gamma$ is differentiable and $\gamma'$ is continuous). Then $\gamma$ si rectifiable and
+    \begin{equation*}
+        \Lambda(\gamma) = \int_a^b|\gamma'(t)|\dd{t}
+    \end{equation*}
+    \begin{itemize}
+        \item Notice: If $P\leq P'$, then $\Lambda(\gamma,P)\leq\Lambda(\gamma,P')$. (Prove with triangle inequality.)
+        \item WTS: For all partitions $P$, $\Lambda(\gamma,P)\leq\int_a^b|\gamma'(t)|\dd{t}$ and thus $\Lambda(\gamma)\leq\int_a^b|\gamma'(t)|\dd{t}$.
+        \item We have that
+        \begin{align*}
+            \Lambda(\gamma,P) &= \sum_{i=1}^n|\gamma(x_i)-\gamma(x_{i-1})\\
+            &= \sum_{i=1}^n\left| \int_{x_{i-1}}^{x_i}\gamma'(t)\dd{t} \right|\\
+            &\leq \sum_{i=1}^n\int_{x_{i-1}}^{x_i}|\gamma'(t)|\dd{t}\\
+            &= \int_a^b|\gamma'(t)|\dd{t}
+        \end{align*}
+    \end{itemize}
+    \item Catch up.
+    \begin{itemize}
+        \item I should make up PSets 1-2.
+        \item Exams have less than Rudin-strength problems.
+        \item Exams are mostly true/false (and of that, mostly false, provide a counterexample).
+    \end{itemize}
 \end{itemize}
 
 
