@@ -1,21 +1,13 @@
 \usepackage[margin=1in]{geometry}
-\usepackage{csquotes}
 \usepackage{fancyhdr}
 \usepackage{marginnote}
-\usepackage{enumitem}
-\usepackage{scrextend}
-\usepackage[bottom]{footmisc}
-\usepackage[style=apa]{biblatex}
-\usepackage{amsmath,amssymb,amsthm}
-\usepackage{amsbsy,bm,physics}
+\usepackage{amsmath,amssymb}
 \usepackage[hidelinks]{hyperref}
-
-\MakeOuterQuote{"}
 
 \fancypagestyle{main}{
     \fancyhf{}
     \fancyhead[L]{\leftmark}
-    \fancyhead[R]{MATH 20800}
+    \fancyhead[R]{MATH 20410}
     \fancyfoot[R]{Labalme\ \thepage}
 }
 \fancypagestyle{plain}{
@@ -25,25 +17,6 @@
 
 \reversemarginpar
 
-\setitemize[3]{label={\scriptsize$\blacksquare$}}
-
-\deffootnotemark{\textsuperscript{\textup{[}\thefootnotemark\textup{]}}}
-\deffootnote[2.1em]{0em}{0em}{\textsuperscript{\thefootnote}}
-
-\addbibresource{../main.bib}
-\DefineBibliographyStrings{english}{bibliography={References}}
-
-\DeclareMathOperator{\inv}{inv}
-\DeclareMathOperator{\mult}{mult}
-\DeclareMathOperator{\Int}{Int}
-\DeclareMathOperator{\Ext}{Ext}
-\DeclareMathOperator{\Bd}{Bd}
-
-\renewcommand{\vec}{\mathbf}
-
-\newcommand{\N}{\mathbb{N}}
 \newcommand{\R}{\mathbb{R}}
-\newcommand{\lin}[2]{\mathcal{L}\left( #1,#2 \right)}
-\newcommand{\GL}[1]{\text{GL}_{#1}}
 
 \usepackage{subfiles}
