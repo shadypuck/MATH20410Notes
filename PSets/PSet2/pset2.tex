@@ -1,0 +1,73 @@
+\documentclass[../psets.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\leftmark}{Problem Set \thesection}
+
+\begin{document}
+
+
+
+
+\section{Differentiation II / Integration}
+\emph{From \textcite{bib:Rudin}.}
+\subsection*{Chapter 5}
+\begin{enumerate}[label={\textbf{\arabic*.}}]
+    \setcounter{enumi}{7}
+    \item Suppose $f'$ is continuous on $[a,b]$ and $\epsilon>0$. Prove that there exists $\delta>0$ such that
+    \begin{equation*}
+        \left| \frac{f(t)-f(x)}{t-x}-f'(x) \right| < \epsilon
+    \end{equation*}
+    whenever $0<|t-x|<\delta$, $a\leq x\leq b$, $a\leq t\leq b$. (This could be expressed by saying that $f$ is \textbf{uniformly differentiable} on $[a,b]$ if $f'$ is continuous on $[a,b]$.) Does this hold for vector-valued functions, too?
+    \setcounter{enumi}{16}
+    \item Suppose $f$ is a real, three times differentiable function on $[-1,1]$ such that
+    \begin{align*}
+        f(-1) &= 0&
+        f(0) &= 0&
+        f(1) &= 1&
+        f'(0) &= 0
+    \end{align*}
+    Prove that $f^{(3)}(x)\geq 3$ for some $x\in(-1,1)$. Note that equality holds for $\frac{1}{2}(x^3+x^2)$. (Hint: Use Theorem 5.15 with $\alpha=0$ and $\beta=\pm 1$ to show that there exist $s\in(0,1)$ and $t\in(-1,0)$ such that $f^{(3)}(s)+f^{(3)}(t)=6$.)
+    \setcounter{enumi}{24}
+    \item Suppose $f$ is twice differentiable on $[a,b]$, $f(a)<0$, $f(b)>0$, $f'(x)\geq\delta>0$, and $0\leq f''(x)\leq M$ for all $x\in[a,b]$. Let $\xi$ be the unique point in $(a,b)$ at which $f(\xi)=0$. Complete the details in the following outline of \textbf{Newton's method} for computing $\xi$.
+    \begin{enumerate}
+        \item Choose $x_1\in(\xi,b)$ and define $\{x_n\}$ by
+        \begin{equation*}
+            x_{n+1} = x_n-\frac{f(x_n)}{f'(x_n)}
+        \end{equation*}
+        Interpret this geometrically, in terms of a tangent to the graph of $f$.
+        \item Prove that $x_{n+1}<x_n$ and that
+        \begin{equation*}
+            \lim_{n\to\infty}x_n = \xi
+        \end{equation*}
+        \item Use Taylor's theorem to show that
+        \begin{equation*}
+            x_{n+1}-\xi = \frac{f''(t_n)}{2f'(x_n)}(x_n-\xi)^2
+        \end{equation*}
+        for some $t_n\in(\xi,x_n)$.
+        \item If $A=M/2\delta$, deduce that
+        \begin{equation*}
+            0 \leq x_{n+1}-\xi \leq \frac{1}{A}[A(x_1-\xi)]^{2n}
+        \end{equation*}
+        (Compare with Chapter 3, Exercises 16 and 18.)
+        \item Show that Newton's method amounts to finding a fixed point of the function $g$ defined by
+        \begin{equation*}
+            g(x) = x-\frac{f(x)}{f'(x)}
+        \end{equation*}
+        How does $g'(x)$ behave for $x$ near $\xi$?
+        \item Put $f(x)=\sqrt[3]{x}$ on $(-\infty,\infty)$ and try Newton's method. What happens?
+    \end{enumerate}
+\end{enumerate}
+
+
+\subsection*{Chapter 6}
+\begin{enumerate}[label={\textbf{\arabic*.}}]
+    \item Suppose $\alpha$ increases on $[a,b]$, $a\leq x_0\leq b$, $\alpha$ is continuous at $x_0$, $f(x_0)=1$, and $f(x)=0$ if $x\neq x_0$. Prove that $f\in\mathscr{R}(\alpha)$ and that $\int f\dd{\alpha}=0$.
+    \item Suppose $f\geq 0$, $f$ is continuous on $[a,b]$, and $\int_a^bf(x)\dd{x}=0$. Prove that $f(x)=0$ for all $x\in[a,b]$. (Compare this with Exercise 1.)
+    \stepcounter{enumi}
+    \item If $f(x)=0$ for all irrational $x$ and $f(x)=1$ for all rational $x$, prove that $f\notin\mathscr{R}$ on $[a,b]$ for any $a<b$.
+\end{enumerate}
+
+
+
+
+\end{document}
