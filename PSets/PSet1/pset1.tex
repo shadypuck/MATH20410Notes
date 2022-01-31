@@ -17,12 +17,67 @@
         |f(y)-f(x)| \leq (y-x)^2
     \end{equation*}
     for all real $x$ and $y$. Prove that $f$ is constant.
+    \begin{proof}
+        % Now to prove that $f$ is constant, it will suffice to show that $f(x)=f(y)$ for all $x,y\in\R$. Let $x,y\in\R$ be arbitrary. We know that $f$ is differentiable on $(x,y)\subset\R$, and Theorem 5.2 implies that, $f$ is continuous on $[x,y]\subset\R$. Thus, by the MVT, there exists $c\in(x,y)$ such that
+        % \begin{equation*}
+        %     f(y)-f(x) = (y-x)f'(c)
+        % \end{equation*}
+        % But it follows since $f'(c)=0$ that $f(y)=f(x)$, as desired.
+
+
+        To prove that $f$ is constant, Theorem 5.11b tells us that it will suffice to show that $f$ is differentiable on $\R$ with derivative $f'=0$. Let $x\in\R$ be arbitrary. We want to show that for all $\epsilon>0$, there exists a $\delta$ such that if $y\in\R$ and $0<|y-x|<\delta$, then $|[f(y)-f(x)]/(y-x)-0|<\epsilon$. Let $\epsilon$ be arbitrary. Choose $\delta=\epsilon$. Then we have that
+        \begin{align*}
+            \left| \frac{f(y)-f(x)}{y-x}-0 \right| &= \frac{|f(y)-f(x)|}{|y-x|}\\
+            &\leq \frac{(y-x)^2}{|y-x|}\\
+            &\leq |y-x|\\
+            &< \epsilon
+        \end{align*}
+        as desired.
+    \end{proof}
     \item Suppose $f'(x)>0$ in $(a,b)$. Prove that $f$ is strictly increasing in $(a,b)$ and let $g$ be its inverse function. Prove that $g$ is differentiable, and that
     \begin{equation*}
         g'(f(x)) = \frac{1}{f'(x)}
     \end{equation*}
     for $a<x<b$.
+    \begin{proof}
+        To prove that $f$ is strictly increasing on $(a,b)$, it will suffice to show that $x<y$ implies $f(x)<f(y)$ for all $x,y\in(a,b)$. Let $x,y\in(a,b)$ satisfy $x<y$. Since $f$ is differentiable on $(a,b)$, it is differentiable on $(x,y)\subset(a,b)$ and (by Theorem 5.2) continuous on $[x,y]\subset(a,b)$. Thus, by the MVT, there exists $c\in(x,y)$ such that
+        \begin{equation*}
+            f(y)-f(x) = (y-x)f'(c)
+        \end{equation*}
+        But since $x<y$, $y-x>0$. This combined with the fact that $f'(c)>0$ by definition implies that $(y-x)f'(c)>0$. Consequently,
+        \begin{equation*}
+            f(x) < f(x)+(y-x)f'(c) = f(y)
+        \end{equation*}
+        as desired.\par
+        Since $f$ is strictly increasing (and hence 1-1) on $(a,b)$, we may construct a well-defined inverse function $g:f[(a,b)]\to(a,b)$ for it by
+        \begin{equation*}
+            g(f(x)) = x
+        \end{equation*}
+        for all $f(x)\in f[(a,b)]$. It follows by the fact that $f'(x)>0$ for all $x\in(a,b)$, the definitions of $f'(x)$ and $g'(f(x))$, and Theorem 3.3d that
+        \begingroup
+        \allowdisplaybreaks
+        \begin{align*}
+            \frac{1}{f'(x)} &= \frac{1}{\lim_{y\to x}\frac{f(y)-f(x)}{y-x}}\\
+            &= \lim_{y\to x}\frac{1}{\frac{f(y)-f(x)}{y-x}}\\
+            &= \lim_{y\to x}\frac{y-x}{f(y)-f(x)}\\
+            &= \lim_{y\to x}\frac{g(f(y))-g(f(x))}{f(y)-f(x)}\\
+            &= g'(f(x))
+        \end{align*}
+        \endgroup
+        as desired.
+    \end{proof}
     \item Suppose $g$ is a real function on $\R^1$, with bounded derivative (say $|g'|\leq M$). Fix $\epsilon>0$ and define $f(x)=x+\epsilon g(x)$. Prove that $f$ is one-to-one if $\epsilon$ is small enough. (A set of admissable values of $\epsilon$ can be determined which depends only on $M$.)
+    \begin{proof}
+        Neglecting the trivial case where $M=0$, take $\epsilon=1/2M$. It follows that
+        \begin{align*}
+            0 &< 1-\frac{1}{2}\\
+            &= 1+\frac{1}{2M}\cdot -M\\
+            &\leq 1+\epsilon g'(x)\\
+            &= \dv{x}(x)+\dv{x}(\epsilon g)\\
+            &= f'(x)
+        \end{align*}
+        Therefore, by Problem 5.2, $f$ is strictly increasing and, hence, one-to-one.
+    \end{proof}
     \item If
     \begin{equation*}
         C_0+\frac{C_1}{2}+\cdots+\frac{C_{n-1}}{n}+\frac{C_n}{n+1} = 0
@@ -32,7 +87,33 @@
         C_0+C_1x+\cdots+C_{n-1}x^{n-1}+C_nx^n = 0
     \end{equation*}
     has at least one real root between 0 and 1.
+    \begin{proof}
+        Consider the polynomial
+        \begin{equation*}
+            f(x) = C_0x+\frac{C_1}{2}x^2+\cdots+\frac{C_n}{n+1}x^{n+1}
+        \end{equation*}
+        We have that $f(0)=0$ (by direct substitution) and $f(1)=0$ (by the constraint on the coefficients). Thus, since $f$ is continuous on $[0,1]$ and differentiable on $(0,1)$ (as a polynomial), we have by the MVT that there exists $x\in(0,1)$ such that
+        \begin{align*}
+            f(1)-f(0) &= (1-0)f'(x)\\
+            f'(x) &= 0\\
+            C_0+C_1x+\cdots+C_{n-1}x^{n-1}+C_nx^n &= 0
+        \end{align*}
+        as desired.
+    \end{proof}
     \item Suppose $f$ is defined and differentiable for every $x>0$, and $f'(x)\to 0$ as $x\to+\infty$. Put $g(x)=f(x+1)-f(x)$. Prove that $g(x)\to 0$ as $x\to+\infty$.
+    \begin{proof}
+        To prove that $\lim_{x\to\infty}g(x)=0$, it will suffice to show that for every $\epsilon>0$, there exists $N>0$ such that if $x>N$, then $|g(x)-0|<\epsilon$. Let $\epsilon>0$ be arbitrary. Since $\lim_{x\to\infty}f'(x)=0$ by hypothesis, we know that there exists $N>0$ such that if $x>N$, then $|f'(x)|<\epsilon$. Choose this $N$ to be our $N$. Let $x>N$ be arbitrary. Applying the MVT to $f$ on the interval $[x,x+1]$ proves the existence of a $c$ within that closed interval such that
+        \begin{equation*}
+            f(x+1)-f(x) = f'(c)(x+1-x) = f'(c)
+        \end{equation*}
+        Additionally, since $c>x>N$, we have that $|f'(c)|<\epsilon$. Therefore, we have that
+        \begin{align*}
+            |g(x)| &= |f(x+1)-f(x)|\\
+            &= |f'(c)|\\
+            &< \epsilon
+        \end{align*}
+        as desired.
+    \end{proof}
 \end{enumerate}
 
 
