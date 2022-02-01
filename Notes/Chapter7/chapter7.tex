@@ -1,0 +1,63 @@
+\documentclass[../notes.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
+\setcounter{chapter}{6}
+
+\begin{document}
+
+
+
+
+\chapter{Sequences and Series of Functions}
+\section{Notes}
+\begin{itemize}
+    \item \marginnote{1/31:}Midterm on differentiation and integration, and a bit of stuff from this week.
+    \item Plan:
+    \begin{itemize}
+        \item Talk about sequences of functions, all with the same domain and range, converging.
+        \item Address what properties of $f_n$ remain in the limit (e.g., continuity, differentiability, integrability).
+        \begin{itemize}
+            \item The answer depends on what we mean by "convergence."
+            \item $f_n\to f$ pointwise implies basically nothing.
+            \item $f_n\to f$ uniformly implies that basically everything works out nicely.
+        \end{itemize}
+    \end{itemize}
+    \item We'll restrict ourselves to real functions because those have all the properties (integrability, differentiability, etc.) that we care about.
+    \item \textbf{Pointwise} (convergent sequence $\{f_n\}$ to $f$): A sequence of functions $\{f_n\}$ such that for all $x\in X$, the sequence $\{f_n(x)\}$ converges to $f(x)$, where $f_n:X\to\R$ for all $n\in\N$ and $f:X\to\R$. \emph{Denoted by} $f_n\to f$.
+    \item Bad functions.
+    \begin{itemize}
+        \item Consider $f_n:[0,1]\to\R$ defined by $x\mapsto x^n$. Each $f_n$ is continuous, but $f$ is not (zero everywhere except $f(1)=1$)\footnote{Questions that require counterexamples like this could show up on the midterm!}.
+        \item Consider $f_n:\R\to\R$ defined by $f_n(x)=x^2/(1+x^2)^n$, and $f(x)=\sum_{n=0}^\infty f_n(x)$. As a geometric series, $f(x)=1+x^2$ when $x\neq 0$ but $f(0)=0$. Thus, the limit exists but is not continuous once again.
+        \item Consider $f_m:\R\to\R$ defined by $x\mapsto\lim_{n\to\infty}\cos^{2n}(m!\pi x)$. Each $f_m$ is integrable, but the limit $f$ is the function that's 1 for rationals and zero for irrationals. In particular, $f$ is not integrable.
+        \begin{itemize}
+            \item We take even powers of the cosine to make it always positive.
+            \item We use $\cos^2(x)$ just because its always between $[0,1]$, and we know when it is equal to 1.
+            \item In particular, $\cos^2(\pi x)$ is equal to 1 at every integer, $\cos^2(2\pi x)$ is equal to 1 at every half integer. $\cos^2(6\pi x)$ is equal to 1 at every one-sixth of an integer.
+            \item Then raising it to the $n^\text{th}$ power just makes it spiky.
+        \end{itemize}
+    \end{itemize}
+    \item Aside: Interchanging limits.
+    \begin{itemize}
+        \item If all $f_n$ are continuous, then $\lim_{x\to x_0}f_n(x)=f_n(x_0)$.
+        \item The question "is $f$ continuous" is equivalent to being able to interchange limits:
+        \begin{equation*}
+            \lim_{x\to x_0}\lim_{n\to\infty}f_n(x) = f(x_0) = \lim_{n\to\infty}\lim_{x\to x_0}f_n(x)
+        \end{equation*}
+        \item Sequence example showing we need to be careful interchanging limits: $s_{n,m}=m/(m+n)$.
+    \end{itemize}
+    \item All of this pathology goes away with the right definition, though.
+    \item \textbf{Uniformly} (convergent sequence $\{f_n\}$ to $f$): A sequence of functions $\{f_n\}$ such that for all $\epsilon>0$, there exists an $N$ such that if $n\geq N$, then $|f_n(x)-f(x)|<\epsilon$ for all $x\in X$, where $f_n:X\to\R$ for all $n\in\N$ and $f:X\to\R$.
+    \item Proposition (Cauchy criterion for uniform convergence): $f_n\to f$ uniformly iff for all $\epsilon>0$, there exists $N$ such that for all $m,n\geq N$ and for all $x\in X$, $|f_n(x)-f_m(x)|<\epsilon$.
+    \begin{itemize}
+        \item Forward direction: Let $\epsilon>0$. Suppose $f_n\to f$ uniformly. Choose $N$ such that the functions are within $\epsilon/2$. Then
+        \begin{equation*}
+            |f_n(x)-f_m(x)| \leq |f_n(x)-f(x)|+|f(x)-f_m(x)| < \frac{\epsilon}{2}+\frac{\epsilon}{2} = \epsilon
+        \end{equation*}
+    \end{itemize}
+\end{itemize}
+
+
+
+
+\end{document}

@@ -1,11 +1,16 @@
 \usepackage[margin=1in]{geometry}
+\usepackage{csquotes}
 \usepackage{fancyhdr}
 \usepackage{marginnote}
 \usepackage{enumitem}
+\usepackage{scrextend}
+\usepackage[bottom]{footmisc}
 \usepackage[style=apa]{biblatex}
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{physics,mathrsfs}
 \usepackage[hidelinks]{hyperref}
+
+\MakeOuterQuote{"}
 
 \fancypagestyle{main}{
     \fancyhf{}
@@ -20,9 +25,15 @@
 
 \reversemarginpar
 
+\setitemize[3]{label={\scriptsize$\blacksquare$}}
+
+\deffootnotemark{\textsuperscript{\textup{[}\thefootnotemark\textup{]}}}
+\deffootnote[2.1em]{0em}{0em}{\textsuperscript{\thefootnote}}
+
 \addbibresource{../main.bib}
 \DefineBibliographyStrings{english}{bibliography={References}}
 
+\newcommand{\N}{\mathbb{N}}
 \newcommand{\R}{\mathbb{R}}
 
 \usepackage{subfiles}
