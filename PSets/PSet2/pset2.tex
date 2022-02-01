@@ -2,6 +2,7 @@
 
 \pagestyle{main}
 \renewcommand{\leftmark}{Problem Set \thesection}
+\stepcounter{section}
 
 \begin{document}
 
@@ -18,6 +19,21 @@
         \left| \frac{f(t)-f(x)}{t-x}-f'(x) \right| < \epsilon
     \end{equation*}
     whenever $0<|t-x|<\delta$, $a\leq x\leq b$, $a\leq t\leq b$. (This could be expressed by saying that $f$ is \textbf{uniformly differentiable} on $[a,b]$ if $f'$ is continuous on $[a,b]$.) Does this hold for vector-valued functions, too?
+    \begin{proof}
+        By Theorem 2.40, $[a,b]$ is compact. This combined with the fact that $f'$ is continuous implies by Theorem 4.19 that $f'$ is uniformly continuous. Thus, there exists $\delta>0$ such that if $x,y\in[a,b]$ and $|y-x|<\delta$, then $|f'(y)-f'(x)|<\epsilon$. Choose this $\delta$ to be our $\delta$. Let $x,t\in[a,b]$ be such that $0<|t-x|<\delta$. Then since $f$ is continuous on $[t,x]\subset[a,b]$ and differentiable on $(t,x)\subset[a,b]$, we have by the MVT that there exists $c\in(t,x)$ such that
+        \begin{align*}
+            f(t)-f(x) &= (t-x)f'(c)\\
+            \frac{f(t)-f(x)}{t-x} &= f'(c)
+        \end{align*}
+        Additionally, since $t<c<x$ and $|t-x|<\delta$, we must have $|c-x|<\delta$, meaning that
+        \begin{equation*}
+            \left| \frac{f(t)-f(x)}{t-x}-f'(x) \right|
+            = |f'(c)-f'(x)|
+            < \epsilon
+        \end{equation*}
+        as desired.\par
+        And yes, this does hold for vector-valued functions, which we can treat component-wise.
+    \end{proof}
     \setcounter{enumi}{16}
     \item Suppose $f$ is a real, three times differentiable function on $[-1,1]$ such that
     \begin{align*}
@@ -27,6 +43,69 @@
         f'(0) &= 0
     \end{align*}
     Prove that $f^{(3)}(x)\geq 3$ for some $x\in(-1,1)$. Note that equality holds for $\frac{1}{2}(x^3+x^2)$. (Hint: Use Theorem 5.15 with $\alpha=0$ and $\beta=\pm 1$ to show that there exist $s\in(0,1)$ and $t\in(-1,0)$ such that $f^{(3)}(s)+f^{(3)}(t)=6$.)
+    \begin{proof}
+        % \begin{itemize}
+        %     \item Theorem 5.2 ($f''$ differentiable on $[-1,1]$): $f''$ continuous on $[-1,1]$.
+        %     \item Taylor's theorem ($f$ defined on $[-1,1]$, $3\in\N$, $f''$ continuous on $[-1,1]$, $f^{(3)}$ defined on $(-1,1)$, $0,1\in[-1,1]$ such that $0\neq 1$, and
+        %     \begin{equation*}
+        %         P(t) = \sum_{k=0}^2\frac{f^{(k)}(0)}{k!}(t-0)^k
+        %     \end{equation*}
+        %     ): There exists $s\in(0,1)$ such that
+        %     \begin{align*}
+        %         f(1) &= P(1)+\frac{f^{(3)}(s)}{3!}(1-0)^3\\
+        %         1-\left[ \frac{f(0)}{0!}(1-0)^0+\frac{f'(0)}{1!}(1-0)^1+\frac{f''(0)}{2!}(1-0)^2 \right] &= \frac{f^{(3)}(s)}{3!}\\
+        %         1-\left[ \frac{f''(0)}{2} \right] &= \frac{f^{(3)}(s)}{6}\\
+        %         6-3f''(0) &= f^{(3)}(s)
+        %     \end{align*}
+        %     \item Taylor's theorem ($f$ defined on $[-1,1]$, $3\in\N$, $f''$ continuous on $[-1,1]$, $f^{(3)}$ defined on $(-1,1)$, $-1,0\in[-1,1]$ such that $-1\neq 0$, and
+        %     \begin{equation*}
+        %         P(t) = \sum_{k=0}^2\frac{f^{(k)}(0)}{k!}(t-0)^k
+        %     \end{equation*}
+        %     ): There exists $t\in(-1,0)$ such that
+        %     \begin{align*}
+        %         f(-1) &= P(-1)+\frac{f^{(3)}(t)}{3!}(-1-0)^3\\
+        %         0-\left[ \frac{f(0)}{0!}(-1-0)^0+\frac{f'(0)}{1!}(-1-0)^1+\frac{f''(0)}{2!}(-1-0)^2 \right] &= -\frac{f^{(3)}(t)}{3!}\\
+        %         -\left[ \frac{f''(0)}{2} \right] &= -\frac{f^{(3)}(t)}{6}\\
+        %         3f''(0) &= f^{(3)}(s)
+        %     \end{align*}
+        %     \item Thus:
+        %     \begin{equation*}
+        %         f^{(3)}(s)+f^{(3)}(t) = 6
+        %     \end{equation*}
+        %     \item Suppose (contradiction): For all $x\in(-1,1)$, $f^{(3)}(x)<3$.
+        %     \begin{itemize}
+        %         \item Then $f^{(3)}(s)<3$ and $f^{(3)}(t)<3$.
+        %         \item It follows that $f^{(3)}(s)+f^{(3)}(t)<6$, a contradiction.
+        %     \end{itemize}
+        % \end{itemize}
+
+
+        Since $f$ is three times differentiable on $[-1,1]$, we know that $f''$ is differentiable on $[-1,1]$. It follows by Theorem 5.2 that $f''$ is continuous on $[-1,1]$. Thus, since $f$ is defined on $[-1,1]$, $3\in\N$, $f''$ is continuous on $[-1,1]$, $f^{(3)}$ is defined on $(-1,1)$, $0,1\in[-1,1]$ such that $0\neq 1$, and we can define
+        \begin{equation*}
+            P(t) = \sum_{k=0}^2\frac{f^{(k)}(0)}{k!}(t-0)^k
+        \end{equation*}
+        we have by Taylor's theorem that there exists $s\in(0,1)$ such that
+        \begin{align*}
+            f(1) &= P(1)+\frac{f^{(3)}(s)}{3!}(1-0)^3\\
+            1-\left[ \frac{f(0)}{0!}(1-0)^0+\frac{f'(0)}{1!}(1-0)^1+\frac{f''(0)}{2!}(1-0)^2 \right] &= \frac{f^{(3)}(s)}{3!}\\
+            1-\left[ \frac{f''(0)}{2} \right] &= \frac{f^{(3)}(s)}{6}\\
+            6-3f''(0) &= f^{(3)}(s)
+        \end{align*}
+        Similarly, we have that there exists $t\in(-1,0)$ such that
+        \begin{align*}
+            f(-1) &= P(-1)+\frac{f^{(3)}(t)}{3!}(-1-0)^3\\
+            0-\left[ \frac{f(0)}{0!}(-1-0)^0+\frac{f'(0)}{1!}(-1-0)^1+\frac{f''(0)}{2!}(-1-0)^2 \right] &= -\frac{f^{(3)}(t)}{3!}\\
+            -\left[ \frac{f''(0)}{2} \right] &= -\frac{f^{(3)}(t)}{6}\\
+            3f''(0) &= f^{(3)}(s)
+        \end{align*}
+        Thus,
+        \begin{equation*}
+            f^{(3)}(s)+f^{(3)}(t)
+            = 3f''(0)+6-3f''(0)
+            = 6
+        \end{equation*}
+        Now suppose for the sake of contradiction that for all $x\in(-1,1)$, we have $f^{(3)}(x)<3$. Then $f^{(3)}(s)<3$ and $f^{(3)}(t)<3$. It follows that $f^{(3)}(s)+f^{(3)}(t)<6$, a contradiction.
+    \end{proof}
     \setcounter{enumi}{24}
     \item Suppose $f$ is twice differentiable on $[a,b]$, $f(a)<0$, $f(b)>0$, $f'(x)\geq\delta>0$, and $0\leq f''(x)\leq M$ for all $x\in[a,b]$. Let $\xi$ be the unique point in $(a,b)$ at which $f(\xi)=0$. Complete the details in the following outline of \textbf{Newton's method} for computing $\xi$.
     \begin{enumerate}
@@ -35,26 +114,136 @@
             x_{n+1} = x_n-\frac{f(x_n)}{f'(x_n)}
         \end{equation*}
         Interpret this geometrically, in terms of a tangent to the graph of $f$.
+        \begin{proof}[Answer]
+            Since we can rearrange the above to $0-f(x_n)=f'(x_n)(x_{n+1}-x_n)$, we know that $x_{n+1}$ is the point at which the tangent to $f$ at $x_n$ crosses the $x$-axis. In other words, the zero of the tangent line
+            \begin{equation*}
+                y-f(x_n) = f'(x_n)(x-x_n)
+            \end{equation*}
+            is $(x_{n+1},0)$.
+        \end{proof}
         \item Prove that $x_{n+1}<x_n$ and that
         \begin{equation*}
             \lim_{n\to\infty}x_n = \xi
         \end{equation*}
+        \begin{proof}
+            To prove that $x_{n+1}<x_n$, it will suffice to show that $f(x_n),f'(x_n)>0$. Since $f'(x)>0$ for all $x\in[a,b]$ by hypothesis, we know that $f'(x_n)>0$. As to $f(x_n)$, suppose for the sake of contradiction that $f(x_n)\leq 0$. We know that $f(\xi)=0$, $f(b)>0$, and $\xi<x_n<b$. Since $\xi$ is the \emph{unique} point at which $f(\xi)=0$ by hypothesis and $x_n\neq\xi$, we know that $f(x_n)\neq 0$. And if $f(x_n)<0$, we have by the intermediate value theorem for $f$ continuous that there exists $c\in(x_n,b)$ such that $f(c)=0$. But since $\xi<x_n<c<b$, $c\neq\xi$, and thus we have a contradiction here, too.\par
+            Having established that $\{x_n\}$ is a monotonically decreasing sequence, Theorem 3.14 tells us that to show that it converges, it will suffice to show that it is bounded. Clearly, $\{x_n\}$ is bounded above by $x_1$. And on the bottom side, $\{x_n\}$ is bounded by $\xi$: If there were $x_n<\xi$, this would imply that $f(x_n)<0$ by a symmetric argument to the above, meaning that $f(x_n)/f'(x_n)<0$ and implying that $x_{n+1}>x_n$, a contradiction. Furthermore, we know that the limit (call it $x$) equals $\xi$ since
+            \begin{align*}
+                x &= x-\frac{f(x)}{f'(x)}\\
+                f(x) &= 0
+            \end{align*}
+            so $x=\xi$ by the uniqueness of $\xi$.
+        \end{proof}
         \item Use Taylor's theorem to show that
         \begin{equation*}
             x_{n+1}-\xi = \frac{f''(t_n)}{2f'(x_n)}(x_n-\xi)^2
         \end{equation*}
         for some $t_n\in(\xi,x_n)$.
+        \begin{proof}
+            Since $f$ is defined on $[a,b]$, $2\in\N$, $f'$ is continuous on $[a,b]$, $f''$ is defined on $(a,b)$, $\xi,x_n\in[a,b]$ with $\xi\neq x_n$, and
+            \begin{equation*}
+                P(t) = \sum_{k=0}^1\frac{f^{(k)}(x_n)}{k!}(t-x_n)^k
+            \end{equation*}
+            we have by Taylor's theorem that there exists $t_n\in(\xi,x_n)$ such that
+            \begin{align*}
+                f(\xi) &= \left[ \frac{f(x_n)}{0!}(\xi-x_n)^0+\frac{f'(x_n)}{1!}(\xi-x_n)^1 \right]+\frac{f''(t_n)}{2!}(\xi-x_n)^2\\
+                0 &= f(x_n)-f'(x_n)(x_n-\xi)+\frac{f''(t_n)}{2}(x_n-\xi)^2\\
+                x_n-\frac{f(x_n)}{f'(x_n)}-\xi &= \frac{f''(t_n)}{2f'(x_n)}(x_n-\xi)^2\\
+                x_{n+1}-\xi &= \frac{f''(t_n)}{2f'(x_n)}(x_n-\xi)^2
+            \end{align*}
+            as desired.
+        \end{proof}
         \item If $A=M/2\delta$, deduce that
         \begin{equation*}
             0 \leq x_{n+1}-\xi \leq \frac{1}{A}[A(x_1-\xi)]^{2n}
         \end{equation*}
         (Compare with Chapter 3, Exercises 16 and 18.)
+        \begin{proof}
+            % \begin{align*}
+            %     x_{n+1}-\xi &= \frac{f''(t_n)}{2f'(x_n)}(x_n-\xi)^2\\
+            %     &\leq \frac{M}{2\delta}(x_n-\xi)^2\\
+            %     &= \frac{M}{2\delta}(x_{n-1}-\frac{f(x_{n-1})}{f'(x_{n-1})}-\xi)^2\\
+            %     &= \frac{M}{2\delta}\left[ (x_{n-1}-\xi)^2-2(x_{n-1}-\xi)\frac{f(x_{n-1})}{f'(x_{n-1})}+\left( \frac{f(x_{n-1})}{f'(x_{n-1})} \right)^2 \right]
+            % \end{align*}
+
+            % \begin{align*}
+            %     x_2-\xi &\leq \frac{2\delta}{M}\left[ \frac{M}{2\delta}(x_1-\xi) \right]^2
+            % \end{align*}
+            % \begin{align*}
+            %     x_3-\xi &= \frac{f''(t_2)}{2f'(x_2)}(x_2-\xi)^2\\
+            %     &\leq \frac{M}{2\delta}(x_2-\xi)^2\\
+            %     &\leq \frac{M}{2\delta}\left( \frac{2\delta}{M}\left[ \frac{M}{2\delta}(x_1-\xi) \right]^2 \right)^2\\
+            %     &= \frac{2\delta}{M}\left[ \frac{M}{2\delta}(x_1-\xi) \right]^4
+            %     % &= \frac{M}{2\delta}\left( x_1-\frac{f(x_1)}{f'(x_1)}-\xi \right)^2\\
+            %     % &= \frac{M}{2\delta}\left[ (x_1-\xi)^2-2(x_1-\xi)\frac{f(x_1)}{f'(x_1)}+\left( \frac{f(x_1)}{f'(x_1)} \right)^2 \right]\\
+            %     % &\leq \frac{M}{2\delta}\left[ (x_1-\xi)^2+\left( \frac{f(x_1)}{f'(x_1)} \right)^2 \right]\\
+            %     % &\leq 
+            % \end{align*}
+
+            % \begin{align*}
+            %     x_3-\xi &\leq \frac{2\delta}{M}\left[ \frac{M}{2\delta}(x_1-\xi) \right]^4\\
+            %     &= \frac{2\delta}{M}\left[ \frac{M}{2\delta}(x_1-\xi) \right]^2\left[ \frac{M}{2\delta}(x_1-\xi) \right]^2
+            % \end{align*}
+
+            % \begin{align*}
+            %     x_3-\xi &= x_3-x_2+x_2-\xi\\
+            %     &\leq -\frac{f(x_2)}{f'(x_2)}+\frac{2\delta}{M}\left[ \frac{M}{2\delta}(x_1-\xi) \right]^2\\
+            %     &\leq \frac{M}{2\delta}+\frac{2\delta}{M}\left[ \frac{M}{2\delta}(x_1-\xi) \right]^2
+            % \end{align*}
+
+
+            We have from part (b) that $x_i>\xi$ for all $i\in\N$, so naturally $0\leq x_{n+1}-\xi$. As to the other part of the question, we induct on $n$. For the base case $n=1$, we have that
+            \begin{align*}
+                x_2-\xi &= \frac{f''(t_1)}{2f'(x_1)}(x_1-\xi)^2\\
+                &\leq \frac{M}{2\delta}(x_1-\xi)^2\\
+                &= \frac{2\delta}{M}\left[ \frac{M}{2\delta}(x_1-\xi) \right]^2\\
+                &= \frac{1}{A}[A(x_1-\xi)]^{2\cdot 1}
+            \end{align*}
+            Now suppose inductively that we have proven the claim for $n-1$; we now seek to prove it for $n$. Indeed, we have that
+            \begin{align*}
+                x_{n+1}-\xi &= \frac{f''(t_n)}{2f'(x_n)}(x_n-\xi)^2\\
+                &\leq \frac{M}{2\delta}(x_n-\xi)^2\\
+                &\leq A\left( \frac{1}{A}[A(x_1-\xi)]^{2(n-1)} \right)^2\\
+                &= \frac{1}{A}[A(x_1-\xi)]^{2n}
+            \end{align*}
+            as desired.
+        \end{proof}
         \item Show that Newton's method amounts to finding a fixed point of the function $g$ defined by
         \begin{equation*}
             g(x) = x-\frac{f(x)}{f'(x)}
         \end{equation*}
         How does $g'(x)$ behave for $x$ near $\xi$?
+        \begin{proof}
+            A fixed point of the function $g$ is a point $x$ such that
+            \begin{align*}
+                g(x) &= x\\
+                x-\frac{f(x)}{f'(x)} &= x\\
+                f(x) &= 0
+            \end{align*}
+            Thus, if we want to find a point $x$ where $f(x)=0$, it is equivalent to find a point $x$ such that $g(x)=x$.\par
+            As to the other part of the question, we have by the rules of derivatives that
+            \begin{align*}
+                g'(x) &= 1-\frac{f'(x)f'(x)-f(x)f''(x)}{f'(x)^2}\\
+                &= \frac{f(x)f''(x)}{f'(x)^2}\\
+                &\leq \frac{M}{\delta^2}f(x)
+            \end{align*}
+            Thus, since $f(x)\to 0$ as $x\to\xi$, $g'(x)\to 0$ as $x\to\xi$.
+        \end{proof}
         \item Put $f(x)=\sqrt[3]{x}$ on $(-\infty,\infty)$ and try Newton's method. What happens?
+        \begin{proof}[Answer]
+            We have by the power rule that
+            \begin{equation*}
+                f'(x) = \frac{1}{3x^{2/3}}
+            \end{equation*}
+            Choose $x_1=1$. Then
+            \begin{align*}
+                x_2 &= 1-\frac{f(1)}{f'(1)} = -2\\
+                x_3 &= 1-\frac{f(-2)}{f'(-2)} = 7\\
+                x_4 &= 1-\frac{f(7)}{f'(7)} = -20\\
+                &\hspace{5pt}\vdots
+            \end{align*}
+            It appears that the series is diverging to $\infty$ while alternating from positive to negative. In fact, since $x_3>x_2$, contrary to part (b), we know that something must be wrong (i.e., one of our hypotheses must not be met). Upon further investigation, we can determine that on $[-1,1]$, we have $f''(1)=-2/9<0$; thus, our last hypothesis is the issue with this function.
+        \end{proof}
     \end{enumerate}
 \end{enumerate}
 
@@ -62,9 +251,37 @@
 \subsection*{Chapter 6}
 \begin{enumerate}[label={\textbf{\arabic*.}}]
     \item Suppose $\alpha$ increases on $[a,b]$, $a\leq x_0\leq b$, $\alpha$ is continuous at $x_0$, $f(x_0)=1$, and $f(x)=0$ if $x\neq x_0$. Prove that $f\in\mathscr{R}(\alpha)$ and that $\int f\dd{\alpha}=0$.
+    \begin{proof}
+        Since $f$ is bounded on $[a,b]$ with only one discontinuity on $[a,b]$ and $\alpha$ is continuous at the point at which $f$ is discontinuous, Theorem 6.10 implies that $f\in\mathscr{R}(\alpha)$, as desired. It follows that $\inf U(P,f,\alpha)=\sup L(P,f,\alpha)=\int f\dd{\alpha}$. But since $L(P,f,\alpha)=0$ for all $P$ (there is no infinite interval $[x_i,x_{i+1}]\subset[a,b]$ that does not contain 0, and $f$ is bounded below by 0), we know that
+        \begin{equation*}
+            \int f\dd{\alpha} = \sup L(P,f,\alpha)
+            = 0
+        \end{equation*}
+        as desired.
+    \end{proof}
     \item Suppose $f\geq 0$, $f$ is continuous on $[a,b]$, and $\int_a^bf(x)\dd{x}=0$. Prove that $f(x)=0$ for all $x\in[a,b]$. (Compare this with Exercise 1.)
+    \begin{proof}
+        Suppose for the sake of contradiction that $f(x)\neq 0$ for some $x$. By the definition of $f$, this must mean that $f(x)>0$. It follows since $f$ is continuous that there exists some $N_r(x)$ such that $f(y)>0$ for all $y\in N_r(x)$. Now consider the partition
+        \begin{equation*}
+            P = \{a,x-r/2,x+r/2,b\}
+        \end{equation*}
+        of $[a,b]$. But since $m_2>0$, we have that
+        \begin{align*}
+            0 &< m_1[(x-r/2)-a]+m_2[(x+r/2)-(x-r/2)]+m_3[b-(x+r/2)]\\
+            &= L(P,f)\\
+            &\leq \int_a^bf(x)\dd{x}\tag*{Theorem 6.4}
+        \end{align*}
+        a contradiction.
+    \end{proof}
     \stepcounter{enumi}
     \item If $f(x)=0$ for all irrational $x$ and $f(x)=1$ for all rational $x$, prove that $f\notin\mathscr{R}$ on $[a,b]$ for any $a<b$.
+    \begin{proof}
+        Let $P$ be an arbitrary partition of $[a,b]$. Since the rationals and irrationals are dense in the reals, we know that for any $[x_i,x_{i+1}]$, $f(x)=0$ for some $x\in[x_i,x_{i+1}]$ and $f(x)=1$ for some $x\in[x_i,x_{i+1}]$. Thus, we have that $L(P,f)=0$ and $U(P,f)=b-a$. It follows that if $a<b$,
+        \begin{equation*}
+            \sup L(P,f) = 0 \neq b-a = \inf U(P,f)
+        \end{equation*}
+        so $f\notin\mathscr{R}$, as desired.
+    \end{proof}
 \end{enumerate}
 
 
