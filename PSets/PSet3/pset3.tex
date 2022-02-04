@@ -41,17 +41,158 @@
         \begin{equation*}
             \int f\dd{\beta_1} = f(0)
         \end{equation*}
+        \begin{proof}
+            % ${\color{white}hi}$
+            % \begin{itemize}
+            %     \item Suppose: $f\in\mathscr{R}(\beta_1)$.
+            %     \begin{itemize}
+            %         \item WTS: For every $\epsilon>0$, there exists a $\delta>0$ such that if $x\in[-1,1]$ and $0\leq x<\delta$, then $|f(x)-f(0)|<\epsilon$.
+            %         \item Let $\epsilon>0$ be arbitrary.
+            %         \item Theorem 6.6: There exists a partition $P$ such that $U(P,f,\beta_1)-L(P,f,\beta_1)<\epsilon$.
+            %         \item Let $x_i=\min\{x\in P:x>0\}$.
+            %         \begin{itemize}
+            %             \item Such an object exists since there exist elements of $P$ greater than zero (namely 1) and $P$ is finite.
+            %         \end{itemize}
+            %         \item Def. $\beta_1$: $\Delta x_i=1$ and $\Delta x_j=0$ for $j\neq i$.
+            %         \item Thus: $U(P,f,\beta_1)=M_i$ and $L(P,f,\beta_1)=m_i$.
+            %         \item Choose $\delta=x_i$.
+            %         \item Let $0\leq x<\delta$.
+            %         \item Def. of $x_i,x_{i-1}$: $m_i\leq f(x)\leq M_i$ and $m_i\leq f(0)\leq M_i$.
+            %         \item $M_i-m_i<\epsilon$: $|f(x)-f(0)|<\epsilon$, as desired.
+            %     \end{itemize}
+            %     \item Suppose: $f(0+)=f(0)$.
+            %     \begin{itemize}
+            %         \item Theorem 6.6: Show that for every $\epsilon>0$, there exists a $P$ such that $U(P,f,\beta_1)-L(P,f,\beta_2)<\epsilon$.
+            %         \item Let $\epsilon>0$ be arbitrary.
+            %         \item $f(0+)=f(0)$: There exists $\delta>0$ such that if $x\in[-1,1]$ and $0\leq x<\delta$, then $|f(x)-f(0)|<\epsilon/3$.
+            %         \item Consider $P=\{-1,0,\delta/2,1\}$. We have
+            %         \begin{align*}
+            %             U(P,f,\beta_1) &= \sum_{i=1}^3M_i\Delta\beta_{1_i}&
+            %                 L(P,f,\beta_1) &= \sum_{i=1}^3m_i\Delta\beta_{1_i}\\
+            %             &= M_2&
+            %                 &= m_2
+            %         \end{align*}
+            %         \item The above: $M_2\leq f(0)+\epsilon/3$. $m_2\geq f(0)-\epsilon/3$.
+            %         \item Therefore:
+            %         \begin{align*}
+            %             U(P,f,\beta_1)-L(P,f,\beta_2) &= M_2-m_2\\
+            %             &\leq [f(0)+\tfrac{\epsilon}{3}]-[f(0)-\tfrac{\epsilon}{3}]\\
+            %             &= \frac{2\epsilon}{3}\\
+            %             &< \epsilon
+            %         \end{align*}
+            %         \item Additionally, $M_2\leq f(0)+\epsilon/3$ for arbitrarily small $\epsilon$ implies $M_2\leq f(0)$.
+            %         \item Similarly, $m_2\geq f(0)$.
+            %         \item Thus,
+            %         \begin{equation*}
+            %             \inf U(P,f,\beta_1) \leq U(P,f,\beta_1)
+            %             = M_2
+            %             \leq f(0)
+            %             \leq m_2
+            %             = L(P,f,\beta_1)
+            %             \leq \sup L(P,f,\beta_1)
+            %         \end{equation*}
+            %         \item Theorem 6.5: $\sup L(P,f,\beta_1)\leq \inf U(P,f,\beta_1)$.
+            %         \item Therefore:
+            %         \begin{equation*}
+            %             \int_{-1}^1f\dd{\beta_1} = \sup L(P,f,\beta_1) = \inf U(P,f,\beta_1) = f(0)
+            %         \end{equation*}
+            %     \end{itemize}
+            % \end{itemize}
+
+
+            Suppose first that $f\in\mathscr{R}(\beta_1)$ with $\int f\dd{\beta_1}=f(0)$. To prove that $f(0+)=f(0)$, it will suffice to show that for every $\epsilon>0$, there exists a $\delta>0$ such that if $x\in[-1,1]$ and $0\leq x<\delta$, then $|f(x)-f(0)|<\epsilon$. Let $\epsilon>0$ be arbitrary. Since $f\in\mathscr{R}(\beta_1)$ by hypothesis, we have by Theorem 6.6 that there exists a partition $P$ of $[-1,1]$ such that $U(P,f,\beta_1)-L(P,f,\beta_1)<\epsilon$. Now let $x_i=\min\{x\in P:x>0\}$; we know that such an object exists since there exist elements of $P$ greater than zero (namely 1) and $P$ is finite. It follows by the definition of $\beta_1$ that $\Delta x_i=1$ and $\Delta x_j=0$ for $j\neq i$. Thus, $U(P,f,\beta_1)=M_i$ and $L(P,f,\beta_1)=m_i$ (which exist because $f$ is bounded on $[-1,1]$). At this point, we are ready to choose $\delta$, whcih we take to be $\delta=x_i$. Now to confirm that this $\delta$ works: Let $0\leq x<\delta$. By the definition of $x_i,x_{i-1}$, $m_i\leq f(x)\leq M_i$ and $m_i\leq f(0)\leq M_i$. But since $M_i-m_i<\epsilon$ as per the above, we have that $|f(x)-f(0)|<\epsilon$, as desired.\par\medskip
+            Now suppose that $f(0+)=f(0)$. To prove that $f\in\mathscr{R}(\beta_1)$, Theorem 6.6 tells us that it will suffice to show that for every $\epsilon>0$, there exists a $P$ such that $U(P,f,\beta_1)-L(P,f,\beta_2)<\epsilon$. Let $\epsilon>0$ be arbitrary. Since $f(0+)=f(0)$, we know that there exists a $\delta'>0$ such that if $x\in[-1,1]$ and $0\leq x<\delta'$, then $|f(x)-f(0)|<\epsilon/3$. Let $\delta=\min(\delta'/2,1)$. Thus, we may define $P=\{-1,0,\delta,1\}$. We have
+            \begin{align*}
+                U(P,f,\beta_1) &= \sum_{i=1}^3M_i\Delta\beta_{1_i}&
+                    L(P,f,\beta_1) &= \sum_{i=1}^3m_i\Delta\beta_{1_i}\\
+                &= M_2&
+                    &= m_2
+            \end{align*}
+            (which exist because $f$ is bounded on $[-1,1]$). Consequently, $M_2\leq f(0)+\epsilon/3$. $m_2\geq f(0)-\epsilon/3$. Therefore,
+            \begin{align*}
+                U(P,f,\beta_1)-L(P,f,\beta_1) &= M_2-m_2\\
+                &\leq [f(0)+\tfrac{\epsilon}{3}]-[f(0)-\tfrac{\epsilon}{3}]\\
+                &= \frac{2\epsilon}{3}\\
+                &< \epsilon
+            \end{align*}
+            as desired.\par
+            As to proving that $\int f\dd{\beta_1}$, we know that $M_2\leq f(0)+\epsilon/3$ for arbitrarily small $\epsilon$ implies $M_2\leq f(0)$. Similarly, $m_2\geq f(0)$. Thus,
+            \begin{equation*}
+                \inf U(P,f,\beta_1) \leq U(P,f,\beta_1)
+                = M_2
+                \leq f(0)
+                \leq m_2
+                = L(P,f,\beta_1)
+                \leq \sup L(P,f,\beta_1)
+            \end{equation*}
+            But by Theorem 6.5, $\sup L(P,f,\beta_1)\leq\inf U(P,f,\beta_1)$. Therefore,
+            \begin{equation*}
+                \int_{-1}^1f\dd{\beta_1} = \sup L(P,f,\beta_1) = \inf U(P,f,\beta_1) = f(0)
+            \end{equation*}
+            as desired.
+        \end{proof}
         \item State and prove a similar result for $\beta_2$.
+        \begin{proof}
+            The result will be $f\in\mathscr{R}(\beta_2)$ if and only if $f(0-)=f(0)$ and that then
+            \begin{equation*}
+                \int f\dd{\beta} = f(0)
+            \end{equation*}
+            The proof of this result is entirely symmetric to the proof of the previous result.
+        \end{proof}
         \item Prove that $f\in\mathscr{R}(\beta_3)$ if and only if $f$ is continuous at 0.
+        \begin{proof}
+            Suppose first that $f\in\mathscr{R}(\beta_3)$. To prove that $f$ is continuous at 0, it will suffice to show that for every $\epsilon>0$, there exists a $\delta>0$ such that if $x\in[-1,1]$ and $|x|<\delta$, then $|f(x)-f(0)|<\epsilon$. Let $\epsilon>0$ be arbitrary. Since $f\in\mathscr{R}(\beta_3)$ by hypothesis, we have by Theorem 6.6 that there exists a partition $P$ of $[-1,1]$ such that $U(P,f,\beta_3)-L(P,f,\beta_3)<\epsilon/2$. Now let $x_i=\max\{x\in P:x<0\}$ and let $x_j=\min\{x\in P:x>0\}$. Choose $\delta=\min\{|x_i|,|x_j|\}$. Let $P^*=P\cup\{-\delta,0,\delta\}$ be a refinement of $P$. It follows by the definition of $\beta_3$ and a reenumeration of $P^*$ that $U(P^*,f,\beta_3)=(M_{i-1}+M_i)/2$ and $L(P^*,f,\beta_3)=(m_{i-1}+m_i)/2$. Now let $|x|<\delta$. We divide into two cases ($x\geq 0$ and $x<0$). If $x\geq 0$, then $m_i\leq f(x)\leq M_i$ and $m_i\leq f(0)\leq M_i$. But then we have that
+            \begin{align*}
+                |f(x)-f(0)| &\leq M_i-m_i\\
+                &\leq (M_{i-1}-m_{i-1})+(M_i-m_i)\\
+                &= 2\left[ \frac{M_{i-1}+M_i}{2}-\frac{m_{i-1}+m_i}{2} \right]\\
+                &= 2[U(P^*,f,\beta_3)-L(P^*,f,\beta_3)]\\
+                &< \epsilon
+            \end{align*}
+            as desired. The proof is symmetric in the other case.\par\medskip
+            Now suppose that $f$ is continuous at 0. To prove that $f\in\mathscr{R}(\beta_3)$, Theorem 6.6 tells us that it will suffice to show that for every $\epsilon>0$, there exists a $P$ such that $U(P,f,\beta_3)-L(P,f,\beta_3)<\epsilon$. Let $\epsilon>0$ be arbitrary. Since $f$ is continuous at 0, we know that there exists a $\delta'>0$ such that if $x\in[-1,1]$ and $|x|<\delta'$, then $|f(x)-f(0)|<\epsilon/3$. Choose $\delta=\min(\delta'/2,1)$. Consider $P=\{-1,-\delta/2,\delta/2,1\}$. It follows as before that $U(P,f,\beta_3)=M_2$ and $L(P,f,\beta_3)=m_2$. Consequently, $M_2\leq f(0)+\epsilon/3$ and $m_2\geq f(0)-\epsilon/3$. Therefore,
+            \begin{align*}
+                U(P,f,\beta_3)-L(P,f,\beta_3) &= M_2-m_2\\
+                &\leq [f(0)+\tfrac{\epsilon}{3}]-[f(0)-\tfrac{\epsilon}{3}]\\
+                &= \frac{2\epsilon}{3}\\
+                &< \epsilon
+            \end{align*}
+            as desired.
+        \end{proof}
         \item If $f$ is continuous at 0, prove that
         \begin{equation*}
             \int f\dd{\beta_1} = \int f\dd{\beta_2}
             = \int f\dd{\beta_3}
             = f(0)
         \end{equation*}
+        \begin{proof}
+            If $f$ is continuous at 0, then $f(0+)=f(0)=f(0-)$. It follows that
+            \begin{align*}
+                f(0) &= \int f\dd{\beta_1}\tag*{Part (a)}\\
+                &= \int f\dd{\beta_2}\tag*{Part (b)}\\
+                &= \int f\dd{\beta_3}\tag*{Part (c)}
+            \end{align*}
+            Note that calculating the exact value of $\int f\dd{\beta_3}$ is symmetric to the proof in part (a).
+        \end{proof}
     \end{enumerate}
     \stepcounter{enumi}
     \item Suppose $f$ is a bounded real function on $[a,b]$, and $f^2\in\mathscr{R}$ on $[a,b]$. Does it follow that $f\in\mathscr{R}$? Does the answer change if we assume that $f^3\in\mathscr{R}$?
+    \begin{proof}
+        \underline{$f^2\in\mathscr{R}\nRightarrow f\in\mathscr{R}$}: Consider the bounded real function $f:[a,b]\to\R$ defined by
+        \begin{equation*}
+            f(x) =
+            \begin{cases}
+                1 & x\notin\Q\\
+                -1 & x\in\Q
+            \end{cases}
+        \end{equation*}
+        Since $f^2(x)=1$ for all $x\in[a,b]$, $f^2\in\mathscr{R}$ as a constant function. However, by Exercise 6.4 and a clever application of Theorem 6.12 (to relate it to the function explicitly considered in Exercise 6.4), we know that $f\notin\mathscr{R}$.\par
+        \underline{$f^3\in\mathscr{R}\Rightarrow f\in\mathscr{R}$}:  Let $f:[a,b]\to\R$ be any bounded real function such that $f^3\in\mathscr{R}$. To prove that $f\in\mathscr{R}$, Theorem 6.11 tells us that it will suffice to show that there exist $m,M\in\R$ such that $m\leq f\leq M$ and that there exists a continuous function $\phi:[m,M]\to\R$ such that $f=\phi\circ f^3$. Since $f$ is bounded by hypothesis, we can pick $m,M\in\R$ such that $m\leq f\leq M$. Now let $\phi:[m,M]\to\R$ be defined by
+        \begin{equation*}
+            \phi(x) = \sqrt[3]{x}
+        \end{equation*}
+        for all $x\in[m,M]$. It is obvious that $\phi$ is continuous and that $\phi\circ f^3=f$, as desired.
+    \end{proof}
     \stepcounter{enumi}
     \item Suppose $f$ is a real function on $(0,1]$ and $f\in\mathscr{R}$ on $[c,1]$ for every $c>0$. Define
     \begin{equation*}
@@ -60,7 +201,41 @@
     if this limit exists (and is finite).
     \begin{enumerate}
         \item If $f\in\mathscr{R}$ on $[0,1]$, show that this definition of the integral agrees with the old one.
+        \begin{proof}
+            To prove that $\int_0^1f=\lim_{c\to 0}\int_c^1f$, it will suffice to show that for every $\epsilon>0$, there exists a $\delta>0$ such that if $c\in(0,1]$ and $c<\delta$, then
+            \begin{equation*}
+                \left| \int_0^cf \right| = \left| \int_c^1f-\int_0^1f \right| < \epsilon
+            \end{equation*}
+            Let $\epsilon>0$ be arbitrary. Since $f$ is integrable, $f$ is bounded, i.e., there exists $M\in\R$ such that $|f(x)|<M$ for all $x\in[0,1]$. Choose $\delta=\epsilon/M$. Let $c\in(0,1]$ be such that $c<\delta$. Then by Theorem 6.12d, 
+            \begin{align*}
+                \left| \int_0^cf \right| &\leq M(c-0)\\
+                &< \epsilon
+            \end{align*}
+            as desired.
+        \end{proof}
         \item Construct a function $f$ such that the above limit exists, although it fails to exist with $|f|$ in place of $f$.
+        \begin{proof}
+            Let $f:(0,1]\to\R$ be defined by
+            \begin{equation*}
+                f(x) = (-1)^nn
+            \end{equation*}
+            for $1/n<x\leq 1/(n-1)$ ($n=2,3,\dots$). It follows since $f$ is a constant function save one terminal discontinuity on each $[1/n,1/(n-1)]$ that
+            \begin{align*}
+                \int_{1/n}^{1/(n-1)}f &= (-1)^nn\cdot\left( \frac{1}{n-1}-\frac{1}{n} \right)\\
+                &= \frac{(-1)^nn}{n(n-1)}\\
+                &= \frac{(-1)^n}{n-1}
+            \end{align*}
+            for all $n\in\N$. It follows that
+            \begin{align*}
+                \int_{1/N}^1f &= \sum_{n=2}^N\int_{1/n}^{1/(n-1)}f\\
+                &= \sum_{n=2}^N\frac{(-1)^n}{n-1}
+            \end{align*}
+            Thus,
+            \begin{equation*}
+                \lim_{c\to 0}\int_c^1f = \sum_{n=2}^\infty\frac{(-1)^n}{n-1}
+            \end{equation*}
+            which converges by Theorem 3.43. However, the limit fails to exist if $f$ is replaced by $|f|$, because in that case, the integral is equal to the harmonic series, which diverges to infinity.
+        \end{proof}
     \end{enumerate}
     \item Suppose $f\in\mathscr{R}$ on $[a,b]$ for every $b>a$ where $a$ is fixed. Define
     \begin{equation*}
@@ -68,6 +243,124 @@
     \end{equation*}
     if this limit exists (and is finite). In that case, we say that the integral on the left \textbf{converges}. If it also converges after $f$ has been replaced by $|f|$, it is said to converge \textbf{absolutely}.\par
     Assume that $f(x)\geq 0$ and that $f$ decreases monotonically on $[1,\infty)$. Prove that $\int_1^\infty f(x)\dd{x}$ converges if and only if $\sum_{n=1}^\infty f(n)$ converges. (This is the so-called "integral test" for convergence of series.)
+    \begin{proof}
+        % ${\color{white}hi}$
+        % \begin{itemize}
+        %     % \item Suppose: $\int_1^\infty f$ converges.
+        %     % \begin{itemize}
+        %     %     % \item WTS (Theorem 3.14): The sequence of partial sums $\{\sum_{n=1}^Nf(n)\}_{N=1}^\infty$ is bounded.
+        %     %     % \item We know: $\sum_{i=1}^nf$
+        %     %     \item Then
+        %     %     \begin{equation*}
+        %     %         \int_2^\infty f(x-1)\dd{x} = \int_1^\infty f
+        %     %     \end{equation*}
+        %     %     converges.
+        %     % \end{itemize}
+        %     % \item Suppose: $\sum_{n=1}^\infty f(n)$ converges.
+        %     % \begin{itemize}
+        %     %     \item WTS: 
+        %     % \end{itemize}
+        %     % \item They are both always less than $f(1)+\int_2^Nf(n-1)\dd{n}
+        %     % 
+        %     % 
+        %     \item Outline: We know that
+        %     \begin{equation*}
+        %         \sum_{n=2}^Nf(n) \leq \int_1^Nf
+        %         \leq \sum_{n=1}^{N-1}f(n)
+        %         \leq f(1)+\int_1^{N-1}f(x)\dd{x}
+        %     \end{equation*}
+        %     \item Thus, since both the sum and the limit are monotonically increasing as $N\to\infty$ and both are bounded below and above by (a function of) the other, both converge or diverge together.
+        %     \item Proving the inequality.
+        %     \begin{itemize}
+        %         \item Left inequality:
+        %         \begin{itemize}
+        %             \item ($f$ monotonically decreasing on $[1,\infty)$): $f(n)\leq f(x)$ for all $1\leq x\leq n$ ($n\in\N$).
+        %             \item Theorem 6.12b:
+        %             \begin{equation*}
+        %                 \int_{n-1}^nf(n)\dd{x} \leq \int_{n-1}^nf(x)\dd{x}
+        %             \end{equation*}
+        %             \item Thus:
+        %             \begin{align*}
+        %                 \sum_{n=2}^Nf(n) &= \sum_{n=2}^N\int_{n-1}^nf(n)\dd{x}\tag*{Theorem 6.12d}\\
+        %                 &\leq \sum_{n=2}^N\int_{n-1}^nf(x)\dd{x}\\
+        %                 &= \int_1^Nf(x)\dd{x}\tag*{Theorem 6.12c}
+        %             \end{align*}
+        %             for all $N=2,3,4,\dots$.
+        %         \end{itemize}
+        %         \item Center inequality:
+        %         \begin{itemize}
+        %             \item ($f$ monotonically decreasing on $[1,\infty)$): $f(x)\leq f(n)$ for all $x\geq n$ ($n\in\N$).
+        %             \item Theorem 6.12b:
+        %             \begin{equation*}
+        %                 \int_n^{n+1}f(x)\dd{x} \leq \int_n^{n+1}f(n)\dd{x}
+        %             \end{equation*}
+        %             \item Thus:
+        %             \begin{align*}
+        %                 \int_1^Nf(x)\dd{x} &= \sum_{n=1}^{N-1}\left( \int_n^{n+1}f(x)\dd{x} \right)\tag*{Theorem 6.12c}\\
+        %                 &\leq \sum_{n=1}^{N-1}\left( \int_n^{n+1}f(n)\dd{x} \right)\\
+        %                 &= \sum_{n=1}^{N-1}f(n)\tag*{Theorem 6.12d}
+        %             \end{align*}
+        %             for all $N=2,3,4,\dots$.
+        %         \end{itemize}
+        %         \item Right inequality:
+        %         \begin{itemize}
+        %             % \item ($f$ monotonically decreasing on $[1,\infty)$): $f(n)\leq f(x)$ for all $1\leq x\leq n$ ($n\in\N$).
+        %             \item Theorem 6.12b:
+        %             \begin{equation*}
+        %                 \int_{n-1}^nf(n)\dd{x} \leq \int_{n-1}^nf(x)\dd{x}
+        %             \end{equation*}
+        %             \item Thus:
+        %             \begin{align*}
+        %                 \sum_{n=1}^{N-1}f(n) &= f(1)+\sum_{n=2}^{N-1}\int_{n-1}^nf(n)\dd{x}\tag*{Theorem 6.12d}\\
+        %                 &\leq f(1)+\sum_{n=2}^{N-1}\int_{n-1}^nf(x)\dd{x}\\
+        %                 &= f(1)+\int_1^{N-1}f(x)\dd{x}\tag*{Theorem 6.12c}
+        %             \end{align*}
+        %             for all $N=2,3,4,\dots$.
+        %         \end{itemize}
+        %     \end{itemize}
+        % \end{itemize}
+
+        To prove the claim, we will show that
+        \begin{equation*}
+            \sum_{n=2}^Nf(n) \leq \int_1^Nf
+            \leq \sum_{n=1}^{N-1}f(n)
+            \leq f(1)+\int_1^{N-1}f(x)\dd{x}
+        \end{equation*}
+        It will follow since both the sum and the integral limit are monotonically increasing as $N\to\infty$ ($f\geq 0$) and both are bounded below and above by (a function of) the other, both converge or diverge together. Let's begin.\par\smallskip
+        Since $f$ is monotonically decreasing on $[1,\infty)$, we know that $f(n)\leq f(x)$ for all $1\leq x\leq n$ ($n\in\N$). Thus, by Theorem 6.12b,
+        \begin{equation*}
+            \int_{n-1}^nf(n)\dd{x} \leq \int_{n-1}^nf(x)\dd{x}
+        \end{equation*}
+        Therefore,
+        \begin{align*}
+            \sum_{n=2}^Nf(n) &= \sum_{n=2}^N\int_{n-1}^nf(n)\dd{x}\tag*{Theorem 6.12d}\\
+            &\leq \sum_{n=2}^N\int_{n-1}^nf(x)\dd{x}\\
+            &= \int_1^Nf(x)\dd{x}\tag*{Theorem 6.12c}
+        \end{align*}
+        for all $N=2,3,4,\dots$, thereby establishing the left inequality above.\par
+        Since $f$ is monotonically decreasing on $[1,\infty)$, we know that $f(x)\leq f(n)$ for all $x\geq n$ ($n\in\N$). Thus, by Theorem 6.12b,
+        \begin{equation*}
+            \int_n^{n+1}f(x)\dd{x} \leq \int_n^{n+1}f(n)\dd{x}
+        \end{equation*}
+        Therefore,
+        \begin{align*}
+            \int_1^Nf(x)\dd{x} &= \sum_{n=1}^{N-1}\left( \int_n^{n+1}f(x)\dd{x} \right)\tag*{Theorem 6.12c}\\
+            &\leq \sum_{n=1}^{N-1}\left( \int_n^{n+1}f(n)\dd{x} \right)\\
+            &= \sum_{n=1}^{N-1}f(n)\tag*{Theorem 6.12d}
+        \end{align*}
+        for all $N=2,3,4,\dots$, thereby establishing the middle inequality above.\par
+        From our statement about $f(n)$ and $f(x)$ from the left inequality, we have by Theorem 6.12b that
+        \begin{equation*}
+            \int_{n-1}^nf(n)\dd{x} \leq \int_{n-1}^nf(x)\dd{x}
+        \end{equation*}
+        Therefore,
+        \begin{align*}
+            \sum_{n=1}^{N-1}f(n) &= f(1)+\sum_{n=2}^{N-1}\int_{n-1}^nf(n)\dd{x}\tag*{Theorem 6.12d}\\
+            &\leq f(1)+\sum_{n=2}^{N-1}\int_{n-1}^nf(x)\dd{x}\\
+            &= f(1)+\int_1^{N-1}f(x)\dd{x}\tag*{Theorem 6.12c}
+        \end{align*}
+        for all $N=2,3,4,\dots$, thereby establishing the right inequality above.
+    \end{proof}
     \stepcounter{enumi}
     \item Let $p,q$ be positive real numbers such that
     \begin{equation*}
@@ -80,6 +373,100 @@
             uv \leq \frac{u^p}{p}+\frac{v^q}{q}
         \end{equation*}
         Equality holds if and only if $u^p=v^q$.
+        \begin{proof}[Discussion]
+            % We have that
+            % \begin{align*}
+            %     pquv \leq qu^p+pv^q
+            % \end{align*}
+            % Now suppose that $u^p=v^q$. Then
+            % \begin{align*}
+            %     \frac{u^p}{p}+\frac{v^q}{q} &= u^p\left( \frac{1}{p}+\frac{1}{q} \right)\\
+            %     &= u^{\log_u(v^q)}\\
+            %     &= \sqrt[q]{u^qu^p}\\
+            %     &= u\sqrt[q]{u^p}\\
+            %     &= uv
+            % \end{align*}
+            % Show equality condition.
+
+            % We want to show that
+            % \begin{equation*}
+            %     f(u,v) = \frac{u^p}{p}+\frac{v^q}{q}-uv \geq 0
+            % \end{equation*}
+            % for $u,v\geq 0$. Fix $u\geq 0$. Define
+            % \begin{equation*}
+            %     f(v) = \frac{u^p}{p}+\frac{v^q}{q}-uv
+            % \end{equation*}
+            % for all $v\geq 0$. Then our problem becomes one of showing $f(v)\geq 0$ for all $v\geq 0$.
+            % We know
+            % \begin{equation*}
+            %     f(0) = \frac{u^p}{p} \geq 0
+            % \end{equation*}
+            % since $p>0$ by hypothesis.
+
+            % \begin{align*}
+            %     0 &= f(v)\\
+            %     uv &= \frac{u^p}{p}+\frac{v^q}{q}\\
+            %     u^p &= v^q
+            % \end{align*}
+            % If $u=0$, then $f(v)=0$ for all $v$. If $u>0$, then $f(v)=0$ for $v=\sqrt[q]{u^p}$. $f$ is clearly continuous. Thus, we need only confirm that $f(v)>0$ for some $v>\sqrt[q]{u^p}$. Let $v=\max(1,u^p)$. Either way, $v>\sqrt[q]{u^p}$. If $v=1$, then
+            % \begin{align*}
+            %     f(v) &= \frac{u^p}{p}+\frac{1^q}{q}-u\cdot 1\\
+            %     &= \frac{u^p}{p}+\frac{1}{q}-u
+            % \end{align*}
+            % On the other hand, if $v=u^p$, then
+            % \begin{align*}
+            %     f(v) &= \frac{u^p}{p}+\frac{(u^p)^q}{q}-u\cdot 1
+            % \end{align*}
+
+
+            To prove the desired inequality, it will suffice to show that
+            \begin{equation*}
+                0 \leq \frac{u^p}{p}+\frac{v^q}{q}-uv
+            \end{equation*}
+            i.e., that for all $u,v\geq 0$, the expression on the right above is nonnegative. To consider all such values at once, we can consider applying our analysis toolbox to $f:[0,\infty)^2\to\R$ defined by
+            \begin{equation*}
+                f(u,v) = \frac{u^p}{p}+\frac{v^q}{q}-uv
+            \end{equation*}
+            with the goal of proving that it is nonnegative everywhere on its domain. However, since we do not yet know multivariable calculus, it will suffice to fix $u\geq 0$ and analyze $f:[0,\infty)\to\R$ defined by
+            \begin{equation*}
+                f(v) = \frac{u^p}{p}+\frac{v^q}{q}-uv
+            \end{equation*}
+            Let's begin.
+        \end{proof}
+        \begin{proof}
+            % Show $f'$ is monotonically increasing. Consider $v$ such that $f'(v)=0$. Theorem 5.11: $f$ is monotonically decreasing on $(0,v)$ and monotonically increasing on $(v,\infty)$. $f$ is continuous: $f(0)\geq f(v)$. Thus, $f(v)$ is a minimum of $f$ over $[0,\infty)$. But $f(v)=0$, as desired. Additionally, $v^q=u^p$.
+
+            % We can prove $f'(v)\to\infty$ by considering the sequence $f'(n^{1/(q-1)})=n-u$.
+            
+            % Treat $v=0$ trivial case first. Then we may apply MVT to $f(0)$ and $f(2\sqrt[q]{u^p})$ to find a place where $f'(x)=0$.
+
+
+            Fix $u\geq 0$. Let $f:[0,\infty)\to\R$ be defined by
+            \begin{equation*}
+                f(v) = \frac{u^p}{p}+\frac{v^q}{q}-uv
+            \end{equation*}
+            It follows from the definition of $f$ that to prove the desired inequality, it will suffice to show that $f$ is nonnegative everywhere on its domain. Let's begin.\par
+            Since $f$ is a polynomial in $v$, $f$ is differentiable. Thus, we may consider
+            \begin{equation*}
+                f'(v) = v^{q-1}-u
+            \end{equation*}
+            As a function of a positive power ($q/(q-1)=p>0$ and $q>0$ imply $q-1>0$) of its variable (minus a constant), $f'$ is strictly increasing. Additionally, we have that
+            \begin{align*}
+                0 &= f'(v)\\
+                u &= v^{q-1}\\
+                &= v^{q/p}\\
+                v &= u^{p/q}
+            \end{align*}
+            Thus, we know that $f'<0$ on $(0,u^{p/q})$ and $f'>0$ on $(u^{p/q},\infty)$. It follows by the strict version of Theorem 5.11 that $f$ is strictly decreasing on $(0,u^{p/q})$ and strictly increasing on $(u^{p/q},\infty)$. Furthermore, since $f$ is differentiable (hence continuous by Theorem 5.2), we know that $f(0)\geq f(u^{p/q})$. Combining the last several results, we have that $f(u^{p/q})$ is the minimum of $f$ over $[0,\infty)$, and hence equal to the minimum value of $f$ over $[0,\infty)$. But since
+            \begin{align*}
+                f(u^{p/q}) &= \frac{u^p}{p}+\frac{(u^{p/q})^q}{q}-uu^{p/q}\\
+                &= \frac{u^p}{p}+\frac{u^p}{q}-u^{p/q+1}\\
+                &= u^p\left( \frac{1}{p}+\frac{1}{q} \right)-u^p\\
+                &= 0
+            \end{align*}
+            we know that $f(v)\geq 0$ on its domain, as desired.\par
+            Additionally, since $f$ is strictly decreasing on $(0,u^{p/q})$ and strictly increasing on $(u^{p/q},\infty)$, we know that $f(v)=0$ iff $v=u^{p/q}$, i.e., iff $v^q=u^p$, as desired.
+        \end{proof}
         \item If $f,g\in\mathscr{R}(\alpha)$, $f,g\geq 0$, and
         \begin{equation*}
             \int_a^bf^p\dd{\alpha} = 1 = \int_a^bg^q\dd{\alpha}
@@ -88,11 +475,50 @@
         \begin{equation*}
             \int_a^b fg\dd{\alpha} \leq 1
         \end{equation*}
+        \begin{proof}
+            By Theorem 6.13a, the hypothesis $f,g\in\mathscr{R}(\alpha)$ implies that $fg\in\mathscr{R}(\alpha)$. Thus, we have that
+            \begin{align*}
+                \int_a^bfg\dd{\alpha} &\leq \int_a^b\left( \frac{f^p}{p}+\frac{g^q}{q} \right)\dd{\alpha}\tag*{Theorem 6.12b}\\
+                &= \frac{1}{p}\int_a^bf^p\dd{\alpha}+\frac{1}{q}\int_a^bg^q\dd{\alpha}\tag*{Theorem 6.12a}\\
+                &= \frac{1}{p}+\frac{1}{q}\\
+                &= 1
+            \end{align*}
+            as desired.
+        \end{proof}
         \item If $f,g$ are complex functions in $\mathscr{R}(\alpha)$, then
         \begin{equation*}
             \left| \int_a^bfg\dd{\alpha} \right| \leq \left( \int_a^b|f|^p\dd{\alpha} \right)^{1/p}\left( \int_a^b|g|^q\dd{\alpha} \right)^{1/q}
         \end{equation*}
         This is \textbf{H\"{o}lder's inequality}. When $p=q=2$, it is usually called the Schwarz inequality. (Note that Theorem 1.35 is a very special case of this.)
+        \begin{proof}
+            By Theorem 6.11 with $\phi(y)=|y|^p$ (resp. $\phi(y)=|y|^q$), the hypothesis $f,g\in\mathscr{R}(\alpha)$ implies that $|f|^p,|g|^q\in\mathscr{R}(\alpha)$. Thus, we may let
+            \begin{align*}
+                I_f &= \left( \int_a^b|f|^p\dd{\alpha} \right)^{1/p}&
+                I_g &= \left( \int_a^b|g|^q\dd{\alpha} \right)^{1/q}
+            \end{align*}
+            We divide into two cases ($I_f=0$ or $I_g=0$, and $I_f,I_g\neq 0$). In the first case, WLOG let $I_f=0$. Then since $0\leq|f|^p$, it follows that $f=0$ on $[a,b]$. Thus
+            \begin{equation*}
+                \left| \int_a^bfg\dd{\alpha} \right| = 0
+                \leq 0
+                = I_fI_g
+                = \left( \int_a^b|f|^p\dd{\alpha} \right)^{1/p}\left( \int_a^b|g|^q\dd{\alpha} \right)^{1/q}
+            \end{equation*}
+            as desired. In the other case, it follows that
+            \begin{align*}
+                I_f^p &= \int_a^b|f|^p\dd{\alpha}&
+                    I_g^q &= \int_a^b|g|^q\dd{\alpha}\\
+                1 &= \int_a^b\left| \frac{f}{I_f} \right|^p\dd{\alpha}&
+                    1 &= \int_a^b\left| \frac{g}{I_g} \right|^q\dd{\alpha}\tag*{Theorem 6.12a}
+            \end{align*}
+            Thus, since $|f/I_f|,|g/I_g|\in\mathscr{R}(\alpha)$ by Theorems 6.12 and 6.13 and $|f/I_f|,|g/I_g|\geq 0$ by the definition of the absolute value, we have that
+            \begin{align*}
+                \left| \int_a^bfg\dd{\alpha} \right| &\leq \int_a^b|fg|\dd{\alpha}\tag*{Theorem 6.13b}\\
+                &= I_fI_g\int_a^b\left| \frac{f}{I_f} \right|\left| \frac{g}{I_g} \right|\dd{\alpha}\\
+                &\leq I_fI_g\cdot 1\tag*{Part (b)}\\
+                &= \left( \int_a^b|f|^p\dd{\alpha} \right)^{1/p}\left( \int_a^b|g|^q\dd{\alpha} \right)^{1/q}
+            \end{align*}
+            as desired.
+        \end{proof}
     \end{enumerate}
     \item Let $\alpha$ be a fixed increasing function on $[a,b]$. For $u\in\mathscr{R}(\alpha)$, define
     \begin{equation*}
@@ -103,6 +529,18 @@
         \norm{f-h}_2 \leq \norm{f-g}_2+\norm{g-h}_2
     \end{equation*}
     as a consequence of the Schwarz inequality, as in the proof of Theorem 1.37.
+    \begin{proof}
+        By Theorems 6.12a and 6.13b, the hypothesis that $f,g,h\in\mathscr{R}(\alpha)$ implies that $|f-g|,|g-h|\in\mathscr{R}(\alpha)$. Thus, we have that
+        \begin{align*}
+            \norm{f-h}_2^2 &= \int_a^b|f-h|^2\dd{\alpha}\\
+            &= \int_a^b|(f-g)+(g-h)|^2\dd{\alpha}\\
+            &= \int_a^b|f-g|^2\dd{\alpha}+2\int_a^b|f-g|\cdot|g-h|\dd{\alpha}+\int_a^b|g-h|^2\dd{\alpha}\\
+            &\leq \int_a^b|f-g|^2\dd{\alpha}+2\left( \int_a^b|f-g|^2\dd{\alpha} \right)^{1/2}\left( \int_a^b|g-h|^2\dd{\alpha} \right)^{1/2}+\int_a^b|g-h|^2\dd{\alpha}\\
+            &= \norm{f-g}_2^2+2\norm{f-g}_2\norm{g-h}_2+\norm{g-h}_2^2\\
+            &= \left( \norm{f-g}_2+\norm{g-h}_2 \right)^2
+        \end{align*}
+        Taking square roots of both sides of the inequality yields the desired result.
+    \end{proof}
 \end{enumerate}
 
 
