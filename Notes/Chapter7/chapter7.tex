@@ -82,35 +82,6 @@
             \item Thus, by the $\epsilon/3$ trick, we have the continuity of $f$.
         \end{itemize}
     \end{itemize}
-    \item Theorem: $f_n:[a,b]\to\R$ integrable and $f_n\to f$ uniformly implies $f$ is integrable and
-    \begin{equation*}
-        \int_a^bf = \lim_{n\to\infty}\int_a^bf_n
-    \end{equation*}
-    \begin{itemize}
-        \item Plan:
-        \begin{enumerate}
-            \item Show $f$ is integrable.
-            \item Show $\int f=\lim\int f_n$.
-        \end{enumerate}
-        \item Proof:
-        \begin{itemize}
-            \item Fix some partition $P$ and write
-            \begin{align*}
-                U(f_n,P) &= \sum_{i=1}^kM_i^n\Delta x_i&
-                    L(f_n,P) &= \sum_{i=1}^km_i^n\Delta x_i\\
-                U(f,P) &= \sum_{i=1}^kM_i\Delta x_i&
-                    L(f,P) &= \sum_{i=1}^km_i\Delta x_i
-            \end{align*}
-            \item WTS: For large enough $n$, we can make all $|M_i^n-M_i|<\epsilon$ and $|m_i^n-m_i|<\epsilon$.
-            \item We can do the above by uniform convergence.
-            \item We end up with
-            \begin{align*}
-                |U(f_n,P)-U(f,P)| &\leq \sum_{i=1}^n|M_i^n-M_i|\Delta x_i\\
-                &< \epsilon(b-a)
-            \end{align*}
-            \item Klug had assumed that the functions achieve their maxima/minima on the same interval and forgets how to finish the proof.
-        \end{itemize}
-    \end{itemize}
     \item Defining a norm on $\mathcal{C}(X)$.
     \begin{equation*}
         \norm{f} = \sup_{x\in X}|f(x)|
@@ -126,6 +97,98 @@
     \item Corollary to the Weierstra{\ss} M-test: $\mathcal{C}(X)$ is complete (i.e., all uniformly Cauchy sequences converge).
     \begin{itemize}
         \item Assume $\{f_n\}$ is Cauchy. Then by the Cauchy criterion for uniform convergence, $f_n$ converges uniformly to some $f$. But this $f$ must be continuous, too, meaning $f\in\mathcal{C}(X)$.
+    \end{itemize}
+    \item \marginnote{2/4:}Plan.
+    \begin{enumerate}
+        \item $\int\lim f_n=\lim\int f_n$.
+        \item $\dd{x}\lim f_n=\lim\dd{x}f_n$.
+        \item Definitions: Pointwise/uniform boundedness, equicontinuity.
+    \end{enumerate}
+    \item Theorem: $f_n:[a,b]\to\R$ integrable and $f_n\to f$ uniformly implies $f$ is integrable and
+    \begin{equation*}
+        \int_a^bf = \lim_{n\to\infty}\int_a^bf_n
+    \end{equation*}
+    \begin{itemize}
+        \item Plan:
+        \begin{enumerate}
+            \item Show $f$ is integrable.
+            \item Show $\int f=\lim\int f_n$.
+        \end{enumerate}
+        \item Proof:
+        \begin{itemize}
+            % \item Fix some partition $P$ and write
+            % \begin{align*}
+            %     U(f_n,P) &= \sum_{i=1}^kM_i^n\Delta x_i&
+            %         L(f_n,P) &= \sum_{i=1}^km_i^n\Delta x_i\\
+            %     U(f,P) &= \sum_{i=1}^kM_i\Delta x_i&
+            %         L(f,P) &= \sum_{i=1}^km_i\Delta x_i
+            % \end{align*}
+            % \item WTS: For large enough $n$, we can make all $|M_i^n-M_i|<\epsilon$ and $|m_i^n-m_i|<\epsilon$.
+            % \item We can do the above by uniform convergence.
+            % \item We end up with
+            % \begin{align*}
+            %     |U(f_n,P)-U(f,P)| &\leq \sum_{i=1}^n|M_i^n-M_i|\Delta x_i\\
+            %     &< \epsilon(b-a)
+            % \end{align*}
+            \item Let $\epsilon_n=\sup_{x\in[a,b]}|f(x)-f_n(x)|$.
+            \item Since $f_n\to f$ uniformly, $\epsilon_n\to 0$ as $n\to\infty$.
+            \item By definition, $f_n-\epsilon_n\leq f\leq f_n+\epsilon_n$.
+            \item Thus, by Theorems 6.4 and 6.5,
+            \begin{equation*}
+                \int_a^b(f_n-\epsilon_n) = \underaccent{\bar}{\int}(f_n-\epsilon_n)
+                \leq \underaccent{\bar}{\int}f
+                \leq \bar{f}
+                \leq \int_a^b(f_n+\epsilon_n)
+            \end{equation*}
+            \item It follows since
+            \begin{equation*}
+                0 \leq \bar{\int}f-\underaccent{\bar}{\int}f
+                \leq \int_a^b(f_n+\epsilon_n)-\int_a^b(f_n-\epsilon_n)
+                = (b-a)...
+            \end{equation*}
+            that $f$ is integrable.
+            \item Hence,
+            \begin{align*}
+                \int_a^b(f_n-\epsilon_n) &\leq \int_a^bf \leq \int_a^b(f_n-\epsilon_n)\\
+                \left| \int_a^bf_n-\int_a^bf \right| &\leq \epsilon_n\\
+                \lim_{n\to\infty}\int_a^bf_n = \int_a^bf
+            \end{align*}
+        \end{itemize}
+    \end{itemize}
+    \item Theorem: $f_n:[a,b]\to\R$, each $f_n$ differentiable, $f_n\to f$ pointwise, and $(f_n)'\to g$ uniformly implies that $f$ is differentiable and $f'=g$.
+    \begin{itemize}
+        \item Note that you can do better: Substituting $f_n(x_0)$ converging for some $x_0\in[a,b]$ for $f_n\to f$ pointwise still implies the desired result.
+        \item Idea: We use the $\epsilon/3$ trick; $2/3$ will be easy and $1/3$ will be tricky.
+        \item Goal: We want
+        \begin{equation*}
+            \left| \frac{f(x)-f(x_0)}{x-x_0}-g(x_0) \right| < \epsilon
+        \end{equation*}
+        for some $\delta$ with $0<|x-x_0|<\delta$. We will show that
+        \begin{align*}
+            {}& \left| \frac{f(x)-f(x_0)}{x-x_0}-\frac{f_N(x)-f_N(x_0)}{x-x_0}+\frac{f_N(x)-f_N(x_0)}{x-x_0}-f'_N(x_0)+f'_N(x_0)-g(x_0) \right|\\
+            \leq{}& \left| \frac{f(x)-f(x_0)}{x-x_0}-\frac{f_N(x)-f_N(x_0)}{x-x_0} \right|+\left| \frac{f_N(x)-f_N(x_0)}{x-x_0}-f'_N(x_0) \right|+\left| f'_N(x_0)-g(x_0) \right|
+        \end{align*}
+        \begin{itemize}
+            \item For the middle inequality, use Chapter 5, Exercise 8.
+            \item For the right inequality, use the uniform convergence condition.
+            \item For the left inequality, it will suffice to show the Cauchy condition
+            \begin{equation*}
+                \left| \frac{f_n(x)-f_n(x_0)}{x-x_0}-\frac{f_m(x)-f_m(x_0)}{x-x_0} \right| < \frac{\epsilon}{3}
+            \end{equation*}
+            so, noting that the left term above is equal to
+            \begin{equation*}
+                \left| \frac{[f_n(x)-f_m(x)]-[f_n(x_0)-f_m(x_0)]}{x-x_0} \right|
+            \end{equation*}
+            which is equal to $|f_n'(c)-f_m'(c)|$ by the MVT, from which we can apply the Cauchy form of the uniform convergence of $(f_n)'$ condition.
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{Pointwise bounded} ($\{f_n\}$): A sequence of real functions $\{f_n\}$ such that for all $x\in X$, there exists $M_x\in\R$ such that $|f_n(x)|\leq M_x$ for all $n\in\N$.
+    \item \textbf{Uniformly bounded} ($\{f_n\}$): A sequence of real functions $\{f_n\}$ for which there exists $M\in\R$ such that for all $x\in X$ and $n\in\N$, $|f_n(x)|\leq M$.
+    \item Proposition: $f_n:E\to\R$, $\{f_n\}$ is pointwise bounded, and $E$ is countable implies there is a subsequence $\{f_{n_k}\}$ that converges pointwise.
+    \begin{itemize}
+        \item Enumerate $E=\{x_1,x_2,\dots\}$.
+        \item Then since $\{f_n(x_m)\}$ is bounded for all $m$ by hypothesis, it always has a convergent subsequence.
+        \item The claim is if you look at the sequence of diagonal functions, it is such a subsequence, i.e., if $f_1(x_1)$ is the first term for $x_1$, $f_3(x_2)$ is the second term for $x_2$, $f_{11}(x_3)$ is the third term for $x_3$, and so on, $f_1,f_3,f_{11},\dots$ is such a subsequence.
     \end{itemize}
 \end{itemize}
 
