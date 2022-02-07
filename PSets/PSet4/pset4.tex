@@ -1,0 +1,39 @@
+\documentclass[../psets.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\leftmark}{Problem Set \thesection}
+\setcounter{section}{3}
+
+\begin{document}
+
+
+
+
+\section{Sequences and Series of Functions}
+\emph{From \textcite{bib:Rudin}.}
+\subsection*{Chapter 7}
+\begin{enumerate}[label={\textbf{\arabic*.}}]
+    \item \marginnote{2/9:}Prove that every uniformly convergent sequence of bounded functions is uniformly bounded.
+    \item If $\{f_n\}$ and $\{g_n\}$ converge uniformly on a set $E$, prove that $\{f_n+g_n\}$ converges uniformly on $E$. If, in addition, $\{f_n\}$ and $\{g_n\}$ are sequences of bounded functions, prove that $\{f_ng_n\}$ converges uniformly on $E$.
+    \item Construct sequences $\{f_n\},\{g_n\}$ which converge uniformly on some set $E$, but such that $\{f_ng_n\}$ does not converge uniformly on $E$ (of course, $\{f_ng_n\}$ must converge on $E$).
+    \item Consider
+    \begin{equation*}
+        f(x) = \sum_{n=1}^\infty\frac{1}{1+n^2x}
+    \end{equation*}
+    For what values of $x$ does the series converge absolutely? On what intervals does it converge uniformly? On what intervals does it fail to converge uniformly? Is $f$ continuous wherever the series converges? Is $f$ bounded?
+    \setcounter{enumi}{6}
+    \item For $n=1,2,3,\dots$ and $x$ real, put
+    \begin{equation*}
+        f_n(x) = \frac{x}{1+nx^2}
+    \end{equation*}
+    Show that $\{f_n\}$ converges uniformly to a function $f$ and that the equation
+    \begin{equation*}
+        f'(x) = \lim_{n\to\infty}f_n'(x)
+    \end{equation*}
+    is correct if $x\neq 0$ but false if $x=0$.
+\end{enumerate}
+
+
+
+
+\end{document}
