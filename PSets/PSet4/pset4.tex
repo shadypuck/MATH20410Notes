@@ -14,13 +14,126 @@
 \subsection*{Chapter 7}
 \begin{enumerate}[label={\textbf{\arabic*.}}]
     \item \marginnote{2/9:}Prove that every uniformly convergent sequence of bounded functions is uniformly bounded.
+    \begin{proof}
+        Let $\{f_n\}$ be an arbitrary uniformly convergent sequence of bounded functions. To prove that it is uniformly bounded, it will suffice to find a number $M$ such that $|f_n(x)|<M$ for all $x\in E$ and $n\in\N$. Let $f$ be the function such that $f_n\rightrightarrows f$, and let $M_n=\sup_{x\in E}|f_n(x)-f(x)|$ for each $n\in\N$ (the boundedness of each $f_n$ implies that such an $M_n$ always exists). Thus, based on the last two definitions, we can invoke Theorem 7.9 to learn that $M_n\to 0$ as $n\to\infty$. But since $\{M_n\}$ converges, Theorem 3.2c implies that $\{M_n\}$ is bounded, say by $M/2$. Taking $M$ to be our $M$ yields that for an arbitrary $x\in E$ and $n\in\N$,
+        \begin{equation*}
+            |f_n(x)| \leq M_n \leq \frac{M}{2} < M
+        \end{equation*}
+        as desired.
+    \end{proof}
     \item If $\{f_n\}$ and $\{g_n\}$ converge uniformly on a set $E$, prove that $\{f_n+g_n\}$ converges uniformly on $E$. If, in addition, $\{f_n\}$ and $\{g_n\}$ are sequences of bounded functions, prove that $\{f_ng_n\}$ converges uniformly on $E$.
+    \begin{proof}
+        To prove that $\{f_n+g_n\}$ converges uniformly on $E$ to $f+g$, it will suffice to show that for all $\epsilon>0$, there exists an $N$ such that if $n\geq N$, then $|(f_n+g_n)(x)-(f+g)(x)|<\epsilon$ for all $x\in E$. Let $\epsilon>0$ be arbitrary. Since $f_n\to f$ uniformly on $E$, there exists $N_1$ such that if $n\geq N_1$, then $|f_n(x)-f(x)|<\epsilon/2$ for all $x\in E$. Similarly, there exists $N_2$ such that if $n\geq N_2$, then $|g_n(x)-g(x)|<\epsilon/2$ for all $x\in E$. Choose $N=\max(N_1,N_2)$. Now suppose $n\geq N$, and let $x\in E$ be arbitrary. It follows from the first condition that $n\geq N\geq N_1$ and $n\geq N\geq N_2$, so
+        \begin{align*}
+            |(f_n+g_n)(x)-(f+g)(x)| &= |f_n(x)-f(x)+g_n(x)-g(x)|\\
+            &\leq |f_n(x)-f(x)|+|g_n(x)-g(x)|\\
+            &< \frac{\epsilon}{2}+\frac{\epsilon}{2}\\
+            &= \epsilon
+        \end{align*}
+        as desired.\par
+        To prove that $\{f_ng_n\}$ converges uniformly on $E$ to $fg$, it will suffice to show that for all $\epsilon>0$, there exists an $N$ such that if $n\geq N$, then $|(f_ng_n)(x)-(fg)(x)|<\epsilon$ for all $x\in E$. Let $\epsilon>0$ be arbitrary. Since $f_n,g_n$ are uniformly convergent sequences of bounded functions, Exercise 1 implies that they are uniformly bounded, i.e., there exists $M^f,M^g\in\R$ such that $|f_n|<M^f$ and $|g_n|<M^g$ for all $n\in\N$. If we take $M=\max(M^f,M^g)$, then we have $|f_n|<M$ and $|g_n|<M$ for all $n\in\N$. Note that the same inequality holds for $f$ and $g$. Now, as before, we may pick $N$ such that if $n\geq N$, then $|f_n(x)-f(x)|<\epsilon/2M$ and $|g_n(x)-g(x)|<\epsilon/2M$ for all $x\in E$. It follows that for any $n\geq N$ and $x\in E$,
+        \begin{align*}
+            |(f_ng_n)(x)-(fg)(x)| &= |f_n(x)\cdot(g_n(x)-g(x))+g(x)\cdot(f_n(x)-f(x))|\\
+            &= |f_n(x)|\cdot|g_n(x)-g(x)|+|g(x)|\cdot|f_n(x)-f(x)|\\
+            &< M\cdot\frac{\epsilon}{2M}+M\cdot\frac{\epsilon}{2M}\\
+            &= \epsilon
+        \end{align*}
+        as desired.
+    \end{proof}
     \item Construct sequences $\{f_n\},\{g_n\}$ which converge uniformly on some set $E$, but such that $\{f_ng_n\}$ does not converge uniformly on $E$ (of course, $\{f_ng_n\}$ must converge on $E$).
+    \begin{proof}
+        Let
+        \begin{align*}
+            f_n(x) &= x&
+            g_n(x) &= \frac{1}{n}
+        \end{align*}
+        for all $n\in\N$ and $x\in\R$. Then $\{f_n\}$ converges uniformly to $f(x)=x$ (by choosing $N=1$ for any $\epsilon$) and $\{g_n\}$ converges uniformly to $g(x)=0$ (by choosing $1/N<\epsilon$ with the Archimedean principle). However, while $\{f_ng_n\}$ converges pointwise to $(fg)(x)=0$ by Theorem 3.3c, it does not converge uniformly since for any $n$, choosing $x=n$ yields $(f_ng_n)(x)=1$.
+    \end{proof}
     \item Consider
     \begin{equation*}
         f(x) = \sum_{n=1}^\infty\frac{1}{1+n^2x}
     \end{equation*}
     For what values of $x$ does the series converge absolutely? On what intervals does it converge uniformly? On what intervals does it fail to converge uniformly? Is $f$ continuous wherever the series converges? Is $f$ bounded?
+    \begin{proof}
+        \underline{Absolute convergence values}: The series converges absolutely for any
+        \begin{equation*}
+            x \in (-\infty,-1)\cup\left( \bigcup_{k=1}^\infty\left( -\frac{1}{k^2},-\frac{1}{(k+1)^2} \right) \right)\cup(0,\infty)
+        \end{equation*}
+        We prove this via casework as follows.\par
+        Let $x\in(0,\infty)$. Then we have
+        \begin{equation*}
+            \sum_{n=1}^\infty\left| \frac{1}{1+n^2x} \right| = \sum_{n=1}^\infty\frac{1}{1+n^2x}
+            \leq \sum_{n=1}^\infty\frac{1}{n^2x}
+            = \frac{1}{x}\sum_{n=1}^\infty\frac{1}{n^2}
+            = \frac{c}{x}
+        \end{equation*}
+        where $c\in\R$ is finite by Theorem 3.28. Therefore, since the sum is monotonically increasing and bounded, Theorem 3.14 implies that the sum overall converges, as desired.\par
+        Let $x\in(-\infty,-1)$. Then we have
+        \begin{equation*}
+            n^2x+1 < n^2x+n^2 = n^2(x+1)
+        \end{equation*}
+        Since $x<-1$,
+        \begin{align*}
+            n^2x+1 &< 0&
+            n^2(x+1) &< 0
+        \end{align*}
+        for all $n\in\N$. Thus,
+        \begin{align*}
+            n^2x+1 &< n^2(x+1)\\
+            \frac{n^2x+1}{n^2(x+1)} &> 1\\
+            \frac{1}{n^2(x+1)} &< \frac{1}{n^2x+1}\\
+            \left| \frac{1}{n^2x+1} \right| &< \left| \frac{1}{n^2(x+1)} \right|
+        \end{align*}
+        for all $n\in\N$. It follows that
+        \begin{equation*}
+            \sum_{n=1}^\infty\left| \frac{1}{n^2x+1} \right| < \sum_{n=1}^\infty\left| \frac{1}{n^2(x+1)} \right|
+            = \frac{1}{x+1}\sum_{n=1}^\infty\frac{1}{n^2}
+            = \frac{c}{x+1}
+        \end{equation*}
+        where $c\in\R$ is finite by Theorem 3.28. Therefore, since the sum is monotonically increasing and bounded, Theorem 3.14 implies that the sum overall converges, as desired.\par
+        Let $x\in(-1/k^2,-1/(k+1)^2)$. For right now, we consider only the sum for $n\geq\sqrt{2}(k+1)$, leaving finitely many terms out of the sum. Let $\delta=1/(k+1)^2$. It follows that
+        \begin{align*}
+            n &\geq \sqrt{2}(k+1)&
+                x &< -\frac{1}{(k+1)^2}\\
+            n &\geq \sqrt{\frac{2}{1/(k+1)^2}}&
+                -x &> \frac{1}{(k+1)^2}\\
+            n^2 &\geq \frac{2}{\delta}\\
+            \frac{\delta}{2} &\geq \frac{1}{n^2}
+        \end{align*}
+        Additionally, since $n\geq\sqrt{2}(k+1)>k$ (hence $n^2\geq(k+1)^2$) and $x<-1/(k+1)^2$, we have that
+        \begin{align*}
+            n^2x &< (k+1)^2\cdot -\frac{1}{(k+1)^2}\\
+            n^2x &< -1\\
+            n^2x+1 &< 0
+        \end{align*}
+        Thus, for $n\geq\sqrt{2}(k+1)$, we have that
+        \begin{equation*}
+            \left| \frac{1}{1+n^2x} \right| = \frac{1}{n^2(-x)-1}
+            < \frac{1}{n^2\delta-1}
+            = \frac{1}{n^2}\cdot\frac{1}{\delta-1/n^2}
+            \leq \frac{1}{n^2}\cdot\frac{1}{\delta-\delta/2}
+            = \frac{2}{\delta n^2}
+        \end{equation*}
+        Therefore, since $|f_n(x)|\leq M_n=2/\delta n^2$ and $\sum M_n$ converges by Theorem 3.28, the comparison test implies that $\sum|f_n(x)|$ converges, as desired. Adding on the finitely many terms we left out of the summation will not change this fact.\par
+        Note that the series diverges for $x=0$ since each term becomes 1 in this case. Additionally, the series fails to exist for $x=-1/k^2$ ($k\in\N$) since the $k^\text{th}$ term is undefined in this case.\par\medskip
+        \underline{Uniform convergence intervals}: The series converges uniformly on any
+        \begin{equation*}
+            [a,b] \subset (-\infty,-1)\cup\left( \bigcup_{k=1}^\infty\left( -\frac{1}{k^2},-\frac{1}{(k+1)^2} \right) \right)\cup(0,\infty)
+        \end{equation*}
+        This is because any such interval will be a subset of either $(-\infty,-1)$, $(0,\infty)$, or a set of the form $(-1/k^2,-1/(k+1)^2)$ ($k\in\N$). Thus, we may take as $\sum M_n$ the supremum on $[a,b]$ of the appropriate bound derived above (either $c/x$, $c/(x+1)$, or $2c/\delta$, respectively; all supremums of which will exist by the definition of $[a,b]$) and apply Theorem 7.10.\par\medskip
+        \underline{Non-uniform convergence intervals}: Any interval containing one or more of the points in the set $\{0\}\cup\{-1/n^2\}_{n=1}^\infty$, by the above.\par\medskip
+        \underline{Points of continuity}: The series is continuous at all points at which it converges.\par
+        Let $x$ be a point at which $f$ converges. Then by the first part of the proof, $x$ is an element of an open set $G$. Thus, let $N_{2r}(x)\subset G$, and consider $[x-r,x+r]$. By the above, $f$ converges uniformly on this interval. Additionally, each $f_n$ is continuous on this interval by definition. Thus, by Theorem 7.12, $f$ is continuous at $x$, as desired.\par\medskip
+        \underline{Boundedness}: $f$ is not bounded.\par
+        If we suppose for the sake of contradiction that $f$ is bounded by $m$, we nevertheless find that
+        \begin{equation*}
+            f(\tfrac{1}{4m^2}) > \sum_{n=1}^{2m}\frac{1}{1+\frac{n^2}{4m^2}}
+            = \sum_{n=1}^{2m}\frac{(2m)^2}{(2m)^2+n^2}
+            \geq \sum_{n=1}^{2m}\frac{(2m)^2}{(2m)^2+(2m)^2}
+            = \sum_{n=1}^{2m}\frac{1}{2}
+            = m
+        \end{equation*}
+    \end{proof}
     \setcounter{enumi}{6}
     \item For $n=1,2,3,\dots$ and $x$ real, put
     \begin{equation*}
@@ -31,6 +144,32 @@
         f'(x) = \lim_{n\to\infty}f_n'(x)
     \end{equation*}
     is correct if $x\neq 0$ but false if $x=0$.
+    \begin{proof}
+        To prove that $\{f_n\}$ converges uniformly to $f$ defined by $f(x)=0$ ($x\in\R$), Theorem 7.9 tells us that it will suffice to show that $\lim_{n\to\infty}f_n(x)=f(x)$ for all $x\in\R$ and that the sequence $\{M_n\}$ defined by $M_n=\sup_{x\in\R}|f_n(x)|$ tends to zero as $n\to\infty$.  Since
+        \begin{equation*}
+            f_n(x) = \frac{x}{1+nx^2} < \frac{x}{nx^2} = \frac{1}{x}\cdot\frac{1}{n} \to 0
+        \end{equation*}
+        as $n\to\infty$ for all $x\neq 0$ and $f_n(0)=0$ for all $n$, $\lim_{n\to\infty}f_n(x)=f(x)$ for all $x\in\R$, as desired. Additionally, by the Schwarz inequality, if $a_1,a_2,b_1,b_2$ are real numbers, then
+        \begin{equation*}
+            |a_1b_1+a_2b_2|^2 \leq (|a_1|^2+|a_2|^2)(|b_1|^2+|b_2|^2)
+        \end{equation*}
+        It follows that
+        \begin{align*}
+            |2\sqrt{n}x|^2 = |\underbrace{1\vphantom{\sqrt{n}x}}_{a_1}\cdot\underbrace{\sqrt{n}x}_{b_1}+\underbrace{\sqrt{n}x}_{a_2}\cdot\underbrace{1\vphantom{\sqrt{n}x}}_{b_2}|^2 &\leq (|1|^2+|\sqrt{n}x|^2)(|\sqrt{n}x|^2+|1|^2) = (1+nx^2)^2\\
+            |2\sqrt{n}x| &\leq |1+nx^2|\\
+            \frac{1}{|1+nx^2|} &\leq \frac{1}{2\sqrt{n}|x|}\\
+            \frac{|x|}{|1+nx^2|} &\leq \frac{1}{2\sqrt{n}}\\
+            \left| \frac{x}{1+nx^2} \right| &\leq \frac{1}{2\sqrt{n}}
+        \end{align*}
+        for all $x\neq 0$, $n\in\N$. This combined with the facts that $f_n(0)=0<\tfrac{1}{2\sqrt{n}}$ for all $n\in\N$ and $f_n(1/\sqrt{n})=1/2\sqrt{n}$ for all $n\in\N$ implies that $M_n=1/2\sqrt{n}$. Thus, $M_n\to 0$ as $n\to\infty$, as desired.\par
+        $f'(x)=0$ for all $x\in\R$. Additionally,
+        \begin{equation*}
+            f_n'(x) = \frac{1-nx^2}{(1+nx^2)^2}
+            \leq \frac{1-nx^2}{(nx^2)^2}
+            = \frac{1}{x^4}\cdot\frac{1}{n^2}-\frac{1}{x^2}\cdot\frac{1}{n} \to 0
+        \end{equation*}
+        as $n\to\infty$ for all $x\neq 0$, as desired. However, $f_n'(0)=1$ for all $n\in\N$, as desired.
+    \end{proof}
 \end{enumerate}
 
 
