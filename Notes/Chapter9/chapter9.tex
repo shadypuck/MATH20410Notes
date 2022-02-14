@@ -18,9 +18,9 @@
         \item The total derivatives of $f:\R^n\to\R^m$ ($n=m=2$, i.e., $f:\C\to\C$).
         \item Basic properties: Chain rule, relation with partial derivatives, implicit function theorem.
     \end{enumerate}
-    \item Let $V,W$ be finite-dimensional vector spaces over $\R$. We let $\lin{V}{W}$ be the vector space of all linear transformations $\phi:V\to W$.
-    \item If we pick bases $N_1,\dots,N_n$ of $V$ and $w_1,\dots,w_m$ of $W$, then $V\cong\R^n$ and $W\cong\R^m$. It follows that $\lin{V}{W}\cong\R^{mn}$.
-    \item $\lin{V}{W}\times\lin{W}{U}\xrightarrow{\text{compose}}\lin{V}{U}$, i.e., $\R^{mn}\times\R^{nl}\xrightarrow[\text{mult.}]{\text{matrix}}\R^{ml}$.
+    \item Let $V,W$ be finite-dimensional vector spaces over $\R$. We let $L(V,W)$ be the vector space of all linear transformations $\phi:V\to W$.
+    \item If we pick bases $N_1,\dots,N_n$ of $V$ and $w_1,\dots,w_m$ of $W$, then $V\cong\R^n$ and $W\cong\R^m$. It follows that $L(V,W)\cong\R^{mn}$.
+    \item $L(V,W)\times L(W,U)\xrightarrow{\text{compose}}L(V,U)$, i.e., $\R^{mn}\times\R^{nl}\xrightarrow[\text{mult.}]{\text{matrix}}\R^{ml}$.
     \item Sup norm: If $A$ is an $m\times n$ real matrix, then $\norm{A}=\sup_{\substack{\vec{x}\in\R^n\\|\vec{x}|=1}}|A\vec{x}|$.
     \begin{itemize}
         \item Basic properties:
@@ -32,7 +32,7 @@
             \item $\norm{A+B}\leq\norm{A}+\norm{B}$.
             \item $\norm{AB}\leq\norm{A}\norm{B}$.
         \end{enumerate}
-        \item Note that we get a metric space structure on $\lin{V}{W}$ by defining $d(A,B)=\norm{A-B}$.
+        \item Note that we get a metric space structure on $L(V,W)$ by defining $d(A,B)=\norm{A-B}$.
     \end{itemize}
     \item Proves that 1 and 2 imply the uniform continuity of all $A$ (via Lipschitz continuity).
     \item \textbf{Differentiable} (multivariate function $f$ at $\vec{x}_0$): A function $f:U\to\R^m$ ($U\subset\R^n$) such that to $\vec{x}_0\in U$ there corresponds some linear transformation $A:\R^n\to\R^m$ such that

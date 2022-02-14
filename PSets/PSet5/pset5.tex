@@ -1,0 +1,65 @@
+\documentclass[../psets.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\leftmark}{Problem Set \thesection}
+\setcounter{section}{3}
+
+\begin{document}
+
+
+
+
+\section{Sequences and Series of Functions II / Functions of Several Variables}
+\emph{From \textcite{bib:Rudin}.}
+\subsection*{Chapter 7}
+\begin{enumerate}[label={\textbf{\arabic*.}}]
+    \setcounter{enumi}{4}
+    \item \marginnote{2/16:}Let
+    \begin{equation*}
+        f_n(x) =
+        \begin{cases}
+            0 & x<\frac{1}{n+1}\\
+            \sin^2\frac{\pi}{x} & \frac{1}{n+1}\leq x\leq\frac{1}{n}\\
+            0 & \frac{1}{n}<x
+        \end{cases}
+    \end{equation*}
+    Show that $\{f_n\}$ converges to a continuous function, but not uniformly. Use the series $\sum f_n$ to show that absolute convergence, even for all $x$, does not imply uniform convergence.
+    \item Prove that the series
+    \begin{equation*}
+        \sum_{n=1}^\infty(-1)^n\frac{x^2+n}{n^2}
+    \end{equation*}
+    converges uniformly in every bounded interval, but does not converge absolutely for any value of $x$.
+    \stepcounter{enumi}
+    \item If
+    \begin{equation*}
+        I(x) =
+        \begin{cases}
+            0 & x\leq 0\\
+            1 & x>0
+        \end{cases}
+    \end{equation*}
+    if $\{x_n\}$ is a sequence of distinct points of $(a,b)$, and if $\sum|c_n|$ converges, prove that the series
+    \begin{equation*}
+        f(x) = \sum_{n=1}^\infty c_nI(x-x_n)
+    \end{equation*}
+    converges uniformly on $[a,b]$, and that $f$ is continuous for every $x\neq x_n$.
+    \item Let $\{f_n\}$ be a sequence of continuous functions which converges uniformly to a function $f$ on a set $E$. Prove that
+    \begin{equation*}
+        \lim_{n\to\infty}f_n(x_n) = f(x)
+    \end{equation*}
+    for every sequence of points $x_n\in E$ such that $x_n\to x$ and $x\in E$. Is the converse of this true?
+\end{enumerate}
+
+
+\subsection*{Chapter 9}
+\begin{enumerate}[label={\textbf{\arabic*.}}]
+    \item If $S$ is a nonempty subset of a vector space $X$, prove (as asserted in Section 9.1) that the span of $S$ is a vector space.
+    \item Prove (as asserted in Section 9.6) that $BA$ is linear if $A$ and $B$ are linear transformations. Prove also that $A^{-1}$ is linear and invertible.
+    \item Assume $A\in L(X,Y)$ and $A\vec{x}=\bm{0}$ only when $\vec{x}=\bm{0}$. Prove that $A$ is then 1-1.
+    \item Prove (as asserted in Section 9.30) that null spaces and ranges of linear transformations are vector spaces.
+\end{enumerate}
+
+
+
+
+\end{document}
