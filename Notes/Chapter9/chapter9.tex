@@ -19,7 +19,7 @@
         \item Basic properties: Chain rule, relation with partial derivatives, implicit function theorem.
     \end{enumerate}
     \item Let $V,W$ be finite-dimensional vector spaces over $\R$. We let $L(V,W)$ be the vector space of all linear transformations $\phi:V\to W$.
-    \item If we pick bases $N_1,\dots,N_n$ of $V$ and $w_1,\dots,w_m$ of $W$, then $V\cong\R^n$ and $W\cong\R^m$. It follows that $L(V,W)\cong\R^{mn}$.
+    \item If we pick bases $\vec{v}_1,\dots,\vec{v}_n$ of $V$ and $\vec{w}_1,\dots,\vec{w}_m$ of $W$, then $V\cong\R^n$ and $W\cong\R^m$. It follows that $L(V,W)\cong\R^{mn}$.
     \item $L(V,W)\times L(W,U)\xrightarrow{\text{compose}}L(V,U)$, i.e., $\R^{mn}\times\R^{nl}\xrightarrow[\text{mult.}]{\text{matrix}}\R^{ml}$.
     \item Sup norm: If $A$ is an $m\times n$ real matrix, then $\norm{A}=\sup_{\substack{\vec{x}\in\R^n\\|\vec{x}|=1}}|A\vec{x}|$.
     \begin{itemize}
@@ -35,11 +35,11 @@
         \item Note that we get a metric space structure on $L(V,W)$ by defining $d(A,B)=\norm{A-B}$.
     \end{itemize}
     \item Proves that 1 and 2 imply the uniform continuity of all $A$ (via Lipschitz continuity).
-    \item \textbf{Differentiable} (multivariate function $f$ at $\vec{x}_0$): A function $f:U\to\R^m$ ($U\subset\R^n$) such that to $\vec{x}_0\in U$ there corresponds some linear transformation $A:\R^n\to\R^m$ such that
+    \item \textbf{Differentiable} (function $\mathbf{f}$ at $\vec{x}_0$): A function $\mathbf{f}:U\to\R^m$ ($U\subset\R^n$) such that to $\vec{x}_0\in U$ there corresponds some linear transformation $A:\R^n\to\R^m$ such that
     \begin{equation*}
-        \lim_{\vec{h}\to\bm{0}}\frac{|f(\vec{x}_0-\vec{h})-f(\vec{x}_0)-A\vec{h}}{|\vec{h}|} = 0
+        \lim_{\vec{h}\to\bm{0}}\frac{|\mathbf{f}(\vec{x}_0-\vec{h})-\mathbf{f}(\vec{x}_0)-A\vec{h}|}{|\vec{h}|} = 0
     \end{equation*}
-    \item \textbf{Total derivative} (of $f$ multivariate at $\vec{x}_0$): The linear transformation $A$ in the above definition. \emph{Denoted by} $\bm{f'(\vec{x}_0)}$.
+    \item \textbf{Total derivative} (of $\mathbf{f}$ at $\vec{x}_0$): The linear transformation $A$ in the above definition. \emph{Denoted by} $\bm{\mathbf{f}'(\vec{x}_0)}$, $\bm{D\mathbf{f}(\vec{x}_0)}$, $\bm{d\mathbf{f}(\vec{x}_0)}$.
     \item "An proof and progress in mathematics" - Thurston.
     \begin{itemize}
         \item Relating to the old one dimensional derivative.
@@ -47,10 +47,53 @@
     \end{itemize}
     \item Propositions ahead of us.
     \begin{itemize}
-        \item Proposition: Suppose that $f$ is differentiable at $\vec{x}_0\in U$ and $A,B$ are both derivatives of $f$ at $\vec{x}_0$. Then $A=B$.
+        \item Proposition: Suppose that $\mathbf{f}$ is differentiable at $\vec{x}_0\in U$ and $A,B$ are both derivatives of $\mathbf{f}$ at $\vec{x}_0$. Then $A=B$.
         \item Proposition: Differentiable implies continuous.
         \item Proposition: Sum rule, product rule, quotient rule.
     \end{itemize}
+    \item \marginnote{2/16:}Plan: Derivatives of functions $\mathbf{f}:U\to\R^m$ where $U\subset\R^n$.
+    \begin{itemize}
+        \item Basic properties: Differentiability implies continuity, $(\mathbf{f}+\mathbf{g})'=\mathbf{f}'+\mathbf{g}'$, $(c\mathbf{f})'=c\mathbf{f}'$, chain rule, $\mathbf{f}'=0$ iff $\mathbf{f}$ is constant.
+        \item Relationship with partial derivatives (how we compute everything and anything).
+        \item When is $\mathbf{f}$ differentiable?
+        \item Inverse function theorem.
+        \item Implicit function theorem.
+    \end{itemize}
+    \item \textbf{Continuously differentiable} (function $\mathbf{f}$): A function $\mathbf{f}:U\to\R^m$ that is differentiable for all $\vec{x}_0\in U$ and such that $\mathbf{f}':U\to L(\R^n,\R^m)$ is continuous. \emph{Also known as} $\bm{\pmb{\mathscr{C}}^1}$.
+    \item Proposition: Let $\mathbf{f}:U\to\R^m$ be differentiable at $\vec{x}_0\in U$. Then $\mathbf{f}$ is continuous at $\vec{x}_0$.
+    \begin{itemize}
+        \item The proof makes use of the fact that $\mathbf{f}(\vec{x}_0+\vec{h})-\mathbf{f}(\vec{x}_0)=\mathbf{f}'(\vec{x}_0)\vec{h}+\mathbf{r}(\vec{h})$.
+    \end{itemize}
+    \item Proposition: Given $\mathbf{f},\mathbf{g}:U\to\R^m$ both differentiable at $\vec{x}_0\in U$, then $\mathbf{f}+\mathbf{g}$ is also differentiable at $\vec{x}_0$ with
+    \begin{equation*}
+        (\mathbf{f}+\mathbf{g})'(\vec{x}_0)=\mathbf{f}'(\vec{x}_0)+\mathbf{g}'(\vec{x}_0)
+    \end{equation*}
+    \begin{itemize}
+        \item The proof is immediate via the triangle inequality.
+    \end{itemize}
+    \item Theorem (Chain Rule): Given $\mathbf{f}:U\to\R^m$ and $\mathbf{g}:V\to\R^k$, where $U\subset\R^n$ and $\mathbf{f}(U)\subset V\subset\R^m$, with $\mathbf{f}$ differentiable at $\vec{x}_0\in U$ and $\mathbf{g}$ differentiable at $\mathbf{f}(\vec{x}_0)$, the composition $\mathbf{g}\circ\mathbf{f}$ is differentiable at $\vec{x}_0$ with
+    \begin{equation*}
+        (\mathbf{g}\circ\mathbf{f})'(\vec{x}_0) = \mathbf{g}'(\mathbf{f}(\vec{x}_0))\cdot\mathbf{f}'(\vec{x}_0)
+    \end{equation*}
+    \begin{itemize}
+        \item The proof is rather subtle.
+    \end{itemize}
+    \item \textbf{Partial derivative} (of $f_i$ wrt. $x_j$ at $\vec{x}_0$): The following limit, if it exists, where $f_i:\R^n\to\R$, $1\leq i\leq m$, and $1\leq j\leq n$. \emph{Denoted by} $\bm{(\partial f_i/\partial x_j)(\vec{x}_0)}$, $\bm{(D_jf_i)(\vec{x}_0)}$. \emph{Given by}
+    \begin{equation*}
+        {\pdv{f_i}{x_j}}(\vec{x_0}) = \lim_{t\to 0}\frac{f_i(\vec{x}_0+t\vec{e}_j)-f_i(\vec{x}_0)}{t}
+    \end{equation*}
+    \item \textbf{Directional derivative} (of $f_i$ toward $\vec{u}\in\R^n$): The following limit, if it exists, where $f_i:\R^n\to\R$ and $1\leq i\leq m$. \emph{Denoted by} $\bm{D_\vec{u}f_i}$. \emph{Given by}
+    \begin{equation*}
+        D_\vec{u}f_i = \lim_{t\to 0}\frac{f_i(\vec{x}_0+t\vec{u})-f_i(\vec{x}_0)}{t}
+    \end{equation*}
+    \item Theorem: Let $\mathbf{f}=(f_1,\dots,f_m):U\to\R^m$, where $U\subset\R^n$, be differentiable at some $\vec{x}_0\in U$. Then the partial derivatives $\pdv*{f_i}{x_j}$ ($1\leq i\leq m$; $1\leq j\leq n$) exist at $\vec{x}_0$ and, with respect to the usual choice of bases,
+    \begin{equation*}
+        \mathbf{f}'(\vec{x}_0) =
+        \begin{bmatrix}
+            \dfrac{\partial f_i}{\partial x_j}(\vec{x}_0)
+        \end{bmatrix}
+    \end{equation*}
+    \item \textbf{Jacobian}: The above matrix.
 \end{itemize}
 
 
@@ -190,8 +233,8 @@
     \end{equation*}
     for all $\vec{a},\vec{b}\in E$.
     \item Corollary: If, in addition, $\mathbf{f}'(\vec{x})=\bm{0}$ for all $\vec{x}\in E$, then $\mathbf{f}$ is constant.
-    \item \textbf{Continuously differentiable} (mapping $\mathbf{f}:E\to\R^m$): A function $\mathbf{f}:E\to\R^m$ such that $\mathbf{f}':E\to L(\R^n,\R^m)$ is continuous. \emph{Also known as} \textbf{$\bm{\pmb{\mathscr{C}}'}$-mapping}. \emph{Denoted by} $\bm{\mathbf{f}\in\pmb{\mathscr{C}}'(E)}$.
-    \item Theorem 9.21: Let $E\subset\R^n$ open and $\mathbf{f}:E\to\R^m$. Then $\mathbf{f}\in\mathscr{C}'(E)$ iff the partial derivatives $D_jf_i$ ($1\leq i\leq m$; $1\leq j\leq n$) exist and are continuous on $E$.
+    \item \textbf{Continuously differentiable} (mapping $\mathbf{f}:E\to\R^m$): A function $\mathbf{f}:E\to\R^m$ such that $\mathbf{f}':E\to L(\R^n,\R^m)$ is continuous. \emph{Also known as} \textbf{$\bm{\pmb{\mathscr{C}}^1}$-mapping}. \emph{Denoted by} $\bm{\mathbf{f}\in\pmb{\mathscr{C}}^1(E)}$.
+    \item Theorem 9.21: Let $E\subset\R^n$ open and $\mathbf{f}:E\to\R^m$. Then $\mathbf{f}\in\mathscr{C}^1(E)$ iff the partial derivatives $D_jf_i$ ($1\leq i\leq m$; $1\leq j\leq n$) exist and are continuous on $E$.
 \end{itemize}
 
 
