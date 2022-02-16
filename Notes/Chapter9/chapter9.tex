@@ -55,5 +55,146 @@
 
 
 
+\section{Chapter 9: Functions of Several Variables}
+\emph{From \textcite{bib:Rudin}.}
+\begin{itemize}
+    \item \marginnote{2/15:}Defines a vector space by the closure of its elements under addition and scalar multiplication.
+    \item Defines a linear combination, span, independence and dependence, dimension, basis, coordinates, and the standard basis.
+    \item Theorem 9.2: If $X$ is spanned by $r$ vectors, $\dim X\leq r$.
+    \item Corollary: $\dim\R^n=n$.
+    \item Theorem 9.3: Let $X$ a vector space with $\dim X=n$.
+    \begin{enumerate}[label={(\alph*)}]
+        \item $E\subset X$ containing $n$ vectors spans $X$ iff $E$ is independent.
+        \item $X$ has a basis, and every basis contains $n$ vectors.
+        \item If $1\leq r\leq n$ and $\{\vec{y}_1,\dots,\vec{y}_r\}$ is independent in $X$, then $X$ has a basis containing $\{\vec{y}_1,\dots,\vec{y}_r\}$.
+    \end{enumerate}
+    \item Defines linear transformation, linear operator.
+    \item Notes that $A\bm{0}=\bm{0}$ if $A$ is a linear transformation, and that $A$ is completely determined by its action on any basis.
+    \item \textbf{Invertible} (linear operator): A linear operator $A$ that is one-to-one and onto.
+    \item Theorem 9.5: $A$ a linear operator on $X$ finite-dimensional is one-to-one iff it is onto.
+    \item Defines $L(X,Y)$, $L(X)$, the product $BA$ of two linear transformations, and the supremum norm of a linear transformation.
+    \item Theorem 9.7:
+    \begin{enumerate}[label={(\alph*)}]
+        \item $A\in L(\R^n,\R^m)$ implies $\norm{A}<\infty$ and $A:\R^n\to\R^m$ uniformly continuous.
+        \item $A,B\in L(\R^n,\R^m)$ and $c\in\C$ implies
+        \begin{align*}
+            \norm{A+B} &\leq \norm{A}+\norm{B}&
+            \norm{cA} &= |c|\norm{A}
+        \end{align*}
+        Defining $d(A,B)=\norm{A-B}$ makes $L(\R^n,\R^m)$ a metric space.
+        \item $A\in L(\R^n,\R^m)$ and $B\in L(\R^m,\R^k)$ implies
+        \begin{equation*}
+            \norm{BA} \leq \norm{B}\norm{A}
+        \end{equation*}
+    \end{enumerate}
+    \item Theorem 9.8: Let $\Omega$ be the set of all invertible linear operators on $\R^n$.
+    \begin{enumerate}[label={(\alph*)}]
+        \item $A\in\Omega$, $B\in L(\R^n)$, and $\norm{B-A}\cdot\norm{A^{-1}}<1$ implies $B\in\Omega$.
+        \begin{proof}
+            Let $\norm{A^{-1}}=1/\alpha$, and let $\norm{B-A}=\beta$. Then
+            \begin{align*}
+                \norm{B-A}\cdot\norm{A^{-1}} &< 1\\
+                \beta\cdot\frac{1}{\alpha} &< 1\\
+                \beta &< \alpha
+            \end{align*}
+            To prove that $B\in\Omega$, the definition of invertibility and Theorem 9.5 tell us that it will suffice to show that $B$ is 1-1. To do so, it will suffice to show that $B\vec{x}=\bm{0}$ iff $\vec{x}=\bm{0}$. Let's begin. Let $\vec{x}\in\R^n$ be arbitrary. Then
+            \begin{align*}
+                \alpha|\vec{x}| &= \alpha|A^{-1}A\vec{x}|
+                    \leq \alpha\norm{A^{-1}}\cdot|Ax|
+                    = |A\vec{x}|
+                    \leq |(A-B)\vec{x}|+|B\vec{x}|
+                    \leq \beta|\vec{x}|+|B\vec{x}|\\
+                (\alpha-\beta)|\vec{x}| &\leq |B\vec{x}|
+            \end{align*}
+            It follows that if $\vec{x}\neq\bm{0}$, then $|B\vec{x}|>0$. This combined with the fact that $B\bm{0}=\bm{0}$ implies the desired result.
+        \end{proof}
+        \item $\Omega$ is open in $L(\R^n)$ and $A\mapsto A^{-1}$ is continuous on $\Omega$.
+        \begin{proof}
+            To prove that $\Omega$ is open in $L(\R^n)$, it will suffice to show that for all $A\in\Omega$, there exists $N_r(A)$ such that if $\norm{B-A}<r$, then $B\in\Omega$. Let's begin. Let $A\in\Omega$ be arbitrary. Choose $N_\alpha(A)$ to be our neighborhood, where $\alpha$ is defined as in part (a). Let $B\in L(\R^n)$ satisfy $\norm{B-A}<\alpha$. Then $\norm{B-A}\cdot\norm{A^{-1}}<1$, so $B\in\Omega$ by part (a), as desired.\par
+            To prove that $A\mapsto A^{-1}$ is continuous, it will suffice to show that $\norm{B^{-1}-A^{-1}}\to 0$ as $B\to A$. First off, we have by part (a) and the substitution $\vec{x}=B^{-1}\vec{y}$ ($\vec{y}\in\R^n$) that
+            \begin{align*}
+                (\alpha-\beta)|B^{-1}\vec{y}| &\leq |BB^{-1}\vec{y}| = |\vec{y}|\\
+                \left| B^{-1}\left( \frac{\vec{y}}{|\vec{y}|} \right) \right| &\leq (\alpha-\beta)^{-1}
+            \end{align*}
+            Thus, since $|B^{-1}\vec{u}|$ is bounded by $(\alpha-\beta)^{-1}$ for every unit vector $\vec{u}\in\R^n$, $\norm{B^{-1}}$ is bounded by $(\alpha-\beta)^{-1}$. This combined with the fact that
+            \begin{align*}
+                B^{-1}-A^{-1} &= B^{-1}I-IA^{-1}\\
+                &= B^{-1}AA^{-1}-B^{-1}BA^{-1}\\
+                &= B^{-1}(A-B)A^{-1}
+            \end{align*}
+            implies by Theorem 9.7c that
+            \begin{equation*}
+                \norm{B^{-1}-A^{-1}} \leq \norm{B^{-1}}\norm{A-B}\norm{A^{-1}}
+                \leq (\alpha-\beta)^{-1}\cdot\beta\cdot\frac{1}{\alpha}
+                = \frac{\beta}{\alpha(\alpha-\beta)}
+            \end{equation*}
+            Therefore, since $\beta\to 0$ as $B\to A$, the above inequality establishes the desired result.
+        \end{proof}
+    \end{enumerate}
+    \item Note that the mapping $A\mapsto A^{-1}$ defined in Theorem 9.8b is a 1-1 mapping of $\Omega$ onto $\Omega$ and its own inverse.
+    \item Defines matrices, column vectors, and matrix multiplication.
+    \item From the Schwarz inequality, we can show that
+    \begin{equation*}
+        \norm{A} \leq \left( \sum_{i,j}a_{i,j}^2 \right)^{1/2}
+    \end{equation*}
+    \item "If $S$ is a metric space, if $a_{11},\dots,a_{mn}$ are real continuous functions on $S$, and if for each $p\in S$, $A_p$ is the linear transformation of $\R^n$ into $\R^m$ whose matrix has entries $a_{ij}(p)$, then the mapping $p\to A_p$ is a continuous mapping of $S$ into $L(\R^n,\R^m)$" \parencite[211]{bib:Rudin}.
+    \item \textcite{bib:Rudin} spends some time motivating the definition of the total derivative. He also discusses the natural 1-1 correspondence between $\R^1$ and $L(\R^1)$.
+    \item Defines differentiability in $\R^n$.
+    \item Theorem 9.12: $A_1,A_2$ the derivative of $\mathbf{f}$ at $\vec{x}$ implies $A_1=A_2$.
+    \item If $\mathbf{f}:E\to\R^m$ where $E\subset\R^n$, then $\mathbf{f}':E\to L(\R^n,\R^m)$.
+    \item $\mathbf{f}$ differentiable implies $\mathbf{f}$ continuous.
+    \item Example ($\mathbf{f}$ is linear):
+    \begin{itemize}
+        \item If $A\in L(\R^n,\R^m)$, then $A'(\vec{x})=A$ for all $\vec{x}\in\R^n$. Note that this means that $A':\R^n\to L(\R^n,\R^m)$, as expected.
+    \end{itemize}
+    \item Theorem 9.15 (Chain Rule): $E$ open in $\R^n$, $\mathbf{f}:E\to\R^m$ differentiable at $\vec{x}_0\in E$, $I\supset\mathbf{f}(E)$ open in $\R^m$, and $\mathbf{g}:I\to\R^k$ differentiable at $\mathbf{f}(\vec{x}_0)$ implies $\mathbf{F}:E\to\R^k$ defined by
+    \begin{equation*}
+        \mathbf{F}(\vec{x}) = \mathbf{g}(\mathbf{f}(\vec{x}))
+    \end{equation*}
+    is differentiable at $\vec{x}_0$ with
+    \begin{equation*}
+        \mathbf{F}'(\vec{x}_0) = \mathbf{g}'(\mathbf{f}(\vec{x}_0))\mathbf{f}'(\vec{x}_0)\footnotemark
+    \end{equation*}
+    \footnotetext{Note that the right-hand side of this equation contains the product of two linear transformations.}
+    \begin{proof}
+        Largely symmetric to that of the one-dimensional chain rule in Chapter 5.
+    \end{proof}
+    \item \textbf{Components} (of $\mathbf{f}:\R^n\to\R^m$): The real functions $f_1,\dots,f_m$ defined by
+    \begin{equation*}
+        \mathbf{f}(\vec{x}) = \sum_{i=1}^mf_i(\vec{x})\vec{u}_i
+    \end{equation*}
+    for all $\vec{x}\in E$ or, equivalently, by $f_i(\vec{x})=f(\vec{x})\cdot\vec{u}_i$ ($1\leq i\leq m$), where $\vec{u}_1,\dots,\vec{u}_m$ is the standard basis of $\R^m$.
+    \item Defines partial derivatives.
+    \item Theorem 9.17: $E\subset\R^n$ open and $\mathbf{f}:E\to\R^m$ differentiable at $\vec{x}\in E$ imply the partial derivatives $(D_jf_i)(\vec{x})$ exist and
+    \begin{equation*}
+        \mathbf{f}'(\vec{x})\vec{e}_j = \sum_{i=1}^m(D_jf_i)(\vec{x})\vec{u}_i
+    \end{equation*}
+    for $1\leq j\leq n$.
+    \item It follows that
+    \begin{equation*}
+        [\mathbf{f}'(\vec{x})] =
+        \begin{bmatrix}
+            (D_1f_1)(\vec{x}) & \cdots & (D_nf_1)(\vec{x})\\
+            \vdots &  & \vdots\\
+            (D_1f_m)(\vec{x}) & \cdots & (D_nf_m)(\vec{x})\\
+        \end{bmatrix}
+    \end{equation*}
+    \item Discusses the gradient and the directional derivative.
+    \item Theorem 9.19: $E\subset\R^n$ convex and open, $\mathbf{f}:E\to\R^m$ differentiable in $E$, and there exists $M$ such that
+    \begin{equation*}
+        \norm{\mathbf{f}'(\vec{x})} \leq M
+    \end{equation*}
+    for all $\vec{x}\in E$ implies
+    \begin{equation*}
+        |\mathbf{f}(\vec{b})-\mathbf{f}(\vec{a})| \leq M|\vec{b}-\vec{a}|
+    \end{equation*}
+    for all $\vec{a},\vec{b}\in E$.
+    \item Corollary: If, in addition, $\mathbf{f}'(\vec{x})=\bm{0}$ for all $\vec{x}\in E$, then $\mathbf{f}$ is constant.
+    \item \textbf{Continuously differentiable} (mapping $\mathbf{f}:E\to\R^m$): A function $\mathbf{f}:E\to\R^m$ such that $\mathbf{f}':E\to L(\R^n,\R^m)$ is continuous. \emph{Also known as} \textbf{$\bm{\pmb{\mathscr{C}}'}$-mapping}. \emph{Denoted by} $\bm{\mathbf{f}\in\pmb{\mathscr{C}}'(E)}$.
+    \item Theorem 9.21: Let $E\subset\R^n$ open and $\mathbf{f}:E\to\R^m$. Then $\mathbf{f}\in\mathscr{C}'(E)$ iff the partial derivatives $D_jf_i$ ($1\leq i\leq m$; $1\leq j\leq n$) exist and are continuous on $E$.
+\end{itemize}
+
+
+
 
 \end{document}
