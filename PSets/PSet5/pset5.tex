@@ -2,7 +2,7 @@
 
 \pagestyle{main}
 \renewcommand{\leftmark}{Problem Set \thesection}
-\setcounter{section}{3}
+\setcounter{section}{4}
 
 \begin{document}
 
@@ -24,11 +24,92 @@
         \end{cases}
     \end{equation*}
     Show that $\{f_n\}$ converges to a continuous function, but not uniformly. Use the series $\sum f_n$ to show that absolute convergence, even for all $x$, does not imply uniform convergence.
+    \begin{proof}
+        To prove that $\{f_n\}$ converges pointwise to the continuous function $f$ defined by $f(x)=0$ for all $x\in\R$, it will suffice to show that for every $\epsilon>0$ and for every $x\in\R$, there exists an integer $N$ such that if $n\geq N$, then $|f_n(x)|<\epsilon$. Let $\epsilon>0$ and $x\in\R$ be arbitrary. We divide into three cases ($x\in\{1/n\}_{n=1}^\infty$, $x\in[0,1]\setminus\{1/n\}_{n=1}^\infty$, and $x\notin[0,1]$).\par\smallskip
+        If $x\in\{1/n\}_{n=1}^\infty$, let $x=1/k$. Then by the definition of $f_n(x)$, we have that
+        \begin{equation*}
+            f_i(x) =
+            \begin{cases}
+                0 & i<k-1\\
+                \sin^2\frac{\pi}{1/k}=\sin^2k\pi=0 & i=k-1,k\\
+                0 & i>k
+            \end{cases}
+        \end{equation*}
+        Thus, choose $N=1$. It follows that if $n\geq N$, then
+        \begin{equation*}
+            |f_n(x)| = 0 < \epsilon
+        \end{equation*}
+        as desired.\par
+        If $x\in[0,1]\setminus\{1/n\}_{n=1}^\infty$, let $x\in(1/[(N-1)+1],1/(N-1))$ where $N\in\N$. Choose this $N$ to be our $N$. It follows that if $n\geq N$, then
+        \begin{equation*}
+            \frac{1}{n} \leq \frac{1}{N}
+            = \frac{1}{(N-1)+1}
+            < x
+        \end{equation*}
+        so by definition,
+        \begin{equation*}
+            |f_n(x)| = 0 < \epsilon
+        \end{equation*}
+        as desired.\par
+        If $x\notin[0,1]$, then either $x<1/(n+1)$ for all $n\in\N$ or $x>1/n$ for all $n\in\N$. Either way, we choosing $N=1$ yields that if $n\geq N$, then
+        \begin{equation*}
+            |f_n(x)| = 0 < \epsilon
+        \end{equation*}
+        as desired.\par\medskip
+        To prove that $\{f_n\}$ does not converge uniformly to $f$, Theorem 7.9 tells us that it will suffice to show that if $M_n=\sup_{x\in\R}|f_n(x)-f(x)|$, then $M_n\nrightarrow 0$ as $n\to\infty$. Let $n\in\N$ be arbitrary. Since $n<n+1/2<n+1$ and hence $1/(n+1)\leq 2/(2n+1)\leq 1/n$, we have by the properties of the sine function that
+        \begin{equation*}
+            f_n(\tfrac{2}{2n+1}) = \sin^2\left[ \frac{\pi}{2/(2n+1)} \right]
+            = \sin^2\left[ \frac{2n+1}{2}\pi \right]
+            = \sin^2\left[ \left( n+\frac{1}{2} \right)\pi \right]
+            = 1
+        \end{equation*}
+        and that $f_n(x)\leq 1$ everywhere else. Thus, $M_n=1$ for all $n\in\N$. But then $M_n\nrightarrow 0$ as $n\to\infty$, as desired.\par\medskip
+        It follows by an argument symmetric to the above that while $\sum f_n$ converges absolutely to
+        \begin{equation*}
+            f(x) =
+            \begin{cases}
+                0 & x\leq 0\\
+                \sin^2\frac{\pi}{x} & 0<x<1\\
+                0 & x\geq 1
+            \end{cases}
+        \end{equation*}
+        $M_n=1$ for all $n\in\N$.
+    \end{proof}
     \item Prove that the series
     \begin{equation*}
         \sum_{n=1}^\infty(-1)^n\frac{x^2+n}{n^2}
     \end{equation*}
     converges uniformly in every bounded interval, but does not converge absolutely for any value of $x$.
+    \begin{proof}
+        Let $[a,b]$ be an arbitrary bounded interval, and let $f_n(x)=(-1)^n\tfrac{x^2+n}{n^2}$. To prove that the series converges uniformly on $[a,b]$, Theorem 7.8 tells us that it will suffice to show that for every $\epsilon>0$, there exists an $N$ such that if $n,m\geq N$ (WLOG let $n\leq m$) and $x\in[a,b]$, then
+        \begin{equation*}
+            \left| \sum_{i=n}^mf_i(x) \right| < \epsilon
+        \end{equation*}
+        Let $\epsilon>0$ be arbitrary. Define $m=\max(|a|,|b|)$ (note that since $a\neq b$ by definition, $m>0$). By consecutive applications of Theorem 3.43, we know that both $\sum_{n=1}^\infty(-1)^n\tfrac{1}{n^2}$ and $\sum_{n=1}^\infty(-1)^n\tfrac{1}{n}$ converge. Thus, by consecutive applications of Theorem 3.22, there exist integers $N_1,N_2$ such that $m\geq n\geq N_1$ implies the left result below and $m\geq n\geq N_2$ implies the right result below.
+        \begin{align*}
+            \left| \sum_{k=n}^m(-1)^k\frac{1}{k^2} \right| &< \frac{\epsilon}{2m^2}&
+            \left| \sum_{k=n}^m(-1)^k\frac{1}{k} \right| &< \frac{\epsilon}{2}
+        \end{align*}
+        Choose $N=\max(N_1,N_2)$. Now let $n,m\geq N$ with WLOG $n\leq m$, and let $x\in[a,b]$. It follows that
+        \begingroup
+        \allowdisplaybreaks
+        \begin{align*}
+            \left| \sum_{k=n}^mf_k(x) \right| &= \left| \sum_{k=n}^m(-1)^k\frac{x^2+k}{k^2} \right|\\
+            &= \left| x^2\sum_{k=n}^m(-1)^k\frac{1}{k^2}+\sum_{k=n}^m(-1)^k\frac{1}{k} \right|\\
+            &\leq |x^2|\cdot\left| \sum_{k=n}^m(-1)^k\frac{1}{k^2} \right|+\left| \sum_{k=n}^m(-1)^k\frac{1}{k} \right|\\
+            &\leq m^2\cdot\left| \sum_{k=n}^m(-1)^k\frac{1}{k^2} \right|+\left| \sum_{k=n}^m(-1)^k\frac{1}{k} \right|\\
+            &< m^2\cdot\frac{\epsilon}{2m^2}+\frac{\epsilon}{2}\\
+            &= \epsilon
+        \end{align*}
+        \endgroup
+        as desired.\par
+        To prove that the series does not converge absolutely for any value of $x$, let $x\in\R$ be arbitrary. Then
+        \begin{align*}
+            \sum_{n=1}^\infty\left| (-1)^n\frac{x^2+n}{n^2} \right| &= x^2\sum_{n=1}^\infty\frac{1}{n^2}+\sum_{n=1}^\infty\frac{1}{n}\\
+            &\geq \sum_{n=1}^\infty\frac{1}{n}
+        \end{align*}
+        where the latter series diverges by Theorem 3.28, yielding the desired result.
+    \end{proof}
     \stepcounter{enumi}
     \item If
     \begin{equation*}
@@ -43,20 +124,132 @@
         f(x) = \sum_{n=1}^\infty c_nI(x-x_n)
     \end{equation*}
     converges uniformly on $[a,b]$, and that $f$ is continuous for every $x\neq x_n$.
+    \begin{proof}
+        Let $f_n(x)=c_nI(x-x_n)$ for all $n\in\N$. To prove that $f$ converges uniformly on $[a,b]$, Theorem 7.10 tells us that it will suffice to show that $|f_n(x)|\leq M_n$ for all $x\in[a,b]$ and $\sum M_n$ converges. Let $M_n=c_n$ for all $n\in\N$. Then for any $x\in[a,b]$,
+        \begin{equation*}
+            |f_n(x)| = c_nI(x-x_n) \leq c_n = M_n
+        \end{equation*}
+        as desired. Additionally, $\sum M_n=\sum c_n$ converges, as desired. This completes the proof.\par
+        For the second part of the proof, let $x\notin\{x_n\}$. Then every $f_n$ is continuous at $x$ by definition. Thus, $f$ is a uniformly convergent sequence of functions continuous at $x$, so by Theorem 7.12, $f$ is continuous at $x$.
+    \end{proof}
     \item Let $\{f_n\}$ be a sequence of continuous functions which converges uniformly to a function $f$ on a set $E$. Prove that
     \begin{equation*}
         \lim_{n\to\infty}f_n(x_n) = f(x)
     \end{equation*}
     for every sequence of points $x_n\in E$ such that $x_n\to x$ and $x\in E$. Is the converse of this true?
+    \begin{proof}
+        Let $\{x_n\}\subset E$ be an arbitrary sequence of points that converges to some $x\in E$. To prove that $\lim_{n\to\infty}f_n(x_n)=f(x)$, it will suffice to show that for every $\epsilon>0$, there exists an $N$ such that if $n\geq N$, then $|f_n(x_n)-f(x)|<\epsilon$. Let $\epsilon>0$ be arbitrary. Since $\{f_n\}$ is a uniformly convergent sequence of continuous functions, Theorem 7.12 implies that $f$ is a continuous function. Thus, there exists a $\delta>0$ such that if $y\in E$ and $|y-x|<\delta$, then $|f(y)-f(x)|<\epsilon/2$. Additionally, since $x_n\to x$, there exists an $N_1$ such that if $n\geq N_1$, $|x_n-x|<\delta$. Furthermore, since $f_n$ converges uniformly to $f$, there exists $N_2$ such that if $n\geq N_2$, then $|f_n(y)-f(y)|<\epsilon/2$ for all $y\in E$. In particular, $|f_n(x_n)-f(x_n)|<\epsilon/2$. Choose $N=\max(N_1,N_2)$. Let $n\geq N$ be arbitrary. Then
+        \begin{align*}
+            |f_n(x_n)-f(x)| &\leq |f_n(x_n)-f(x_n)|+|f(x_n)-f(x)|\\
+            &< \frac{\epsilon}{2}+\frac{\epsilon}{2}\\
+            &= \epsilon
+        \end{align*}
+        as desired.\par
+        No, it is not true in general that if $\{f_n\}$ is a sequence of continuous functions for which $\lim_{n\to\infty}f_n(x_n)=f(x)$ for every sequence of points $x_n\in E$ such that $x_n\to x$ and $x\in E$, then $f_n$ converges uniformly. Consider the sequence of functions from Exercise 7.5. This is a sequence of continuous functions for which $\lim_{n\to\infty}f_n(x_n)=f(x)$ for any sequence $\{x_n\}$ of the desired type since we can always choose $N$ large enough so that the moving "hump" and neighborhood of $x$ containing all remaining $x_n$ are separated forever more. Moreover, by Exercise 7.5, $\{f_n\}$ does not converge uniformly, as desired.
+    \end{proof}
 \end{enumerate}
 
 
 \subsection*{Chapter 9}
 \begin{enumerate}[label={\textbf{\arabic*.}}]
     \item If $S$ is a nonempty subset of a vector space $X$, prove (as asserted in Section 9.1) that the span of $S$ is a vector space.
+    \begin{proof}
+        Let $S=\{\vec{u}_1,\dots,\vec{u}_n\}$ (the proof is symmetric if $S$ is infinite).\par
+        To prove that $\spn(S)$ is a vector space, it will suffice to show that $\spn(S)$ is nonempty and that for all $\vec{x},\vec{y}\in\spn(S)$ and $c\in\C$, $(\vec{x}+\vec{y})\in\spn(S)$ and $c\vec{x}\in\spn(S)$. Since $S$ is nonempty, there exists $\vec{x}\in S$; thus, $1\vec{x}\in\spn(S)$, so $\spn(S)$ is nonempty, as desired. Let $\vec{x},\vec{y}\in\spn(S)$ and $c\in\C$. There exist $a_1,\dots,a_n,b_1,\dots,b_n$ such that
+        \begin{align*}
+            \vec{x} &= a_1\vec{u}_1+\cdots+a_n\vec{u}_n&
+            \vec{y} &= b_1\vec{u}_1+\cdots+b_n\vec{u}_n
+        \end{align*}
+        It follows by the definition of $\spn(S)$ that
+        \begin{align*}
+            (a_1+b_1)\vec{u}_1+\cdots+(a_n+b_n)\vec{u}_n &= \vec{x}+\vec{y} \in \spn(S)\\
+            ca_1\vec{u}_1+\cdots+ca_n\vec{u}_n &= c\vec{x} \in \spn(S)
+        \end{align*}
+        as desired.
+    \end{proof}
     \item Prove (as asserted in Section 9.6) that $BA$ is linear if $A$ and $B$ are linear transformations. Prove also that $A^{-1}$ is linear and invertible.
+    \begin{proof}
+        Let $A\in L(X,Y)$ and $B\in L(Y,Z)$. Then for all $\vec{x},\vec{x}_1,\vec{x}_2\in X$ and $c\in\C$,
+        \begin{align*}
+            A(\vec{x}_1+\vec{x}_2) &= A\vec{x}_1+A\vec{x}_2&
+            A(c\vec{x}) &= cA\vec{x}
+        \end{align*}
+        and for all $\vec{y},\vec{y}_1,\vec{y}_2\in Y$ and $c\in\C$,
+        \begin{align*}
+            B(\vec{y}_1+\vec{y}_2) &= B\vec{y}_1+B\vec{y}_2&
+            B(c\vec{y}) &= cB\vec{y}
+        \end{align*}
+        It follows that for any $\vec{x},\vec{x}_1,\vec{x}_2\in X$ and $c\in\C$, we have that
+        \begin{align*}
+            BA(\vec{x}_1+\vec{x}_2) &= B(A\vec{x}_1+A\vec{x}_2)&
+                BA(c\vec{x}) &= B(cA\vec{x})\\
+            &= BA\vec{x}_1+BA\vec{x}_2&
+                &= cBA\vec{x}
+        \end{align*}
+        so $BA$ is a linear transformation, as desired.\par
+        Let $A\in L(X,Y)$ be invertible. Since $A$ is a linear transformation, the same equalities from above still apply. Thus,
+        \begin{align*}
+            \vec{x}_1+\vec{x}_2 &= \vec{x}_1+\vec{x}_2&
+                c\vec{x} &= c\vec{x}\\
+            I(\vec{x}_1+\vec{x}_2) &= I\vec{x}_1+I\vec{x}_2&
+                I(c\vec{x}) &= cI\vec{x}\\
+            AA^{-1}(\vec{x}_1+\vec{x}_2) &= AA^{-1}\vec{x}_1+AA^{-1}\vec{x}_2&
+                AA^{-1}(c\vec{x}) &= cAA^{-1}\vec{x}\\
+            A(A^{-1}(\vec{x}_1+\vec{x}_2)) &= A(A^{-1}\vec{x}_1+A^{-1}\vec{x}_2)&
+                A(A^{-1}(c\vec{x})) &= A(cA^{-1}\vec{x})\\
+            A^{-1}(\vec{x}_1+\vec{x}_2) &= A^{-1}\vec{x}_1+A^{-1}\vec{x}_2&
+                A^{-1}(c\vec{x}) &= cA^{-1}\vec{x}
+        \end{align*}
+        where we use the fact that $A$ is one-to-one for the last equality in both cases. To prove that $A^{-1}$ is invertible, it will suffice to show that it is one-to-one and onto. Suppose $A^{-1}\vec{x}=A^{-1}\vec{y}$. Then
+        \begin{align*}
+            AA^{-1}\vec{x} &= AA^{-1}\vec{y}\\
+            I\vec{x} &= I\vec{y}\\
+            \vec{x} &= \vec{y}
+        \end{align*}
+        proving that $A^{-1}$ is one-to-one, as desired. Now suppose $\vec{y}\in X$. Then $A\vec{y}=\vec{x}$ for some $\vec{x}\in X$. It follows that
+        \begin{equation*}
+            A^{-1}\vec{x} = A^{-1}A\vec{y} = I\vec{y} = \vec{y}
+        \end{equation*}
+        proving that $A^{-1}$ is onto, as desired.
+    \end{proof}
     \item Assume $A\in L(X,Y)$ and $A\vec{x}=\bm{0}$ only when $\vec{x}=\bm{0}$. Prove that $A$ is then 1-1.
+    \begin{proof}
+        If we suppose that $A\vec{x}=A\vec{y}$, then by linearity,
+        \begin{align*}
+            \bm{0} &= A\vec{x}-A\vec{y}\\
+            &= A(\vec{x}-\vec{y})
+        \end{align*}
+        It follows by hypothesis that $\vec{x}-\vec{y}=\bm{0}$, hence $\vec{x}=\vec{y}$, proving that $A$ is 1-1, as desired.
+    \end{proof}
     \item Prove (as asserted in Section 9.30) that null spaces and ranges of linear transformations are vector spaces.
+    \begin{proof}
+        Let $A\in L(X,Y)$.\par\medskip
+        Suppose $\vec{x}_1,\vec{x}_2\in\nul A$. Then $A\vec{x}_1=\bm{0}$ and $A\vec{x}_2=\bm{0}$. It follows that
+        \begin{align*}
+            \bm{0} &= A\vec{x}_1+A\vec{x}_2\\
+            &= A(\vec{x}_1+\vec{x}_2)
+        \end{align*}
+        so $(\vec{x}_1+\vec{x}_2)\in\nul A$, as desired.\par
+        Suppose $\vec{x}\in\nul A$ and $c\in\C$. Then $A\vec{x}=\bm{0}$. It follows that
+        \begin{align*}
+            \bm{0} &= c\cdot\bm{0}\\
+            &= cA\vec{x}\\
+            &= A(c\vec{x})
+        \end{align*}
+        so $c\vec{x}\in\nul A$, as desired.\par\smallskip
+        Suppose $\vec{y}_1,\vec{y}_2\in\range A$. Then there exist $\vec{x}_1,\vec{x}_2\in X$ such that $A\vec{x}_1=\vec{y}_1$ and $A\vec{x}_2=\vec{y}_2$. It follows that
+        \begin{align*}
+            A(\vec{x}_1+\vec{x}_2) &= A\vec{x}_1+A\vec{x}_2\\
+            &= \vec{y}_1+\vec{y}_2
+        \end{align*}
+        so $(\vec{y}_1+\vec{y}_2)\in\range A$, as desired.\par
+        Suppose $\vec{y}\in\range A$ and $c\in\C$. Then there exists $\vec{x}\in X$ such that $A\vec{x}=\vec{y}$. It follows that
+        \begin{align*}
+            A(c\vec{x}) &= cA\vec{x}\\
+            &= c\vec{y}
+        \end{align*}
+        so $c\vec{y}\in\range A$, as desired.
+    \end{proof}
 \end{enumerate}
 
 
