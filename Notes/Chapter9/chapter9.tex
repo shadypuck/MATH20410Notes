@@ -86,6 +86,12 @@
     \begin{equation*}
         D_\vec{u}f_i = \lim_{t\to 0}\frac{f_i(\vec{x}_0+t\vec{u})-f_i(\vec{x}_0)}{t}
     \end{equation*}
+    \item \textbf{Jacobian}: The following matrix. \emph{Given by}
+    \begin{equation*}
+        \begin{bmatrix}
+            \dfrac{\partial f_i}{\partial x_j}(\vec{x}_0)
+        \end{bmatrix}
+    \end{equation*}
     \item Theorem: Let $\mathbf{f}=(f_1,\dots,f_m):U\to\R^m$, where $U\subset\R^n$, be differentiable at some $\vec{x}_0\in U$. Then the partial derivatives $\pdv*{f_i}{x_j}$ ($1\leq i\leq m$; $1\leq j\leq n$) exist at $\vec{x}_0$ and, with respect to the usual choice of bases,
     \begin{equation*}
         \mathbf{f}'(\vec{x}_0) =
@@ -93,7 +99,33 @@
             \dfrac{\partial f_i}{\partial x_j}(\vec{x}_0)
         \end{bmatrix}
     \end{equation*}
-    \item \textbf{Jacobian}: The above matrix.
+    \begin{itemize}
+        \item \marginnote{2/18:}We have that
+        \begin{equation*}
+            \mathbf{f}(\vec{x}_0+t\vec{e}_j)-\mathbf{f}(\vec{x}_0) = \mathbf{f}'(\vec{x}_0)(t\vec{e}_j)+\mathbf{r}(t\vec{e}_j)
+        \end{equation*}
+        \item Since $\mathbf{f}$ is differentiable at $\vec{x}_0$, $\mathbf{f}(t\vec{e}_j)/t\to 0$ as $t\to 0$.
+        \item Additionally, $\mathbf{f}'(\vec{x}_0)(t\vec{e}_j)/t=\mathbf{f}'(\vec{x}_0)(\vec{e}_j)$.
+        \item Therefore,
+        \begin{equation*}
+            \lim_{t\to 0}\frac{\mathbf{f}(\vec{x}_0+t\vec{e}_j)-\mathbf{f}(\vec{x}_0)}{t}
+            = \lim_{t\to 0}\frac{\mathbf{f}'(\vec{x}_0)(t\vec{e}_j)-\mathbf{r}(t\vec{e}_j)}{t}
+            = \mathbf{f}'(\vec{x}_0)(\vec{e}_j)-\lim_{t\to 0}\frac{\mathbf{r}(t\vec{e}_j)}{t}
+            = \mathbf{f}'(\vec{x}_0)(\vec{e}_j)
+        \end{equation*}
+        as desired.
+        \item Unpacking the definition of the linear transformation as a matrix gives the rest of the proof.
+    \end{itemize}
+    \item Today:
+    \begin{itemize}
+        \item More on differentiation (recall the Jacobian).
+        \item Sufficient condition for differentiability.
+        \item $\mathbf{f}'=0$ iff $\mathbf{f}$ is constant.
+        \item State the inverse function theorem.
+    \end{itemize}
+    \item It is not true that having all partials exist implies that $\mathbf{f}$ is differentiable at $\vec{x}_0$.
+    \item Theorem: $\mathbf{f}$ continuously differentiable at $\vec{x}_0$ iff all partials exist and are continuous at $\vec{x}_0$.
+    \item Theorem (Inverse function theorem): If $E\subset\R^n$ open, $\mathbf{f}:E\to\R^n$ is differentiable at $\vec{x}_0\in E$, and $\mathbf{f}'(\vec{x}_0)$ is invertible, then there exist $U\subset E$ open with $\vec{x}_0\in U$ and $V\subset\R^n$ open with $\mathbf{f}(\vec{x}_0)\in V$ such that $\mathbf{f}|_U:U\to V$ is a bijection and $(\mathbf{f}|_U)^{-1}$ is continuously differentiable.
 \end{itemize}
 
 
