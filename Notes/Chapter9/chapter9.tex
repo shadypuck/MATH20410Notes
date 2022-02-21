@@ -267,6 +267,130 @@
     \item Corollary: If, in addition, $\mathbf{f}'(\vec{x})=\bm{0}$ for all $\vec{x}\in E$, then $\mathbf{f}$ is constant.
     \item \textbf{Continuously differentiable} (mapping $\mathbf{f}:E\to\R^m$): A function $\mathbf{f}:E\to\R^m$ such that $\mathbf{f}':E\to L(\R^n,\R^m)$ is continuous. \emph{Also known as} \textbf{$\bm{\pmb{\mathscr{C}}^1}$-mapping}. \emph{Denoted by} $\bm{\mathbf{f}\in\pmb{\mathscr{C}}^1(E)}$.
     \item Theorem 9.21: Let $E\subset\R^n$ open and $\mathbf{f}:E\to\R^m$. Then $\mathbf{f}\in\mathscr{C}^1(E)$ iff the partial derivatives $D_jf_i$ ($1\leq i\leq m$; $1\leq j\leq n$) exist and are continuous on $E$.
+    \item \marginnote{2/20:}\textbf{Contraction} (of $X$ into $X$): A function $\varphi:X\to X$ for which there exists a number $c<1$ such that
+    \begin{equation*}
+        d(\varphi(x),\varphi(y)) \leq c\cdot d(x,y)
+    \end{equation*}
+    for all $x,y\in X$, where $X$ is a metric space with metric $d$.
+    \item Theorem 9.23: $X$ a complete metric space and $\phi$ a contraction of $X$ into $X$ implies there exists a unique $x\in X$ such that $\varphi(x)=x$.
+    \begin{proof}
+        Let $x_0\in X$ be arbitrary. Define $\{x_n\}$ recursively by
+        \begin{equation*}
+            x_{n+1} = \phi(x_n)
+        \end{equation*}
+        for $n=0,1,2,\dots$. Let $c<1$ be the number corresponding to the contraction $\varphi$. Then for $n\geq 1$, we have
+        \begin{equation*}
+            d(x_{n+1},x_n) = d(\varphi(x_n),\varphi(x_{n-1})) \leq c\cdot d(x_n,x_{n-1})
+        \end{equation*}
+        or, for $n\geq 0$,
+        \begin{equation*}
+            d(x_{n+1},x_n) \leq c^nd(x_1,x_0)
+        \end{equation*}
+        by induction. Now to prove that $\{x_n\}$ is Cauchy, it will suffice to show that for all $\epsilon>0$, there exists $N$ such that $m\geq n\geq N$ implies $d(x_n,x_m)<\epsilon$. But since
+        \begin{align*}
+            d(x_n,x_m) &\leq \sum_{i=n+1}^md(x_i,x_{i-1})\\
+            &\leq (c^n+c^{n+1}+\cdots+c^{m-1})d(x_1,x_0)\\
+            &\leq [(1-c)^{-1}d(x_1,x_0)]c^n
+        \end{align*}
+        we can simply choose $N$ large enough that $[(1-c)^{-1}d(x_1,x_0)]c^N<\epsilon$. Thus, since $\{x_n\}$ is Cauchy and $X$ is complete, there exists $x\in X$ such that $\lim_{n\to\infty}x_n=x$. Therefore, since $\varphi$ is Lipschitz continuous, we have that
+        \begin{equation*}
+            \varphi(x) = \lim_{n\to\infty}\varphi(x_n)
+            = \lim_{n\to\infty}x_{n+1}
+            = x
+        \end{equation*}
+        as desired.\par
+        Now suppose for the sake of contradiction that there exists $y\neq x$ such that $\varphi(y)=y$. Then since $\varphi$ is a contraction,
+        \begin{equation*}
+            d(y,x) = d(\varphi(y),\varphi(x)) \leq c\cdot d(y,x) < d(y,x)
+        \end{equation*}
+        a contradiction.
+    \end{proof}
+    \item Theorem 9.24 (Inverse Function Theorem): $E\subset\R^n$ open, $\mathbf{f}:E\to\R^n$ a $\mathscr{C}^1$-mapping, $\mathbf{f}'(\vec{a})$ invertible for some $\vec{a}\in E$, and $\vec{b}=\mathbf{f}(\vec{a})$ implies
+    \begin{enumerate}[label={(\alph*)}]
+        \item There exist $U,V\subset\R^n$ open with $\vec{a}\in U$, $\vec{b}\in V$ such that $\mathbf{f}$ is 1-1 on $U$ and $\mathbf{f}(U)=V$.
+        \begin{proof}
+            Let $A=\mathbf{f}'(\vec{a})$. Choose $\lambda$ such that
+            \begin{equation*}
+                2\lambda\norm{A^{-1}} = 1
+            \end{equation*}
+            Define\footnote{How do we motivate this definition?} for each $\vec{y}\in\R^n$ a function $\varphi$ by
+            \begin{equation*}
+                \varphi(\vec{x}) = \vec{x}+A^{-1}(\vec{y}-\mathbf{f}(\vec{x}))
+            \end{equation*}
+            for all $\vec{x}\in E$. (Note that a key property of $\varphi$ is that as defined, $\mathbf{f}(\vec{x})=\vec{y}$ iff $\vec{x}$ is a fixed point of $\vec{y}$.) Now since $\mathbf{f}\in\mathscr{C}^1$ and hence $\mathbf{f}'$ is continuous at $\vec{a}$, there exists an open ball $B_r(\vec{a})\subset E$ such that
+            \begin{equation*}
+                \norm{\mathbf{f}'(\vec{x})-A} < \lambda
+            \end{equation*}
+            for all $\vec{x}\in B_r(\vec{a})$. Let $U=B_r(\vec{a})$. Clearly it follows that $U$ is open. Thus, since each $\varphi'(\vec{x})=I-A^{-1}\mathbf{f}'(\vec{x})=A^{-1}(A-\mathbf{f}'(\vec{x}))$, we have that
+            \begin{equation*}
+                \norm{\varphi'(\vec{x})} \leq \norm{A^{-1}}\norm{A-\mathbf{f}'(\vec{x})}
+                < \frac{1}{2\lambda}\cdot\lambda
+                = \frac{1}{2}
+            \end{equation*}
+            Consequently, we have by Theorem 9.19 that for all $\vec{x}_1,\vec{x}_2\in U$,
+            \begin{equation*}
+                |\varphi(\vec{x}_1)-\varphi(\vec{x}_2)| \leq \frac{1}{2}|\vec{x}_1-\vec{x}_2|
+            \end{equation*}
+            Thus, by the uniqueness argument in the proof of Theorem 9.23, $\varphi$ has at most one fixed point in $U$, so $\mathbf{f}(\vec{x})=\vec{y}$ for at most one $\vec{x}\in U$. Therefore, $\mathbf{f}$ is 1-1 on $U$.\par
+            Let $V=\mathbf{f}(U)$. To prove that $V$ is open, it will suffice to show that for all $\vec{y}_0\in V$, there exists an open subset of $V$ containing $\vec{y}_0$ such that. Let $\vec{y}_0\in V$ be arbitrary. By the definition of $V$ as the image of $U$ under $\mathbf{f}$, there exists $\vec{x}_0\in U$ such that $\mathbf{f}(\vec{x}_0)=\vec{y}_0$. As such, choose $B_r(\vec{x}_0)$ such that $\overline{B}\subset U$. Pick $\vec{y}$ satisfying $|\vec{y}-\vec{y}_0|<\lambda r$. Then
+            \begin{equation*}
+                |\varphi(\vec{x}_0)-\vec{x}_0| = |A^{-1}(\vec{y}-\vec{y}_0)|
+                < \norm{A}\lambda r
+                = \frac{r}{2}
+            \end{equation*}
+            so for all $\vec{x}\in\overline{B}$,
+            \begin{align*}
+                |\varphi(\vec{x})-\vec{x}_0| &\leq |\varphi(\vec{x})-\varphi(\vec{x}_0)|+|\varphi(\vec{x}_0)-\vec{x}_0|\\
+                &< \frac{1}{2}|\vec{x}-\vec{x}_0|+\frac{r}{2}\\
+                &\leq \frac{1}{2}\cdot r+\frac{r}{2}\\
+                &= r
+            \end{align*}
+            Thus, $\varphi(\vec{x}_0)\in B$. Moreover, since $|\varphi(\vec{x}_1)-\varphi(\vec{x}_2)| \leq \frac{1}{2}|\vec{x}_1-\vec{x}_2|$ naturally holds for all $\vec{x}_1,\vec{x}_2\in\overline{B}\subset U$, we have that $\varphi$ is a contraction of $\overline{B}$ into $\overline{B}$. Additionally, since $\overline{B}\subset\R^n$ is closed, it is a complete metric space under the Euclidean metric. Thus, Theorem 9.23 implies that $\varphi$ has a fixed point $\vec{x}\in\overline{B}$. In particular, $\mathbf{f}(\vec{x})=\vec{y}$. Therefore, $\vec{y}\in f(\overline{B})\subset\mathbf{f}(U)=V$, as desired.
+        \end{proof}
+        \item If $\mathbf{g}$ is the inverse of $\mathbf{f}$ on $V$ [which exists by (a)], i.e.,
+        \begin{equation*}
+            \mathbf{g}(\mathbf{f}(\vec{x})) = \vec{x}
+        \end{equation*}
+        for all $\vec{x}\in U$, then $\mathbf{g}\in\mathscr{C}^1(V)$.
+        \begin{proof}
+            We first show that for all $\vec{y}\in V$, $\mathbf{g}'(\vec{y})=[\mathbf{f}'(\mathbf{g}(\vec{y}))]^{-1}$. Let $\vec{y}\in V$ be arbitrary, and choose $\vec{k}$ such that $(\vec{y}+\vec{k})\in V$. It follows by part (a) that there exist $\vec{x},\vec{x}+\vec{h}\in U$ such that $\vec{y}=\mathbf{f}(\vec{x})$ and $\vec{y}+\vec{k}=\mathbf{f}(\vec{x}+\vec{h})$. Thus,
+            \begin{equation*}
+                \varphi(\vec{x}+\vec{h})-\varphi(\vec{x}) = \vec{h}+A^{-1}[\mathbf{f}(\vec{x})-\mathbf{f}(\vec{x}+\vec{h})]
+                = \vec{h}-A^{-1}\vec{k}
+            \end{equation*}
+            so
+            \begin{equation*}
+                |\vec{h}-A^{-1}\vec{k}| = |\varphi(\vec{x}+\vec{h})-\varphi(\vec{x})|
+                \leq \frac{1}{2}|\vec{x}+\vec{h}-\vec{x}|
+                = \frac{1}{2}|\vec{h}|
+            \end{equation*}
+            Consequently, $|A^{-1}\vec{k}|\geq\frac{1}{2}|\vec{h}|$, so
+            \begin{equation*}
+                |\vec{h}| \leq 2\norm{A^{-1}}|\vec{k}|
+                = \frac{|\vec{k}|}{\lambda}
+            \end{equation*}
+            Additionally, we know that $\norm{\mathbf{f}'(\vec{x})-A}\norm{A^{-1}}=1/2<1$, so Theorem 9.8a implies that $\mathbf{f}'(\vec{x})$ is invertible with an inverse that we may call $T$. Thus, since
+            \begin{align*}
+                \mathbf{g}(\vec{y}+\vec{k})-\mathbf{g}(\vec{y})-T\vec{k} &= \vec{h}-T\vec{k}\\
+                &= -T[(\vec{y}+\vec{k})-\vec{y}]+T\mathbf{f}'(\vec{x})\vec{h}\\
+                &= -T[\mathbf{f}(\vec{x}+\vec{h})-\mathbf{f}(\vec{x})-\mathbf{f}'(\vec{x})\vec{h}]
+            \end{align*}
+            we have that
+            \begin{equation*}
+                \frac{|\mathbf{g}(\vec{y}+\vec{k})-\mathbf{g}(\vec{y})-T\vec{k}|}{|\vec{k}|} \leq \frac{\norm{T}|\mathbf{f}(\vec{x}+\vec{h})-\mathbf{f}(\vec{x})-\mathbf{f}'(\vec{x})\vec{h}|}{\lambda|\vec{h}|}
+            \end{equation*}
+            Consequently, $\vec{k}\to\bm{0}$ implies that $\vec{h}\to\bm{0}$, which implies that the right side of the above inequality goes to zero, which implies that the left side of the above inequality goes to zero. Thus, $\mathbf{g}'(\vec{y})=T$, so
+            \begin{equation*}
+                \mathbf{g}'(\vec{y}) = [\mathbf{f}'(\mathbf{g}(\vec{y}))]^{-1}
+            \end{equation*}
+            for all $\vec{y}\in V$, as desired.\par
+            To prove that $\mathbf{g}'$ is continuous on $V$, Theorem 4.7 and the above equation tell us that it will suffice to show that $\mathbf{g}:V\to U$ is continuous, $\mathbf{f'}:U\to L(\R^n)$ is continuous, and $M\mapsto M^{-1}:L(\R^n)\to L(\R^n)$ is continuous. But we have the first condition since differentiability implies continuity and $\mathbf{g}$ is differentiable, we have the second condition since $\mathbf{f}\in\mathscr{C}^1$ by hypothesis, and we have the third condition by Theorem 9.8b, as desired.
+        \end{proof}
+    \end{enumerate}
+    \item Theorem 9.25: $E\subset\R^n$ open, $\mathbf{f}::E\to\R^n$ a $\mathscr{C}^1$-mapping, and $\mathbf{f}'(\vec{x})$ invertible for all $\vec{x}\in E$ implies $\mathbf{f}(W)$ open in $\R^n$ for every open $W\subset E$.
+    \begin{itemize}
+        \item Note that the hypotheses of this theorem guarantee that $\mathbf{f}$ is locally 1-1 at each $\vec{x}\in E$, but it may not be 1-1 in $E$ under these conditions (see Exercise 9.17).
+    \end{itemize}
 \end{itemize}
 
 
