@@ -1,0 +1,60 @@
+\documentclass[../psets.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\leftmark}{Problem Set \thesection}
+\setcounter{section}{5}
+
+\begin{document}
+
+
+
+
+\section{Functions of Several Variables II}
+\emph{From \textcite{bib:Rudin}.}
+\subsection*{Chapter 9}
+\begin{enumerate}[label={\textbf{\arabic*.}}]
+    \setcounter{enumi}{4}
+    \item \marginnote{2/22:}Prove that to every $A\in L(\R^n,\R^1)$ corresponds a unique $\vec{y}\in\R^n$ such that $A\vec{x}=\vec{x}\cdot\vec{y}$. Prove also that $\norm{A}=|\vec{y}|$. (Hint: Under certain conditions, equality holds in the Schwarz inequality.)
+    \item If
+    \begin{equation*}
+        f(x,y) =
+        \begin{cases}
+            0 & (x,y)=(0,0)\\
+            \frac{xy}{x^2+y^2} & (x,y)\neq(0,0)
+        \end{cases}
+    \end{equation*}
+    prove that $(D_1f)(x,y)$ and $(D_2f)(x,y)$ exist at every point of $\R^2$, although $f$ is not continuous at $(0,0)$.
+    \item Suppose that $f$ is a real-valued function defined in an open set $E\subset\R^n$, and that the partial derivatives $D_1f,\dots,D_nf$ are bounded on $E$. Prove that $f$ is continuous in $E$. (Hint: Proceed as in the proof of Theorem 9.21.)
+    \item Suppose that $f$ is a differentiable real function in an open set $E\subset\R^n$, and that $f$ has a local maximum at a point $\vec{x}\in E$. Prove that $f'(\vec{x})=0$.
+    \stepcounter{enumi}
+    \item If $f$ is a real function defined in a convex open set $E\subset\R^n$, such that $(D_1f)(\vec{x})=0$ for every $\vec{x}\in E$, prove that $f(\vec{x})$ depends only on $x_2,\dots,x_n$. Show that the convexity of $E$ can be replaced by a weaker condition, but that some condition is required. For example, if $n=2$ and $E$ is shaped like a horseshoe, the statement may be false.
+    \item If $f$ and $g$ are differentiable real functions in $\R^n$, prove that
+    \begin{equation*}
+        \nabla(fg) = f\nabla g+g\nabla f
+    \end{equation*}
+    and that
+    \begin{equation*}
+        \nabla\left( \frac{1}{f} \right) = -\frac{\nabla f}{f^2}
+    \end{equation*}
+    wherever $f\neq 0$.
+    \setcounter{enumi}{16}
+    \item Let $\mathbf{f}=(f_1,f_2)$ be the mapping of $\R^2$ into $\R^2$ given by
+    \begin{align*}
+        f_1(x,y) &= \e[x]\cos y&
+        f_2(x,y) &= \e[x]\sin y
+    \end{align*}
+    \begin{enumerate}
+        \item What is the range of $f$?
+        \item Show that the Jacobian of $f$ is not zero at any point of $\R^2$. Thus, every point of $\R^2$ has a neighborhood in which $f$ is one-to-one. Nevertheless, $f$ is not one-to-one on $\R^2$.
+        \item Put $\vec{a}=(0,\pi/3)$, $\vec{b}=f(\vec{a})$, and let $\mathbf{g}$ be the continuous inverse of $\mathbf{f}$, defined in a neighborhood of $\vec{b}$, such that $\mathbf{g}(\vec{b})=\vec{a}$. Find an explicit formula for $\mathbf{g}$, compute $\mathbf{f}'(\vec{a})$ and $\mathbf{g}'(\vec{b})$, and verify that
+        \begin{equation*}
+            \mathbf{g}'(\vec{b}) = [\mathbf{f}'(\mathbf{g}(\vec{b}))]^{-1}
+        \end{equation*}
+        \item What are the images under $\mathbf{f}$ of lines parallel to the coordinate axes?
+    \end{enumerate}
+\end{enumerate}
+
+
+
+
+\end{document}
