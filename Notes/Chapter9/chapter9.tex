@@ -125,7 +125,65 @@
     \end{itemize}
     \item It is not true that having all partials exist implies that $\mathbf{f}$ is differentiable at $\vec{x}_0$.
     \item Theorem: $\mathbf{f}$ continuously differentiable at $\vec{x}_0$ iff all partials exist and are continuous at $\vec{x}_0$.
+    \item \marginnote{2/21:}Contraction mapping theorem.
+    \item \marginnote{2/23:}Plan.
+    \begin{enumerate}
+        \item Proof of the inverse function theorem.
+        \item Commuting partials.
+    \end{enumerate}
     \item Theorem (Inverse function theorem): If $E\subset\R^n$ open, $\mathbf{f}:E\to\R^n$ is differentiable at $\vec{x}_0\in E$, and $\mathbf{f}'(\vec{x}_0)$ is invertible, then there exist $U\subset E$ open with $\vec{x}_0\in U$ and $V\subset\R^n$ open with $\mathbf{f}(\vec{x}_0)\in V$ such that $\mathbf{f}|_U:U\to V$ is a bijection and $(\mathbf{f}|_U)^{-1}$ is continuously differentiable.
+    \item Idea.
+    \begin{enumerate}
+        \item Find $U$ and prove one-to-one restricted to $U$.
+        \item $\mathbf{f}(U)$ is open.
+        \item Prove the inverse is continuously differentiable (left as an exercise to us).
+    \end{enumerate}
+    \begin{itemize}
+        \item There is a trick for 1-2: We introduce an auxiliary function $\varphi_\vec{y}$ and apply the contraction mapping theorem.
+    \end{itemize}
+    \item Proof.
+    \begin{itemize}
+        \item Let $A=\mathbf{f}'(\vec{x}_0)$.
+        \item Since $\mathbf{f}'$ is continuous, there is an open ball $U\subset E$ with center $\vec{x}_0$ such that $\norm{\mathbf{f}'(\vec{x})-A}<\lambda$ for all $\vec{x}\in U$.
+        \begin{itemize}
+            \item We'll pick $\lambda=1/(2\norm{A^{-1}})$ without motivation for now.
+            \item Note that if you need to pick a $U$ (for an example function), this criterion gives you one (not necessarily the best one, but it gives you a one).
+        \end{itemize}
+        \item Trick: For all $\vec{y}\in\R^n$, consider $\varphi_\vec{y}:U\to\R^n$ defined by
+        \begin{equation*}
+            \varphi_\vec{y}(\vec{x}) = \vec{x}+A^{-1}(\vec{y}-\mathbf{f}(\vec{x}))
+        \end{equation*}
+        \begin{itemize}
+            \item Important property of this function: $\mathbf{f}(\vec{x})=\vec{y}$ iff $\varphi_\vec{y}(\vec{x})=\vec{x}$.
+        \end{itemize}
+        \item Plan: Show that for all $\vec{y}\in\mathbf{f}(U)$ that $\varphi_\vec{y}$ is a contraction. Therefore, by the contraction mapping theorem, $\mathbf{f}$ has exactly 1 fixed point, so $\mathbf{f}|_U$ is injective.
+        \item Proving that $\varphi_\vec{y}$ is a contraction. Claim: $|\varphi_\vec{y}(\vec{x}_1)-\varphi_\vec{y}(\vec{x}_2)|\leq\frac{1}{2}|\vec{x}_1-\vec{x}_2|$. Use the Chain Rule, MVT, and the fact that $\norm{AB}\leq\norm{A}\norm{B}$.
+        \begin{itemize}
+            \item Using the chain rule, we have that
+            \begin{align*}
+                \varphi_\vec{y}' &= I-A^{-1}\mathbf{f}'(\vec{x})\\
+                &= A^{-1}(A-\mathbf{f}'(\vec{x}))
+            \end{align*}
+            \item Thus,
+            \begin{equation*}
+                \norm{\varphi_\vec{y}(\vec{x})} \leq \norm{A^{-1}}\norm{A-\mathbf{f}'(\vec{x})} < \frac{1}{2}
+            \end{equation*}
+            for all $\vec{x}$.
+            \item It follows by the MVT that
+            \begin{equation*}
+                |\varphi_\vec{y}(\vec{x}_1)-\varphi_\vec{y}(\vec{x}_2)|\leq\frac{1}{2}|\vec{x}_1-\vec{x}_2|
+            \end{equation*}
+            \item Therefore, $\varphi_\vec{y}$ is a contraction.
+        \end{itemize}
+        \item We now prove that $\mathbf{f}(U)$ is open.
+        \item Let $\vec{y}_0\in f(U)$ be such that $\vec{y}_0=f(\vec{p}_0)$.
+        \item Pick $B_r(\vec{p}_0)\subset U$ such that $\overline{B}\subset U$.
+        \item Claim: For all $\vec{y}\in\R^n$ with $|\vec{y}-\vec{y}_0|<\lambda r$, we have that $\vec{y}\in\mathbf{f}(U)$.
+        \begin{itemize}
+            \item We are going to show that $\varphi_\vec{y}(\overline{B})\subset\overline{B}$ and therefore $\varphi_\vec{y}:\overline{B}\to\overline{B}$ is a contraction and therefore by the contraction mapping theorem, there exists a fixed point $\vec{x}_\vec{y}$ of $\varphi_\vec{y}$ in $\overline{B}$. Therefore, $\mathbf{f}(\vec{x}_\vec{y})=\vec{y}$ and so $\mathbf{f}(U)$ is open.
+        \end{itemize}
+    \end{itemize}
+    \item $\varphi_y$ is derived from Newton's method. The contraction mapping thing then is what substitutes for convergence. You have to start in the right area though, the chosen $U$!
 \end{itemize}
 
 
