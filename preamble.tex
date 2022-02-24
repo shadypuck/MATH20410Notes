@@ -8,7 +8,7 @@
 \usepackage[style=apa]{biblatex}
 \usepackage{tikz}
 \usepackage{amsmath,amssymb,amsthm}
-\usepackage{physics,mathrsfs,mathtools,accents,bm,amsbsy}
+\usepackage{physics,mathrsfs,mathtools,accents,bm,amsbsy,nicematrix}
 \usepackage[hidelinks]{hyperref}
 
 \MakeOuterQuote{"}
@@ -37,10 +37,14 @@
 \DeclareMathOperator{\spn}{span}
 \DeclareMathOperator{\nul}{null}
 \DeclareMathOperator{\range}{range}
+\DeclareMathOperator{\sgn}{sgn}
+
+\NiceMatrixOptions{cell-space-limits = 1pt}
 
 \renewcommand{\vec}[1]{\mathbf{#1}}
 
 \newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
