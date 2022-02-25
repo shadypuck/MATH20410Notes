@@ -184,6 +184,62 @@
         \end{itemize}
     \end{itemize}
     \item $\varphi_y$ is derived from Newton's method. The contraction mapping thing then is what substitutes for convergence. You have to start in the right area though, the chosen $U$!
+    \item \marginnote{2/25:}Plan:
+    \begin{enumerate}
+        \item A point on the IFT.
+        \item Commuting partials.
+        \item Implicit function theorem.
+    \end{enumerate}
+    \item Subtle point: Last time, in the proof of the IFT, we first found the $U\subset E$ and prove that $\mathbf{f}|_U$ is injective, and then we proved that $\mathbf{f}(U)$ is open.
+    \item The properties of $\varphi_\vec{y}$.
+    \begin{itemize}
+        \item $\varphi_\vec{y}(U)\subset U$.
+        \item $\varphi_\vec{y}$ is a contraction since $|\varphi_\vec{y}(\vec{x}_1)-\varphi_\vec{y}(\vec{x}_2)|\leq\frac{1}{2}|\vec{x}_1-\vec{x}_2|$.
+        \item $\mathbf{f}(\vec{x})=\vec{y}$ iff $\varphi_\vec{y}(\vec{x})=\vec{x}$ (fixed points for this contraction mapping).
+    \end{itemize}
+    \item Commuting partials.
+    \begin{itemize}
+        \item When does the following hold?
+        \begin{equation*}
+            \pdv[2]{f}{x_j}{x_i} = \pdv[2]{f}{x_j}{x_i}
+        \end{equation*}
+        \item Simple answer: Not often, but with enough regularity, yes.
+    \end{itemize}
+    \item Theorem: Given $f:E\to\R$ where $E\subset\R^n$, we say that $f$ is $C^2$ (or of class $C^2$)
+    \item \textbf{Class $\bm{C^2}$} (function $f$): A function $f:E\to\R$ (where $E\subset\R^n$) such that all partials $\pdv*[2]{f}{x_j}{x_i}$ exist and are continuous for all points in $E$. \emph{Denoted by} $\bm{f\in C^2}$.
+    \item Lemma (MVT): If $E\subset\R^2$ open, $f:E\to\R$, $\pdv*{f}{x},\pdv*[2]{f}{y}{x}$ exist for all $(x,y)\in E$, $Q=[a,a+h]\times[b,b+k]\subset E$, and
+    \begin{equation*}
+        \Delta(f,Q) = f(a+h,b+k)-f(a+h,b)+f(a,b+k)-f(a,b)
+    \end{equation*}
+    then there exists $(x_0,y_0)\in Q$ such that
+    \begin{equation*}
+        \Delta(f,Q) = hk{\pdv[2]{}{y}{x}}(x_0,y_0)
+    \end{equation*}
+    \begin{itemize}
+        \item Proof idea: We reduce to the goal of the 1D MVT.
+        \item Define $u(t)=f(t,b+k)-f(t,b)$. Then $u$ is differentiable by the sum and scalar multiple rules.
+        \item It follows that
+        \begin{align*}
+            \Delta(f,Q) &= u(a+h)-u(a)\\
+            &= hu'(x_0)\\
+            &= h\left[ \pdv{f}{x}(x_0,b+k)-\pdv{f}{x}(x_0,b) \right]\\
+            &= hk{\pdv[2]{}{y}{x}}(x_0,y_0)
+        \end{align*}
+    \end{itemize}
+    \item Theorem: If $f\in C^2$, then
+    \begin{equation*}
+        \pdv[2]{f}{x_j}{x_i} = \pdv[2]{f}{x_j}{x_i}
+    \end{equation*}
+    for all $1\leq i,j\leq n$.
+    \item Idea.
+    \begin{itemize}
+        \item To make life easy, take $n=2$. Then we just need the right kind of mean value theorem (the one in the lemma).
+    \end{itemize}
+    \item Proof.
+    \begin{itemize}
+        \item Follows from the lemma as $h,k\to 0$.
+        \item See Theorem 15.3 in \textcite{bib:CAAGThomasNotes}.
+    \end{itemize}
 \end{itemize}
 
 
