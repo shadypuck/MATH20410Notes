@@ -240,6 +240,70 @@
         \item Follows from the lemma as $h,k\to 0$.
         \item See Theorem 15.3 in \textcite{bib:CAAGThomasNotes}.
     \end{itemize}
+    \item \marginnote{2/28:}Plan:
+    \begin{enumerate}
+        \item Implicit function theorem (end of Chapter 9).
+        \item Sharkovsky's theorem.
+        \item Go back and talk about Chapter 8 material.
+    \end{enumerate}
+    \item Theorem (Implicit Function Theorem; informal): Given a nice system of equations 
+    \begin{align*}
+        f_1(c_1,\dots,x_n,y_1,\dots,y_m) &= 0\\
+        &\vdots\\
+        f_n(x_1,\dots,x_n,y_1,\dots,y_m) &= 0
+    \end{align*}
+    and a particular solution $(\vec{a},\vec{b})$, we can solve for $\vec{y}=(y_1,\dots,y_m)$ locally at $(\vec{a},\vec{b})$.
+    \item Theorem (Implicit Function Theorem): If $E\subset\R^{n+m}$, $\mathbf{f}:E\to\R^n$ continuously differentiable, $(\vec{a},\vec{b})\in E$ with $\mathbf{f}(\vec{a},\vec{b})=\bm{0}$, $A=\mathbf{f}'(\vec{a},\vec{b})$, $A_\vec{x}:\R^n\to\R^n$ defined by $\vec{x}\mapsto\mathbf{f}'(\vec{a},\vec{b})(\vec{x},\bm{0})$ invertible, and $A_\vec{y}:\R^m\to\R^n$ defined by $\vec{y}\mapsto\mathbf{f}'(\vec{a},\vec{b})(\bm{0},\vec{y})$, then there exists $U\subset\R^{n+m}$, $W\subset\R^m$ with $(\vec{a},\vec{b})\in U$, $\vec{b}\in W$ such that:
+    \begin{enumerate}
+        \item For every $\vec{y}\in W$, there exists a unique $\vec{x}\in\R^n$ such that $(\vec{x},\vec{y})\in U$ and $\mathbf{f}(\vec{x},\vec{y})=\bm{0}$.
+        \item There is a continuously differentiable function $\mathbf{g}:W\to\R^n$ such that
+        \begin{equation*}
+            \mathbf{f}(\mathbf{g}(\vec{y}),\vec{y}) = \bm{0}
+        \end{equation*}
+        for all $\vec{y}\in W$ and
+        \begin{equation*}
+            \mathbf{g}'(\vec{b}) = -(A_\vec{x})^{-1}A_\vec{y}
+        \end{equation*}
+    \end{enumerate}
+    \item Example: Consider $f:\R^{1+1}\to\R$ defined by $(x,y)\mapsto x^2+y^2-1$.
+    \begin{itemize}
+        \item Then $f^{-1}(\{0\})$ is the unit circle.
+        \item $
+            Df =
+            \begin{bmatrix}
+                2x & 2y\\
+            \end{bmatrix}
+        $, $
+            A_x =
+            \begin{bmatrix}
+                2x\\
+            \end{bmatrix}
+        $, and $
+            A_y =
+            \begin{bmatrix}
+                2y\\
+            \end{bmatrix}
+        $.
+    \end{itemize}
+    \item Idea:
+    \begin{itemize}
+        \item Use the inverse function theorem, and apply it to $A_\vec{x}$.
+        \item Goal: Find $U$ and $W$; from this, $\mathbf{g}$ follows uniquely (though you also technically need to show continuous differentiability).
+        \item Define $F:E\to\R^{n+m}$ by $F(\vec{x},\vec{y})=(\mathbf{f}(\vec{x},\vec{y}),\vec{y})$. Claim: $F'(\vec{a},\vec{b})$ is invertible. Apply the inverse function theorem to $F$.
+    \end{itemize}
+    \item Proof left to us.
+    \item The goal of Sharkovsky's theorem is to understand the iterates of $f$, i.e., $x,f(x),f^2(x),f^3(x),\dots$. This fits in thematically with the contraction mapping theorem.
+    \item \textbf{Periodic} (point $p\in I$): A point $p\in I$ for which $f^m(p)=p$ for some $m\in\N$.
+    \item \textbf{Period} (of $p\in I$ periodic): The least number $m$ such that $f^m(p)=p$.
+    \item \textbf{Fixed point}: A periodic point of period 1.
+    \item Example: $f:[0,1]\to[0,1]$ defined by $f(x)=1-x$ has periodic points of period 2 everywhere on its domain save $1/2$, which has period 1.
+    \item Theorem: If $f$ has a point $p$ of period 3, then $f$ has points of all other periods.
+    \item \textbf{Sharkovsky ordering}: All of the odd numbers, then $2^1$ times the odd numbers, then $2^2$ times the odd numbers, then continuing for $n\to\infty$, and then $2^n$ as large as possible all the way down to 1.
+    \begin{itemize}
+        \item If $n$ comes before $m$ in the Sharkovsky ordering, we write $n\rhd m$.
+    \end{itemize}
+    \item Sharkovsky's theorem: If $A\subset\R$, $f:A\to\R$ continuous satisfies $f(A)\subset A$ and has a period $m$ point with $m\rhd l$, then $f$ has a period $l$ point.
+    \item Example: Logistic maps $g_b:[0,1]\to[0,1]$ defined by $x\mapsto bx(1-x)$ for $b\in[1,4]$.
 \end{itemize}
 
 
