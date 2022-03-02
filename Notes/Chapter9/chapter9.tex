@@ -304,6 +304,79 @@
     \end{itemize}
     \item Sharkovsky's theorem: If $A\subset\R$, $f:A\to\R$ continuous satisfies $f(A)\subset A$ and has a period $m$ point with $m\rhd l$, then $f$ has a period $l$ point.
     \item Example: Logistic maps $g_b:[0,1]\to[0,1]$ defined by $x\mapsto bx(1-x)$ for $b\in[1,4]$.
+    \item \marginnote{3/2:}Theorem (Li \& Yorke): If $f$ has a period 3 point, then there exists an uncountable set $S\subset A$ such that for all $p,q\in S$,
+    \begin{align*}
+        \liminf_{n\to\infty}|f^n(p)-f^n(q)| &= 0&
+        \limsup_{n\to\infty}|f^n(p)-f^n(q)| &> 0
+    \end{align*}
+    \item Plan:
+    \begin{enumerate}
+        \item Prove the warm-up to Sharkovsky.
+    \end{enumerate}
+    \item Theorem: If $f$ continuous has a period 3 point, then $f$ has points of all other periods.
+    \item Notation.
+    \begin{itemize}
+        \item We say "$I$ covers $J$" and write $I\to J$ when $I,J\subset A$ are closed intervals with $f(I)\supset J$.
+    \end{itemize}
+    \item Lemma 1: If $[a,b]\to[a,b]$, then $f$ continuous has a fixed point in $[a,b]$.
+    \begin{itemize}
+        \item Consider $f(x)-x$ on $[a,b]$.
+        \item Either $f(a)=a$, $f(b)=b$, or we can invoke the IVT.
+        \item Alternatively, since $[a,b]\subset f([a,b])$, there exist $a_0,b_0$ with $f(a_0)=a$ and $f(b_0)=b$. Thus, $f(a_0)-a_0\leq 0$ and $f(b_0)-b_0\geq 0$, so by the IVT, there is some zero of $f(x)-x$ on $[a,b]$, as desired.
+    \end{itemize}
+    \item Lemma 2: $p$ has period $m$ iff $p$ is a fixed point of $f^m$ and not a fixed point of $f^i$ for $i<m$.
+    \item Lemma 3: Suppose we have a loop of intervals $J_0\to J_1\to J_2\to\cdots\to J_{n-1}\to J_0\to\cdots$. Then there is a fixed point $p\in J_0$ of $f^n$ such that $f^i(p)\in J_i$ for all $0\leq i<n$.
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}
+            \footnotesize
+            \draw (1,0) -- node[below]{$I$} ++(2,0);
+            \draw (0,1.5) -- node[left]{$J$} ++(0,1);
+            \draw [dashed]
+                (0,1.5) -- ++(4,0)
+                (0,2.5) -- ++(4,0)
+            ;
+            \draw [green!50!black,very thick] (1.1,0) -- node[above]{$I_0$} (2.04,0);
+    
+            \draw [thick] (1,1)
+                to [out=85,in=-105] (1.1,1.5)
+                to [out=75,in=180,in looseness=0.6] (1.4,2)
+                to [out=0,in=180] (1.8,1.7)
+                to [out=0,in=-95,looseness=0.6] (2.04,2.5)
+                to [out=85,in=180,looseness=0.6] (2.2,3)
+                to [out=0,in=180,looseness=0.6] (2.6,1.9)
+                to [out=0,in=-95,out looseness=0.6] (3,2.8)
+            ;
+            \draw [green!50!black,very thick] (1.1,1.5)
+                to [out=75,in=180,in looseness=0.6] (1.4,2)
+                to [out=0,in=180] (1.8,1.7)
+                to [out=0,in=-95,looseness=0.6] (2.04,2.5)
+            ;
+        \end{tikzpicture}
+        \caption{Loop mapping.}
+        \label{fig:loopMapping}
+    \end{figure}
+    \begin{itemize}
+        \item Isn't this obvious? No -- there's an issue, namely that $f(J_i)\not\subset J_{i+1}$. We can solve this though by noting that if $I\to J$, then there exists some subinterval $I_0\subset I$ such that $f(I_0)\subset J$ and $I_0\to J$ (i.e., $f(I_0)=J$).
+        \item You can use this idea to pull a $J_i'$ out of each $J_i$ for which set equality holds.
+        \item Then by the previous lemma, there exists a fixed point $p$ of $f^n$ in $J_0'$. Then $f(p)\in J_1'\subset J_1,\dots,f^{n-1}(p)\in J_{n-1}'\subset J_{n-1}$.
+    \end{itemize}
+    \item Notation.
+    \begin{itemize}
+        \item In the case of Lemma 3, we say that $p$ is \textbf{following} the cycle $J_0\to\cdots\to J_{n-1}\to J_0\to\cdots$.
+        \item We call $J_0\to\cdots\to J_{n-1}\to J_0\to\cdots$ \textbf{elementary} if it is only followed by points of period $n$.
+    \end{itemize}
+    \item Lemma: Let $q$ have period $m$ and let $\mathcal{O}=\{q,f(q),\dots,f^{m-1}(q)\}$. Let $J_0\to\cdots\to J_{n-1}\to J_0\to\cdots$ and suppose
+    \begin{enumerate}[label={(\roman*)}]
+        \item all endpoints of the $J_i$ are in $\mathcal{O}$;
+        \item the loop is not followed by any point in $\mathcal{O}$;
+        \item The interior of $J_0$, $\text{int}\,(J_0)$ is disjoint from the other $J_i$.
+    \end{enumerate}
+    Then the loop is elementary, and so $f$ has a period $n$ point.
+    \begin{itemize}
+        \item Suppose $p$ follows the loop.
+        \item Then by (i) and (ii), $p$ is not an endpoint of $J_0$, so if $f^i(p)=p\in J_0$ for $i<n$, then $\text{int}\,(J_0)\cap J_i$, contradicting (iii).
+    \end{itemize}
 \end{itemize}
 
 
