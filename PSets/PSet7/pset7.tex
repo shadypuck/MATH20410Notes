@@ -1,0 +1,49 @@
+\documentclass[../psets.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\leftmark}{Problem Set \thesection}
+\setcounter{section}{6}
+
+\begin{document}
+
+
+
+
+\section{Functions of Several Variables III}
+\emph{From \textcite{bib:Rudin}.}
+\subsection*{Chapter 9}
+\begin{enumerate}[label={\textbf{\arabic*.}}]
+    \setcounter{enumi}{8}
+    \item \marginnote{3/2:}If $\mathbf{f}$ is a differentiable mapping of a \emph{connected} open set $E\subset\R^n$ into $\R^m$, and if $\mathbf{f}'(\vec{x})=0$ for every $\vec{x}\in E$, prove that $\mathbf{f}$ is constant in $E$.
+    \setcounter{enumi}{12}
+    \item Suppose $\mathbf{f}$ is a differentiable mapping of $\R^1$ into $\R^3$ such that $|\mathbf{f}(t)|=1$ for every $t$. Prove that $\mathbf{f}'(t)\cdot\mathbf{f}(t)=0$. Interpret this result geometrically.
+    \item Define
+    \begin{equation*}
+        f(x,y) =
+        \begin{cases}
+            0 & (x,y)=(0,0)\\
+            \frac{x^3}{x^2+y^2} & (x,y)\neq(0,0)
+        \end{cases}
+    \end{equation*}
+    \begin{enumerate}
+        \item Prove that $D_1f$ and $D_2f$ are bounded functions in $\R^2$. (Hence $f$ is continuous.)
+        \item Let $\mathbf{u}$ be any unit vector in $\R^2$. Show that the directional derivative $(D_\vec{u}f)(0,0)$ exists, and that its absolute value is at most 1.
+        \item Let $\gamma$ be a differentiable mapping of $\R^1$ into $\R^2$ (in other words, $\gamma$ is a differentiable curve in $\R^2$), with $\gamma(0)=(0,0)$ and $|\gamma'(0)|>0$. Put $g(t)=f(\gamma(t))$ and prove that $g$ is differentiable for every $t\in\R^1$. If $\gamma\in C^1$, prove that $g\in C^1$.
+        \item In spite of this, prove that $f$ is not differentiable at $(0,0)$. (Hint: The formula $(D_\vec{u}f)(\vec{x})=\sum_{i=1}^n(D_if)(\vec{x})u_i$ fails.)
+    \end{enumerate}
+    \stepcounter{enumi}
+    \item Show that the continuity of $\mathbf{f}'$ at the point $\vec{a}$ is needed in the inverse function theorem, even in the case $n=1$: If
+    \begin{equation*}
+        f(t) =
+        \begin{cases}
+            t+2t^2\sin\frac{1}{t} & t\neq 0\\
+            0 & t=0
+        \end{cases}
+    \end{equation*}
+    then $f'(0)=1$ and $f'$ is bounded in $(-1,1)$, but $f$ is not one-to-one in any neighborhood of 0.
+\end{enumerate}
+
+
+
+
+\end{document}
