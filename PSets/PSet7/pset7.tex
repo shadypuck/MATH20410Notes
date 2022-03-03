@@ -15,8 +15,62 @@
 \begin{enumerate}[label={\textbf{\arabic*.}}]
     \setcounter{enumi}{8}
     \item \marginnote{3/2:}If $\mathbf{f}$ is a differentiable mapping of a \emph{connected} open set $E\subset\R^n$ into $\R^m$, and if $\mathbf{f}'(\vec{x})=0$ for every $\vec{x}\in E$, prove that $\mathbf{f}$ is constant in $E$.
+    \begin{proof}
+        % ${\color{white}hi}$
+        % \begin{itemize}
+        %     \item Suppose (contradiction): $\mathbf{f}$ is not constant in $E$.
+        %     \item There exist $\vec{a},\vec{b}\in E$ such that $\mathbf{f}(\vec{a})\neq\mathbf{f}(\vec{b})$.
+        %     \item Define $A=\mathbf{f}^{-1}(\{\mathbf{f}(\vec{a})\})$ and $B=E\setminus A$.
+        %     \item $\vec{a}\in A$ and $\vec{b}\in B$: $A,B$ nonempty.
+        %     \item Clearly: $E=A\cup B$ and $A\cap B=\emptyset$.
+        %     \item Theorem 4.8: $A$ is closed.
+        %     \item Theorem 2.27b: $\overline{A}\cap B=A\cap B=\emptyset$.
+        %     \item $E$ connected + the above: $A\cap\overline{B}\neq\emptyset$.
+        %     \item Pick $\vec{x}\in A\cap\overline{B}$.
+        %     \item Consequently: $\vec{x}\notin B$.
+        %     \item Thus: $\vec{x}\in LP(B)$.
+        %     \item Let $N_r(\vec{x})\subset E$.
+        %     \item $\vec{x}\in LP(B)$: There exists $\vec{c}\in N_r(\vec{x})$ such that $\vec{c}\in B$.
+        %     \item $\vec{c}\in B$ and $\vec{x}\in A$: $\mathbf{f}(\vec{c})\neq\mathbf{f}(\vec{a})$.
+        %     \item $N_r(\vec{x})$ is convex.
+        %     \item Corollary to Theorem 9.19: $\mathbf{f}$ is constant on $N_r(\vec{x})$, a contradiction.
+        % \end{itemize}
+
+
+        Suppose for the sake of contradiction that $\mathbf{f}$ is not constant on $E$. Then there exist $\vec{a},\vec{b}\in E$ such that $\mathbf{f}(\vec{a})\neq\mathbf{f}(\vec{b})$. Let
+        \begin{align*}
+            A &= \mathbf{f}^{-1}(\{\mathbf{f}(\vec{a})\})&
+            B &= E\setminus A
+        \end{align*}
+        Since $\vec{a}\in A$ and $\vec{b}\in B$, $A,B$ are nonempty. Additionally, we clearly have that $E=A\cup B$ and $A\cup B=\emptyset$. Furthermore, since $A$ is closed by Theorem 4.8, Theorem 2.27b implies that $\bar{A}=A$ and hence
+        \begin{equation*}
+            \bar{A}\cap B = A\cap B = \emptyset
+        \end{equation*}
+        These results combined with the fact that $E$ is connected by hypothesis implies that $A\cap\bar{B}\neq\emptyset$. Let $\vec{x}\in A\cap\bar{B}$. It follows by the definition of the closure of $B$ and since $A\cap B=\emptyset$ that $\vec{x}\in A\cap LP(B)$, where $LP(B)$ denotes the set of all limit points of $B$. Now since $E$ is open, there exists $N_r(\vec{x})\subset E$. Thus, since $\vec{x}\in LP(B)$, there exists $\vec{c}\in N_r(\vec{x})$ such that $\vec{c}\in B$. With $\vec{x}\in A$ and $\vec{c}\in B$, we have that $\mathbf{f}(\vec{c})\neq\mathbf{f}(\vec{a})$. But $N_r(\vec{x})$ is convex, so since $\mathbf{f}'(\vec{x})=0$ for all points in $N_r(\vec{x})\subset E$, we have by the Corollary to Theorem 9.19 that $\mathbf{f}$ is constant on $N_r(\vec{x})$, a contradiction.
+    \end{proof}
     \setcounter{enumi}{12}
     \item Suppose $\mathbf{f}$ is a differentiable mapping of $\R^1$ into $\R^3$ such that $|\mathbf{f}(t)|=1$ for every $t$. Prove that $\mathbf{f}'(t)\cdot\mathbf{f}(t)=0$. Interpret this result geometrically.
+    \begin{proof}
+        Define $g:\R\to\R$ by
+        \begin{equation*}
+            g(t) = |\mathbf{f}(t)|^2-1
+        \end{equation*}
+        for all $t\in\R$. Since $g$ is a constant function by definition, $g'=0$. Additionally, since
+        \begin{equation*}
+            1 = |\mathbf{f}(t)| = |\mathbf{f}(t)|^2 = \sum_{i=1}^3[f_i(t)]^2
+        \end{equation*}
+        we have by the sum and the chain rule that
+        \begin{equation*}
+            g'(t) = \sum_{i=1}^32f_i(t)f_i'(t)-0
+            = 2\mathbf{f}(t)\cdot\mathbf{f}'(t)
+        \end{equation*}
+        for all $t\in\R$. But this implies by the transitive property that
+        \begin{equation*}
+            \mathbf{f}(t)\cdot\mathbf{f}'(t) = 0
+        \end{equation*}
+        as desired, where we have incorporated the 2 into the zero.\par
+        Geometrically, this means that if a path is drawn along the surface of the unit sphere, the tangent to the path (which will be tangent to the unit sphere) is perpendicular to the normal (i.e., the radial position vector).
+    \end{proof}
     \item Define
     \begin{equation*}
         f(x,y) =
@@ -27,9 +81,46 @@
     \end{equation*}
     \begin{enumerate}
         \item Prove that $D_1f$ and $D_2f$ are bounded functions in $\R^2$. (Hence $f$ is continuous.)
+        \begin{proof}
+            We have by the rules of derivatives that
+            \begin{align*}
+                D_1f(x,y) &= \frac{(x^2+y^2)\cdot 3x^2-x^3\cdot 2x}{(x^2+y^2)^2}&
+                    D_2f(x,y) &= \frac{(x^2+y^2)\cdot 0+x^3\cdot 2y}{(x^2+y^2)}\\
+                &= \frac{x^4+3x^2y^2}{(x^2+y^2)^2}&
+                    &= \frac{2x^3y}{(x^2+y^2)^2}
+                \intertext{or, in polar coordinates,}
+                &= \frac{r^4\cos^4\theta+3r^2\cos^2\theta r^2\sin^2\theta}{r^4}&
+                    &= \frac{2r^3\cos^3\theta r\sin\theta}{r^4}\\
+                &= \cos^4\theta+3\cos^2\theta \sin^2\theta&
+                    &= 2\cos^3\theta\sin\theta
+            \end{align*}
+            Since cosine and sine are bounded, their products above are bounded.
+        \end{proof}
         \item Let $\mathbf{u}$ be any unit vector in $\R^2$. Show that the directional derivative $(D_\vec{u}f)(0,0)$ exists, and that its absolute value is at most 1.
+        \begin{proof}
+            Let $\vec{u}=(r,\theta)$ in polar coordinates. Then $D_\vec{u}f$ becomes
+            \begin{equation*}
+                \dv{f}{r} = \cos^3\theta
+            \end{equation*}
+            which is indeed bounded by $[-1,1]$.
+        \end{proof}
         \item Let $\gamma$ be a differentiable mapping of $\R^1$ into $\R^2$ (in other words, $\gamma$ is a differentiable curve in $\R^2$), with $\gamma(0)=(0,0)$ and $|\gamma'(0)|>0$. Put $g(t)=f(\gamma(t))$ and prove that $g$ is differentiable for every $t\in\R^1$. If $\gamma\in C^1$, prove that $g\in C^1$.
+        \begin{proof}
+            We divide into two cases ($t\neq 0$ and $t=0$). If $t\neq 0$, then $\gamma(t)\neq\bm{0}$, so $g$ is differentiable by Theorem 9.15. If $t=0$, then let $\vec{u}=\gamma'(0)$. It follows by part (b) that $D_\vec{u}f(0,0)$ exists, i.e., $g'(0)$ exists.
+        \end{proof}
         \item In spite of this, prove that $f$ is not differentiable at $(0,0)$. (Hint: The formula $(D_\vec{u}f)(\vec{x})=\sum_{i=1}^n(D_if)(\vec{x})u_i$ fails.)
+        \begin{proof}
+            Let $\vec{u}=(u_1,u_2)$ in Cartesian coordinates. Then
+            \begin{equation*}
+                \vec{u} = \left( \sqrt{u_1^2+u_2^2},\arctan(u_2/u_1) \right)
+            \end{equation*}
+            in polar coordinates. It follows that
+            \begin{align*}
+                (D_\vec{u}f)(0,0) &= \cos(\arctan(u_2/u_1))\\
+                &= \frac{u_1}{\sqrt{u_1^2+u_2^2}}
+            \end{align*}
+            However, $\sum_{i=1}^2(D_if)(0,0)u_i$ is of indeterminate form, so $\mathbf{f}$ is not differentiable by the contrapositive of Theorem 9.17.
+        \end{proof}
     \end{enumerate}
     \stepcounter{enumi}
     \item Show that the continuity of $\mathbf{f}'$ at the point $\vec{a}$ is needed in the inverse function theorem, even in the case $n=1$: If
@@ -41,6 +132,19 @@
         \end{cases}
     \end{equation*}
     then $f'(0)=1$ and $f'$ is bounded in $(-1,1)$, but $f$ is not one-to-one in any neighborhood of 0.
+    \begin{proof}
+        We have previously established that the derivative of $t^2\sin(1/t)$ is zero at $t=0$. Thus, by the rules of derivatives, $f'(0)=1+2\cdot 0=1$ and for $t\neq 0$,
+        \begin{align*}
+            f'(t) &= 1+4t\sin\frac{1}{t}+2t^2\cos\frac{1}{t}\cdot-\frac{1}{t^2}\\
+            &= 1+4t\sin\frac{1}{t}-2\cos\frac{1}{t}
+        \end{align*}
+        which is clearly bounded on any bounded interval as the sum of a constant function, the product of a constantly increasing function and a function bounded on the real line, and a function bounded on the real line. However, consider an arbitrary neighborhood $N_r(0)$. Choose $n\in\N$ such that $1/n<r$. Then $1/n\pi<r$. It follows that
+        \begin{equation*}
+            f'(1/n\pi) = 1+\frac{4}{n\pi}\sin n\pi-2\cos n\pi
+            = 1+2\cdot\pm 1
+        \end{equation*}
+        Thus, either $f'(1/n\pi)=-1$ and $f'(1/(n+1)\pi)=3$ or vice versa. Either way, for some $x$ on that interval, $f'(x)=0$, meaning that there is a local maximum at $x$, meaning that $f$ is not 1-1 in the vicinity of this maximum, i.e., on $N_r(0)$.
+    \end{proof}
 \end{enumerate}
 
 
