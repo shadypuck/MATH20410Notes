@@ -377,6 +377,24 @@
         \item Suppose $p$ follows the loop.
         \item Then by (i) and (ii), $p$ is not an endpoint of $J_0$, so if $f^i(p)=p\in J_0$ for $i<n$, then $\text{int}\,(J_0)\cap J_i$, contradicting (iii).
     \end{itemize}
+    \item \marginnote{3/4:}Plan:
+    \begin{enumerate}
+        \item Finish 3 implies all $m\in\N$.
+        \item Hint at the rest of Sharkovsky.
+        \item Power series/fun with the exponential function (Chapter 8).
+    \end{enumerate}
+    \item Theorem (warm-up Sharkovsky): If $f:I\to\R$ continuous, $f(I)\subset I$, and $f$ has a period 3 point, then $f$ has a period $n$ point for all $n\in\N$.
+    \begin{itemize}
+        \item Consider the three point loop.
+        \item Let $I_1$ be the interval from $p_0$ to $p_1$, and let $I_2$ be the interval from $p_1$ to $p_2$. We can choose $p_0,p_1,p_2$ WLOG such that $I_1\cap I_2=\{p_1\}$.
+        \item We have $I_1\to I_2$, $I_2\to I_2$, and $I_2\to I_1$.
+        \item We may construct
+        \begin{equation*}
+            I_1 \underbrace{\to I_2}_{\substack{m-1\\\text{times}}} \to I_1
+        \end{equation*}
+        to yield a point of period $m$ by the last lemma.
+        \item Period 1 point: $I_2\to I_2$ apply Lemma 1.
+    \end{itemize}
 \end{itemize}
 
 
