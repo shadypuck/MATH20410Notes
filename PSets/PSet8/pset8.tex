@@ -1,0 +1,59 @@
+\documentclass[../psets.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\leftmark}{Problem Set \thesection}
+\setcounter{section}{7}
+
+\begin{document}
+
+
+
+
+\section{Functions of Several Variables IV / Special Functions}
+\emph{From \textcite{bib:Rudin}.}
+\subsection*{Chapter 8}
+\begin{enumerate}[label={\textbf{\arabic*.}}]
+    \item \marginnote{3/11:}Define
+    \begin{equation*}
+        f(x) =
+        \begin{cases}
+            \e[-1/x^2] & x\neq 0\\
+            0 & x=0
+        \end{cases}
+    \end{equation*}
+    Prove that $f$ has derivatives of all orders at $x=0$, and that $f^{(n)}(0)=0$ for $n=1,2,\dots$.
+    \setcounter{enumi}{5}
+    \item Suppose $f(x)f(y)=f(x+y)$ for all real $x$ and $y$.
+    \begin{enumerate}
+        \item Assuming that $f$ is differentiable and not zero, prove that
+        \begin{equation*}
+            f(x) = \e[cx]
+        \end{equation*}
+        where $c$ is a constant.
+        \item Prove the same thing, assuming only that $f$ is continuous.
+    \end{enumerate}
+    \setcounter{enumi}{9}
+    \item Prove that $\sum_{p\text{ prime}}1/p$ diverges. (This shows that the primes form a fairly substantial subset of the positive integers.) (Hint: Given $N$, let $p_1,\dots,p_k$ be those primes that divide at least one integer less than or equal to $N$. Then
+    \begin{align*}
+        \sum_{n=1}^N\frac{1}{n} &\leq \prod_{j=1}^k\left( 1+\frac{1}{p_j}+\frac{1}{p_j^2}+\cdots \right)\\
+        &= \prod_{j=1}^k\left( 1-\frac{1}{p_j} \right)^{-1}\\
+        &\leq \exp\left( \sum_{j=1}^k\frac{2}{p_j} \right)
+    \end{align*}
+    The last inequality holds because
+    \begin{equation*}
+        (1-x)^{-1} \leq \e[2x]
+    \end{equation*}
+    if $0\leq x\leq 1/2$.)
+\end{enumerate}
+
+
+\subsection*{Chapter 9}
+\begin{enumerate}[label={\textbf{\arabic*.}}]
+    \setcounter{enumi}{19}
+    \item Take $n=m=1$ in the implicit function theorem, and interpret the theorem (as well as its proof) graphically.
+\end{enumerate}
+
+
+
+
+\end{document}
