@@ -1,0 +1,107 @@
+\documentclass[../notes.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
+\setcounter{chapter}{7}
+
+\begin{document}
+
+
+
+
+\chapter{Some Special Functions}
+\section{Notes}
+\begin{itemize}
+    \item \marginnote{3/7:}Plan:
+    \begin{enumerate}
+        \item Go over some of the hits in chapter 8.
+        \item Define sine.
+        \item Power series.
+        \item Exponential functions ($\log$, $\sin$, $\cos$).
+    \end{enumerate}
+    \item Proposition (power series properties): If $\sum_{n=0}^\infty a_nx^n$ converges for all $|x|<R$, and $f:B_R(0)\to\R$ is defined by
+    \begin{equation*}
+        f(x) = \sum_{n=0}^\infty a_nx^n
+    \end{equation*}
+    then:
+    \begin{enumerate}[label={(\alph*)}]
+        \item $f$ is continuous.
+        \begin{itemize}
+            \item From the root test, $\sum_{n=0}^\infty a_nx^n$ is in fact absolutely convergent on $(-R,R)$. Therefore, on any interval $[-R+\epsilon,R-\epsilon]$ ($0<\epsilon<R$), we have
+            \begin{equation*}
+                |a_nx^n| \leq |a_n||R+\epsilon|^n
+            \end{equation*}
+            so by the $M$-test, $\sum_{n=0}^\infty a_nx^n$ converges uniformly on $[-R+\epsilon,R-\epsilon]$. Then since $\sum_{n=0}^\infty a_nx^n$ converges uniformly on $[-R+\epsilon,R-\epsilon]$, we have (a) since all $\sum_{n=0}^Na_nx^n$ are continuous.
+        \end{itemize}
+        \item $f$ is differentiable with $f'(x)=\sum_{n=1}^\infty na_nx^{n-1}$.
+        \begin{itemize}
+            \item (b) follows similarly to (a) by uniform convergence.
+            \item Note that $\limsup\sqrt[n]{|na_n|}=\limsup\sqrt[n]{|a_n|}$ (since $\lim_{n\to\infty}\sqrt[n]{n}=1$).
+            \item Therefore, $\sum_{n=1}^\infty na_nx^{n-1}$ converges on $(-R,R)$.
+        \end{itemize}
+        \item More generally, $f$ is infinitely differentiable with
+        \begin{equation*}
+            f^{(k)}(x) = \sum_{n=k}^\infty\frac{n!}{(n-k)!}a_nx^{n-k}
+        \end{equation*}
+        \begin{itemize}
+            \item Now (c) follows as in the proof of (b).
+        \end{itemize}
+        \item We have the identity
+        \begin{equation*}
+            a_k = \frac{f^{(k)}(0)}{k!}
+        \end{equation*}
+        \begin{itemize}
+            \item (d) follows from (c) by plugging in zero.
+        \end{itemize}
+    \end{enumerate}
+    \item Note that historically, the analysis of power series motivated the development of all of the Chapter 7 theorems; we simply learned those first without motivation to present the proofs in an ordered manner.
+    \item Aside: Consider the exponential function $x^y$ for $x,y\in\R$ with $x\geq 0$.
+    \begin{itemize}
+        \item We define it for natural numbers and integers fairly easily, then rationals, and then for reals as the supremum of exponentials of the entries in the Dedekind cut below $x\in\R$.
+        \item Under this definition, we can confirm our normal exponential rules and then that $x^y$ is continuous.
+    \end{itemize}
+    \item Recall that
+    \begin{equation*}
+        \e = \sum_{n=0}^\infty\frac{1}{n!}
+    \end{equation*}
+    \item So now we are going to construct $E(x)$, $L(x)$, $C(x)$, and $S(x)$ (which are just $\e[x]$, $\ln(x)$, $\cos(x)$, and $\sin(x)$).
+    \item Define $E:\C\to\C$ by
+    \begin{equation*}
+        E(z) = \sum_{n=0}^\infty\frac{z^n}{n!}
+    \end{equation*}
+    \begin{itemize}
+        \item By the proposition, it converges and is continuous for all $z\in\C$.
+        \item For the real numbers, $E$ is differentiable. ($E$ is also complex-differentiable, but we won't go into that).
+    \end{itemize}
+    \item Proposition: $E(z)E(w)=E(z+w)$ for all $z,w\in\C$.
+    \begin{itemize}
+        \item We have by the Cauchy product (Mertens' theorem) that
+        \begin{align*}
+            E(z)E(w) &= \left( \sum_{n=0}^\infty\frac{z^n}{n!} \right)\left( \sum_{n=0}^\infty\frac{w^n}{n!} \right)\\
+            &= \sum_{n=0}^\infty\sum_{k=0}^n\frac{z^kw^{n-k}}{k!(n-k)!}\\
+            &= \sum_{n=0}^\infty\frac{1}{n!}\sum_{k=0}^n\binom{n}{k}z^kw^{n-k}\\
+            &= \sum_{n=0}^\infty\frac{1}{n!}(z+w)^n\\
+            &= E(z+w)
+        \end{align*}
+    \end{itemize}
+    \item Corollary: $E(z)E(-z)=E(0)=1$ for all $z\in\C$.
+    \item $E(x)>0$ for $x\geq 0$.
+    \begin{itemize}
+        \item It follows since $E(z+w)=E(z)E(w)$ that $E(x)>0$ for all $x\in\R$.
+    \end{itemize}
+    \item $\dv*{E}{x}=E$; $E$ is the unique, normalized ($E(0)=1$) function such that this is true.
+    \begin{itemize}
+        \item We can prove this from the power series definition.
+    \end{itemize}
+    \item $E(x)\to\infty$ as $x\to\infty$ and $E(x)\to 0$ as $x\to -\infty$. (Also from the power series definition.)
+    \item $0\leq x_1<x_2$ implies that $E(x_1)<E(x_2)$.
+    \begin{itemize}
+        \item Either from $\dv*{E}{x}=E>0$ or from the power series definition.
+        \item It follows from $E(z+w)=E(z)E(w)$ that $x_1<x_2$ implies $E(x_1)<E(x_2)$.
+    \end{itemize}
+\end{itemize}
+
+
+
+
+\end{document}
