@@ -660,6 +660,52 @@
     \begin{itemize}
         \item Note that the hypotheses of this theorem guarantee that $\mathbf{f}$ is locally 1-1 at each $\vec{x}\in E$, but it may not be 1-1 in $E$ under these conditions (see Exercise 9.17).
     \end{itemize}
+    \item \marginnote{3/7:}Motivating the Implicit Function Theorem.
+    \begin{itemize}
+        \item Suppose $f:\R^2\to\R$ is continuously differentiable.
+        \item Consider the equation $f(x,y)=0$. If $(a,b)$ satisfies $f(a,b)=0$ and $\pdv*{f}{y}\neq 0$, then we can solve for $y$ in terms of $x$ near $(a,b)$.
+        \item Why we must require that $\pdv*{f}{y}\neq 0$:
+        \begin{itemize}
+            \item Suppose that $f(x,y)$ is constant in some neighborhood of $(a,b)$. Then there are infinitely many values of $y$ for each $x$. Consider the line in the plane $x=b$. Since $f$ is constant in a neighborhood of $b$, the intersection of this line with $\{(x,y):f(x,y)=0\}$ will be a segment.
+            \item As another example, consider $f(x,y)=x^2+y^2-1$. $(1,0)$ satisfies $f(1,0)=0$, but $\dv*{f}{y}=2y$, so $(\dv*{f}{y})|_{(x,y)=(1,0)}=0$. And indeed, for any $x$ slightly less than 1, there are two values of $y$ (those on the upper and lower hemicircles) for which $f(x,y)=0$, i.e., there is no one-to-one mapping.
+        \end{itemize}
+    \end{itemize}
+    \item $\bm{(\vec{x},\vec{y})}$: The vector $(x_1,\dots,x_n,y_1,\dots,y_m)\in\R^{n+m}$, where $\vec{x}=(x_1,\dots,x_n)\in\R^n$ and $\vec{y}=(y_1,\dots,y_m)\in\R^m$.
+    \item Every $A\in L(\R^{n+m},\R^n)$ can be split into two linear transformations $A_x,A_y$ defined by
+    \begin{align*}
+        A_x\vec{h} &= A(\vec{h},\bm{0})&
+        A_y\vec{k} &= A(\bm{0},\vec{k})
+    \end{align*}
+    for all $\vec{h}\in\R^n$, $\vec{k}\in\R^m$.
+    \begin{itemize}
+        \item It follows that
+        \begin{equation*}
+            A(\vec{h},\vec{k}) = A_x\vec{h}+A_y\vec{k}
+        \end{equation*}
+    \end{itemize}
+    \item Theorem 9.27: If $A\in L(\R^{n+m},\R^n)$ and $A_x$ invertible, then to every $\vec{k}\in\R^m$ there corresponds a unique $\vec{h}\in\R^n$ such that $A(\vec{h},\vec{k})=\bm{0}$. This $\vec{h}$ can be computed from $\vec{k}$ via the formula
+    \begin{equation*}
+        \vec{h} = -(A_x)^{-1}A_y\vec{k}
+    \end{equation*}
+    \begin{proof}
+        Let $\vec{k}\in\R^m$ be arbitrary. Since $A-x$ is invertible, the vector $\vec{h}=-(A_x)^{-1}A_y\vec{k}$ is well-defined and unique. It follows that
+        \begin{equation*}
+            A(\vec{h},\vec{k}) = A_x\vec{h}+A_y\vec{k}
+            = \bm{0}
+        \end{equation*}
+        as desired.
+    \end{proof}
+    \item Theorem 9.28 (Implicit Function Theorem): If $E\subset\R^{n+m}$ is open, $\mathbf{f}:E\to\R^n\in\mathscr{C}^1$, $(\vec{a},\vec{b})\in E$ satisfies $\mathbf{f}(\vec{a},\vec{b})=0$, $A=\mathbf{f}'(\vec{a},\vec{b})$, and $A_x$ is invertible, then there exist
+    \begin{align*}
+        U &\subset \R^{n+m}&
+        W &\subset \R^m
+    \end{align*}
+    open with $(\vec{a},\vec{b})\in U$ and $\vec{b}\in W$ such that to every $\vec{y}\in W$ there corresponds a unique $\vec{x}$ such that
+    \begin{align*}
+        (\vec{x},\vec{y}) &\in U&
+        \mathbf{f}(\vec{x},\vec{y}) &= \bm{0}
+    \end{align*}
+    and if $\mathbf{g}(\vec{y})=\vec{x}$, then $\vec{g}:W\to\R^n\in\mathscr{C}^1$, $\mathbf{g}(\vec{b})=\vec{a}$, $\mathbf{f}(\mathbf{g}(\vec{y}),\vec{y})=\bm{0}$ for all $\vec{y}\in W$, and $\mathbf{g}'(\vec{b})=-(A_x)^{-1}A_y$.
 \end{itemize}
 
 
