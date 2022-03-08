@@ -706,6 +706,74 @@
         \mathbf{f}(\vec{x},\vec{y}) &= \bm{0}
     \end{align*}
     and if $\mathbf{g}(\vec{y})=\vec{x}$, then $\vec{g}:W\to\R^n\in\mathscr{C}^1$, $\mathbf{g}(\vec{b})=\vec{a}$, $\mathbf{f}(\mathbf{g}(\vec{y}),\vec{y})=\bm{0}$ for all $\vec{y}\in W$, and $\mathbf{g}'(\vec{b})=-(A_x)^{-1}A_y$.
+    \begin{proof}
+        % \begin{itemize}
+        %     \item WTS: There exist open sets $U\subset\R^{n+m}$, $W\subset\R^m$ with these properties: $U$ surrounds $(\vec{a},\vec{b})$, $W$ surrounds $\vec{b}$, for all $\vec{y}\in W$ (i.e., near $\vec{b}$), there exists a unique $\vec{x}$ such that $(\vec{x},\vec{y})\in U$ and $\mathbf{f}(\vec{x},\vec{y})=\bm{0}$.
+        %     \item Uniqueness implies a 1-1 relationship. Specifically, there needs to be a 1-1 relationship between $\vec{y}$'s in $W$ and $\vec{x}$'s that make $\mathbf{f}(\vec{x},\vec{y})=\bm{0}$.
+        %     \item $U\subset\R^{n+m}$, and the inverse function theorem only works between domains of the same dimension. Thus, to apply it, we need a function from the larger of the dimensions of $U,W$ to itself, namely from $\R^{n+m}\to\R^{n+m}$.
+        %     \item A 1-1 relationship between $\vec{y}$'s in $W$ and $\vec{x}$'s that make $\mathbf{f}(\vec{x},\vec{y})=\bm{0}$ is equivalent to a 1-1 relationship between $(\bm{0},\vec{y})$'s in $\R^{n+m}$ and $(\vec{x},\vec{y})$'s in $\R^{n+m}$ that make $\mathbf{f}(\vec{x},\vec{y})=\bm{0}$.
+        %     \item Let $\mathbf{F}:\R^{n+m}\to\R^{n+m}$. We need $\mathbf{F}$ to be $\mathscr{C}^1$, we need $\mathbf{F}'(\vec{a},\vec{b})$ invertible, and we need $(\vec{z},\vec{b})=\mathbf{F}(\vec{a},\vec{b})$ (i.e., we need to be able to extract $\vec{b}$).
+        %     \item We need $\mathbf{F}(\vec{a},\vec{b})=\mathbf{F}(\vec{a}',\vec{b})$ so that we can derive our 1-1 mapping easily. In particular, we need $\mathbf{F}(\vec{x},\vec{y})=(\vec{z},\vec{y})$ to imply $f(\vec{x},\vec{y})=\bm{0}$. One good way to do this is to let $\mathbf{F}(\vec{x},\vec{y})=(\mathbf{f}(\vec{x},\vec{y}),\vec{y})$.
+        % \end{itemize}
+
+        % \begin{itemize}
+        %     \item WTS: $\mathbf{g}'(\vec{b})\vec{z}=-(A_x)^{-1}A_y\vec{z}$ for all $\vec{z}\in\R^m$.
+        %     \item WTS: $A_x\mathbf{g}'(\vec{b})\vec{z}+A_y\vec{z}=\bm{0}$ for all $\vec{z}\in\R^m$.
+        %     \item WTS: $A(\mathbf{g}'(\vec{b})\vec{z},\vec{z})=\bm{0}$ for all $\vec{z}\in\R^m$.
+        %     \item $\mathbf{f}(\mathbf{G}(\bm{0},\vec{y}))=\bm{0}$ for all $\vec{y}$.
+        %     \item Thus, $\mathbf{f}'(\mathbf{G}(\bm{0},\vec{y}))\cdot\mathbf{G}'(\bm{0},\vec{y})=0$.
+        %     \item Thus, $\mathbf{f}'(\vec{a},\vec{b})\cdot\mathbf{G}'(\bm{0},\vec{b})=0$
+        %     \item Thus, $A(\mathbf{g}'(\vec{b}),I)=0$.
+        % \end{itemize}
+
+
+        \marginnote{3/8:}Define $\mathbf{F}:E\to\R^{n+m}$ by
+        \begin{equation*}
+            \mathbf{F}(\vec{x},\vec{y}) = (\mathbf{f}(\vec{x},\vec{y}),\vec{y})
+        \end{equation*}
+        for all $(\vec{x},\vec{y})\in E$. Since $\mathbf{f}\in\mathscr{C}^1$ and $\vec{y}\mapsto\vec{y}$ is a $\mathscr{C}^1$-mapping as the identity function, $\mathbf{F}\in\mathscr{C}^1$.\par
+        To prove that $\mathbf{F}'(\vec{a},\vec{b})=B$ is invertible, Theorem 9.5 tells us that it will suffice to show that it is 1-1. To do so, we will verify that $B(\vec{x},\vec{y})=\bm{0}$ iff $(\vec{x},\vec{y})=\bm{0}$. The forward case follows since $B$ is a linear transformation. For the reverse case, however, we must first note that $B(\vec{x},\vec{y})=(A(\vec{x},\vec{y}),\vec{y})$, which follows from the fact that $\mathbf{F}$ acts like $\mathbf{f}$ on its first $n$ dimensions and then like the identity transformation thereafter (recall that the total derivative of a linear transformation is itself). With this established, the equation $B(\vec{x},\vec{y})=\bm{0}$ tells us that $A(\vec{x},\vec{y})=\bm{0}$ and $\vec{y}=\bm{0}$. Combining these two results, we have that $A(\vec{x},\bm{0})=\bm{0}$. But by Theorem 9.27, it follows that $\vec{x}=-(A_x)^{-1}A_y\bm{0}=\bm{0}$. Therefore, $(\vec{x},\vec{y})=\bm{0}$, as desired.\par
+        Having established that $E\subset\R^{n+m}$ is open, $\mathbf{F}:E\to\R^{n+m}\in\mathscr{C}^1$, $\mathbf{F}'(\vec{a},\vec{b})$ is invertible, and $(\bm{0},\vec{b})=\mathbf{F}(\vec{a},\vec{b})$, we have by Inverse Function Theorem that there exist open sets $U,V\in\R^{n+m}$ with $(\vec{a},\vec{b})\in U$ and $(\bm{0},\vec{b})\in V$ such that $\mathbf{F}$ is 1-1 on $U$ and $\mathbf{F}(U)=V$. Let
+        \begin{equation*}
+            W = \{\vec{y}\in\R^m:(\bm{0},\vec{y})\in V\}
+        \end{equation*}
+        The openness of $W$ follows from the fact that $V$ is open (and, technically, that the projection operator is continuous). It also clearly follows from the definition of $W$ and the fact that $(\bm{0},\vec{b})\in V$ that $\vec{b}\in W$. Now let $\vec{y}\in W$ be arbitrary. Since $\mathbf{F}$ is 1-1 on $U$ and $\mathbf{F}(U)=V$, there exists a unique $(\vec{x},\vec{y})\in U$ such that $\mathbf{F}(\vec{x},\vec{y})=(\bm{0},\vec{y})$. Since $\mathbf{F}(\vec{x},\vec{y})=(\mathbf{f}(\vec{x},\vec{y}),\vec{y})$, it follows that $\mathbf{f}(\vec{x},\vec{y})=\bm{0}$.\par\medskip
+        We formalize the notion that to every $\vec{y}\in W$ we can identify a unique $\vec{x}\in\R^n$ by the above rule by defining the function $\mathbf{g}:W\to\R^n$ such that $\mathbf{g}(\vec{y})=\vec{x}$ for all $\vec{y}\in W$. It clearly follows by the definition of the function that $\mathbf{g}(\vec{b})=\vec{a}$ and that $\mathbf{f}(\mathbf{g}(\vec{y}),\vec{y})=\bm{0}$ for all $\vec{y}\in W$.\par
+        To verify that $\mathbf{g}\in\mathscr{C}^1$, note that the IVT also implies that if $\mathbf{G}:V\to U$ is such that $\mathbf{G}(\mathbf{F}(\vec{x},\vec{y}))=(\vec{x},\vec{y})$, then $\mathbf{G}\in\mathscr{C}^1$. Since $\mathbf{G}(\bm{0},\vec{y})=(\mathbf{g}(\vec{y}),\vec{y})$, it follows that $\mathbf{g}\in\mathscr{C}^1$.\par
+        Since $\mathbf{g}\in\mathscr{C}^1$, we know that $\mathbf{g}'(\vec{b})$ is well-defined.\par
+        By the definition of $\mathbf{f}$ and $\mathbf{G}$, we know that $\mathbf{f}(\mathbf{G}(\bm{0},\vec{y}))=\bm{0}$ for all $\vec{y}\in W$. To take the derivative of the above expression with respect to changes in $\vec{y}$ only, define $\bm{\Phi}:W\to\R^{n+m}$ by $\bm{\Phi}(\vec{y})=\mathbf{G}(\bm{0},\vec{y})$. Thus, since $\mathbf{f}\circ\bm{\Phi}$ is constant on its domain, the chain rule implies that
+        \begin{equation*}
+            \mathbf{f}'(\bm{\Phi}(\vec{y}))\cdot\bm{\Phi}'(\vec{y}) = 0
+        \end{equation*}
+        for all $\vec{y}\in W$. In particular,
+        \begin{align*}
+            0 &= \mathbf{f}'(\bm{\Phi}(\vec{b}))\cdot\bm{\Phi}'(\vec{b})\\
+            &= \mathbf{f}'(\vec{a},\vec{b})\cdot(\mathbf{g}(\vec{b}),\vec{b})'\\
+            &= A\cdot(\mathbf{g}'(\vec{b}),I)\\
+            &= A_x\mathbf{g}'(\vec{b})+A_yI\\
+            \mathbf{g}'(\vec{b}) &= -(A_x)^{-1}A_y
+        \end{align*}
+        as desired.
+    \end{proof}
+    \item \textcite{bib:Rudin} discusses a number of topics from linear algebra.
+    \item \textbf{Second-order partial derivative} (of $f$): A partial derivative of one of the partial derivatives of $f$, if it exists. \emph{Denoted by} $\bm{D_{ij}f}$. \emph{Given by}
+    \begin{equation*}
+        D_{ij}f = D_iD_jf
+    \end{equation*}
+    \item \textbf{Class $\pmb{\mathscr{C}^2}$} (function $f$): A function $f$ for which $D_{ij}f$ is continuous on $E$ for all $1\leq i,j\leq n$.
+    \item Theorem 9.40: If $E\subset\R^2$ open, $f:E\to\R$, $D_1f,D_{21}f$ exist at every $(x,y)\in E$, $Q\subset E$ a closed rectangle with sides parallel to the coordinate axes having $(a,b)$ and $(a+h,b+k)$ as opposite vertices (for $h,k\neq 0$), and
+    \begin{equation*}
+        \Delta(f,Q) = f(a+h,b+k)-f(a+h,b)-f(a,b+k)+f(a,b)
+    \end{equation*}
+    then there exists $(x,y)\in\text{int}\,Q$ such that
+    \begin{equation*}
+        \Delta(f,Q) = hk(D_{21}f)(x,y)
+    \end{equation*}
+    \item Theorem 9.41: If $E\subset\R^2$ is open, $f:E\to\R$, $D_1f,D_{21}f,D_2f$ exist on $E$, and $D_{21}f$ is continuous at $(a,b)\in E$, then $D_{12}f$ exists at $(a,b)$ and
+    \begin{equation*}
+        (D_{12}f)(a,b) = (D_{21}f)(a,b)
+    \end{equation*}
+    \item Corollary: $D_{21}f=D_{12}f$ if $f\in\mathscr{C}^2(E)$.
 \end{itemize}
 
 
