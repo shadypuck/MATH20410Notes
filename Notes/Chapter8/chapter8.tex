@@ -99,6 +99,118 @@
         \item Either from $\dv*{E}{x}=E>0$ or from the power series definition.
         \item It follows from $E(z+w)=E(z)E(w)$ that $x_1<x_2$ implies $E(x_1)<E(x_2)$.
     \end{itemize}
+    \item \marginnote{3/9:}Plan:
+    \begin{enumerate}
+        \item Keep going with $E$, $L$, $C$, and $S$.
+        \item Prove the fundamental theorem of algebra.
+    \end{enumerate}
+    \item Define
+    \begin{equation*}
+        E(z) = \sum_{n=0}^\infty\frac{z^n}{n!}
+    \end{equation*}
+    \begin{itemize}
+        \item Recall that $E(z+w)=E(z)E(w)$.
+    \end{itemize}
+    \item Theorem: $E(x)=\e[x]$ for all $x\in\R$.
+    \begin{itemize}
+        \item $E(1)=\e[1]$ (by definition).
+        \item $E(n)=\e[n]$ (by $E(z+w)=E(z)E(w)$).
+        \item $[E(p/q)]^q=E(p)=\e[p]$ (by $E(z+w)=E(z)E(w)$).
+        \item $E(p/q)=\e[p/q]$ for all $p/q\in\Q$.
+        \item $E(x)=\e[x]$ for all $x\in\R$ (since both LHS and RHS are continuous functions that agree on $\Q$).
+    \end{itemize}
+    \item Briefly: $E:\R\to\R^+$ is a strictly increasing surjective function. Thus, we have an inverse function $L:\R^+\to\R$.
+    \item Theorem: $L$ is differentiable (and therefore continuous).
+    \begin{itemize}
+        \item Since $E'=E>0$ everywhere, we may apply the inverse function theorem at every point.
+    \end{itemize}
+    \item Now by the chain rule, $E(L(x))=x$ for all $x\in\R^+$, so taking derivatives yields
+    \begin{align*}
+        E'(L(x))L'(x) &= 1\\
+        E(L(x))L'(x) &= 1\\
+        xL'(x) &= 1\\
+        L'(x) &= \frac{1}{x}
+    \end{align*}
+    \item Proposition:
+    \begin{enumerate}
+        \item $L(uw)=L(u)+L(w)$.
+        \item $L(x)=\int_1^xt^{-1}\dd{t}$.
+    \end{enumerate}
+    \item Trig functions:
+    \begin{align*}
+        C(x) &= \frac{1}{2}[E(ix)+E(-ix)]&
+        S(x) &= \frac{1}{2i}[E(ix)-E(-ix)]
+    \end{align*}
+    \begin{itemize}
+        \item You can use these definitions to prove trig identities, having derived them geometrically.
+    \end{itemize}
+    \item Proposition: If $x\in\R$, then $C(x),S(x)\in\R$.
+    \begin{itemize}
+        \item Key observation: $E(\bar{z})=\overline{E(z)}$.
+        \item We have
+        \begin{align*}
+            \overline{C(x)} &= \frac{1}{2}[\overline{E(ix)}+\overline{E(-ix)}]\\
+            &= \frac{1}{2}[E(-ix)+E(ix)]\\
+            &= C(x)
+        \end{align*}
+        \item Symmetric for $S(x)$.
+    \end{itemize}
+    \item Note that we could equally well define $C,S$ by
+    \begin{align*}
+        C(x) &= \sum_{k=0}^\infty\frac{(-1)^k}{(2k)!}x^{2k}&
+        S(x) &= \sum_{k=0}^\infty\frac{(-1)^k}{(2k+1)!}x^{2k+1}
+    \end{align*}
+    \item Proposition: $E(ix)=C(x)+iS(x)$.
+    \item Proposition: $C,S$ are differentiable with
+    \begin{align*}
+        C'(x) &= -S(x)&
+        S'(x) &= C(x)
+    \end{align*}
+    \item Proposition: For all $x\in\R$, $|E(ix)|=1$.
+    \begin{itemize}
+        \item We have that
+        \begin{equation*}
+            |E(ix)|^2 = E(ix)\overline{E(ix)}
+            = E(ix)E(-ix)
+            = E(0)
+            = 1
+        \end{equation*}
+        \item Taking square roots of both sides yields the desired result.
+    \end{itemize}
+    \item The above result proves that the imaginary axis maps onto the unit circle in the complex plane.
+    \item We now define $\pi$ and all that.
+    \begin{itemize}
+        \item Goal: Show that for all $z\in\C$ with $|z|=1$, there exists a unique $\theta\in[0,2\pi)$ such that $\e[i\theta]=z$. Further, $E(ix)$ has period $2\pi$.
+    \end{itemize}
+    \item Proposition: $C(x)^2+S(x)^2=1$.
+    \begin{itemize}
+        \item Use $E(ix)=C(x)+iS(x)$ and $|E(ix)|=1$.
+    \end{itemize}
+    \item Proposition: There exists some positive number $x$ such that $C(x)=0$.
+    \begin{itemize}
+        \item Suppose (contradiction): $C(x)>0$ for all $x>0$ (since $C(0)=1$).
+        \item Thus, $S'(x)>0$ for all $x>0$.
+        \item Consequently, given $0<x<y$,
+        \begin{equation*}
+            S(x)(y-x) < \int_x^yS(t)\dd{t}
+            = C(x)-C(y)
+            \leq 2
+        \end{equation*}
+        \item But we can choose $y$ large enough to make $S(x)(y-x)>2$, a contradiction.
+    \end{itemize}
+    \item $\bm{\pi}$: The real number such that $\pi/2$ is the unique smallest positive real number with $C(\pi/2)=0$.
+    \begin{itemize}
+        \item We know that a unique smallest number exists because since $C(0)=1$ and $C$ is continuous, there exists a neighborhood around 0 where $C$ is nonzero.
+    \end{itemize}
+    \item Proposition: $S(\pi/2)=1$.
+    \begin{itemize}
+        \item We have
+        \begin{align*}
+            C(\pi/2)^2+S(\pi/2)^2 &= 1\\
+            S(\pi/2) &= \pm 1
+        \end{align*}
+        \item Furthermore, since $S(0)=0$ and $S'(x)=C(x)$ is positive on $[0,\pi/2)$, we know that $S$ is increasing and thus $S(\pi/2)=+1$.
+    \end{itemize}
 \end{itemize}
 
 
