@@ -211,6 +211,71 @@
         \end{align*}
         \item Furthermore, since $S(0)=0$ and $S'(x)=C(x)$ is positive on $[0,\pi/2)$, we know that $S$ is increasing and thus $S(\pi/2)=+1$.
     \end{itemize}
+    \item \marginnote{3/11:}Analysis I:
+    \begin{itemize}
+        \item $\R$.
+        \item Metric spaces.
+        \item Sequences and series (absolute vs. conditional).
+        \item Continuity.
+    \end{itemize}
+    \item Analysis II:
+    \begin{itemize}
+        \item Differentiability (MVTs and all familiar derivative properties).
+        \item Integration (fundamental properties and FTC).
+        \item Sequences of functions (uniform vs. pointwise; uniform limit of cont. is cont., derivative of the limit is the limit of the derivatives, integral of the limit is the limit of the integrals, equicontinuity stuff).
+        \item More differentiation (but on $\R^n\to\R^m$; basic properties [relation between the total and partial derivative(s)], inverse function theorem, implicit function theorem).
+        \item Sharkovsky (won't be on the final).
+        \item $\exp$, $\log$, $\sin$, and $\cos$.
+    \end{itemize}
+    \item The \textbf{fundamental domain} of $E(z)$ is $\R\times[0,2\pi i]\subset\C$. Above or below that, $E(z)$ is just periodic.
+    \begin{itemize}
+        \item Note that if $z=a+bi$, then $E(z)=E(a)E(bi)$, and we can calculate both of these terms.
+    \end{itemize}
+    \item Proposition: Given $z\in\C$ with $|z|=1$, there exists a unique $\theta\in[0,2\pi)$ such that $\e[i\phi]=z$.
+    \item Proves that the circumference of the unit circle is $2\pi$ as in \textcite{bib:Rudin}.
+    \item Theorem (Fundamental theorem of algebra): $\C$ is algebraically closed. If $p(z)=\sum_{i=0}^na_iz^i$ is a complex coefficient, complex polynomial, then there exists some $z_0\in\C$ such that $p(z_0)=0$.
+    \begin{itemize}
+        \item Assume WLOG that $a_n=1$.
+        \item Plan: look at $\mu=\inf_{z\in\C}|p(z)|$ and show that there exists some $z_0\in\C$ such that $|p(z_0)|=\mu$, and then $\mu=0$.
+        \item $\mu=\inf_{z\in\C}|p(z)|$.
+        \begin{itemize}
+            \item We're going for "outside of a big enough ball, $p(z)$ is large [i.e., can't go back to zero]." Let the radius of this ball be $R$.
+            \item Just look at $z\in\C$ such that $|z|=R$.
+            \item We have
+            \begin{align*}
+                |p(z)| &= |z^n+z_{n-1}z^{n-1}+\cdots+|a_0|\\
+                &\geq R^n-|a_{n-1}|R^{n-1}-\cdots-|a_0|\\
+                &= R^n[1-|a_{n-1}|R^{-1}-\cdots-|a_0|R^{-n}]
+            \end{align*}
+            \item As $R\to\infty$, $R^n\to\infty$ but everything else in the above expression goes to zero. This means that the overall expression goes to infinity ($R^n$ dominates).
+            \item In particular, $|p(z)|>\mu+100$ in the complement of some $\overline{B}_R(0)$.
+            \item Thus,
+            \begin{align*}
+                \mu &= \inf_{z\in\overline{B}_R(0)}|p(z)|\\
+                &= |p(z_0)|
+            \end{align*}
+            for some $z_0\in\overline{B}_R(0)$ by the extreme value theorem.
+        \end{itemize}
+        \item $\mu=0$.
+        \begin{itemize}
+            \item Suppose (contradiction): $p(z_0)\neq 0$.
+            \item Trick: Define
+            \begin{equation*}
+                Q(z) = \frac{p(z+z_0)}{p(z_0)}
+            \end{equation*}
+            \item $Q(0)=1$ and $Q(z)\geq 1$ (this second statement is what we're gonna contradict).
+            \item Write
+            \begin{equation*}
+                Q(z) = 1+b_kz^k+\cdots+b_nz^n
+            \end{equation*}
+            \item Goal: For $r$ sufficiently small ($r>0$), the right term below is less than $|b_k|$, so it is positive, meaning that $Q$ is less than or equal to 1 minus a positive number, i.e., $Q<1$, a contradiction.
+            \begin{align*}
+                |Q(r\e[i\theta])| &\leq 1-r^k[|b_k|-r|b_{k+1}|-\cdots-r^{n-k}|b_n|]
+            \end{align*}
+        \end{itemize}
+        \item Proof of goal: There exists $\theta\in[0,2\pi)$ such that $b_k\e[ik\theta]=-|b_k|$. Take $r$ small enough so $r^k|b_k|<1$, so by the triangle inequality together with the fact that $|1+b_kr^k\e[ik\theta]|=1-r^k|b_k|$.
+    \end{itemize}
+    \item Corollary: Polynomials over $\C$ factor completely.
 \end{itemize}
 
 
