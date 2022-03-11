@@ -215,5 +215,156 @@
 
 
 
+\section{Chapter 8: Some Special Functions}
+\begin{itemize}
+    \item \marginnote{3/10:}\textbf{Analytic function}: A function that can be represented by a power series.
+    \item Theorem 8.1: If
+    \begin{equation*}
+        f(x) = \sum_{n=0}^\infty c_nx^n
+    \end{equation*}
+    converges for $|x|<R$, then\dots
+    \begin{enumerate}
+        \item $f$ converges uniformly on $[-R+\epsilon,R-\epsilon]$ for all $\epsilon>0$;
+        \item $f$ is continuous and differentiable on $(-R,R)$;
+        \item We have the identity
+        \begin{equation*}
+            f'(x) = \sum_{n=1}^\infty nc_nx^{n-1}
+        \end{equation*}
+        for all $|x|<R$.
+    \end{enumerate}
+    \item Corollary: If $f$ satisfies the hypotheses of Theorem 8.1, then $f$ has derivatives of all orders in $(-R,R)$ given by
+    \begin{equation*}
+        f^{(k)}(x) = \sum_{n=k}^\infty\frac{n!}{(n-k)!}c_nx^{n-k}
+    \end{equation*}
+    In particular,
+    \begin{equation*}
+        f^{(k)}(0) = k!c_k
+    \end{equation*}
+    for all $k\in\N_0$.
+    \item Note that there exist functions $f$ that have derivatives of all orders at a point but cannot be expanded in a power series at that point (see Exercise 8.1).
+    \item Theorem 8.2: If $\sum c_n$ converges and
+    \begin{equation*}
+        f(x) = \sum_{n=0}^\infty c_nx^n
+    \end{equation*}
+    for $|x|<1$, then
+    \begin{equation*}
+        \lim_{x\to 1}f(x) = \sum_{n=0}^\infty c_n
+    \end{equation*}
+    \item Theorem 8.3: If $\{a_{ij}\}$ ($i,j\in\N$) is a double sequence, $\{b_i\}$ is defined by
+    \begin{equation*}
+        b_i = \sum_{j=1}^\infty|a_{ij}|
+    \end{equation*}
+    for all $i\in\N$, and $\sum b_i$ converges, then
+    \begin{equation*}
+        \sum_{i=1}^\infty\sum_{j=1}^\infty a_{ij} = \sum_{j=1}^\infty\sum_{i=1}^\infty a_{ij}
+    \end{equation*}
+    \item Theorem 8.4: If
+    \begin{equation*}
+        f(x) = \sum_{n=0}^\infty c_nx^n
+    \end{equation*}
+    converges for $|x|<R$ and $a\in(-R,R)$, then $f$ can be expanded in a power series about $x=a$ which converges in $|x-a|<R-|a|$ and
+    \begin{equation*}
+        f(x) = \sum_{n=0}^\infty\frac{f^{(n)}(a)}{n!}(x-a)^n
+    \end{equation*}
+    for all $|x-a|<R-|a|$.
+    \begin{itemize}
+        \item "This is an extension of Theorem 5.15 and is als known as Taylor's theorem" \parencite[176]{bib:Rudin}.
+    \end{itemize}
+    \item Theorem 8.5: If $\sum a_nx^n,\sum b_nx^n$ converge on $S=(-R,R)$, $E$ is the set of all $x\in S$ at which
+    \begin{equation*}
+        \sum_{n=0}^\infty a_nx^n = \sum_{n=0}^\infty b_nx^n
+    \end{equation*}
+    and $E$ has a limit point in $S$, then $a_n=b_n$ for $n\in\N_0$. Hence, the above equation holds for all $x\in S$.
+    \item $\bm{E}$: The function defined as follows for all $z\in\C$. \emph{Given by}
+    \begin{equation*}
+        E(z) = \sum_{n=0}^\infty\frac{z^n}{n!}
+    \end{equation*}
+    \item We have that $E(z+w)=E(z)E(w)$ and thus $E(z)E(-z)=E(z-z)=E(0)=1$ for all $z,w\in\C$.
+    \item Thus, $E(x)=1/E(-x)>0$ for all $x\in\R$.
+    \item It follows since $E(x)\to\infty$ as $x\to\infty$ that $E(x)\to 0$ as $x\to -\infty$.
+    \item $0<x<y$ implies $E(x)<E(y)$.
+    \item We have that
+    \begin{equation*}
+        E'(z) = \lim_{h\to 0}\frac{E(z+h)-E(z)}{h}
+        = E(z)\lim_{h\to 0}\frac{E(h)-1}{h}
+        = E(z)
+    \end{equation*}
+    \item \textcite{bib:Rudin} proves that $E(x)=\e[x]$ for all $x\in\R$ as in class.
+    \item Theorem 8.6: Let $\e[x]$ be defined on $\R$ as above. Then
+    \begin{enumerate}[label={(\alph*)}]
+        \item $\e[x]$ is continuous and differentiable for all $x$.
+        \item $(\e[x])'=\e[x]$.
+        \item $\e[x]$ is a strictly increasing function of $x$, and $\e[x]>0$.
+        \item $\e[x+y]=\e[x]\e[y]$.
+        \item $\e[x]\to\infty$ as $x\to\infty$ and $\e[x]\to 0$ as $x\to -\infty$.
+        \item $\lim_{x\to\infty}x^n\e[-x]=0$ for all $n$.
+    \end{enumerate}
+    \item Theorem 8.6f shows that $\e[x]$ tends to infinity faster than any power of $x$.
+    \item $\bm{L}$: The inverse of $E$, implied to exist by the IVT since $E$ is strictly increasing and differentiable on $\R$.
+    \item Differentiating $L(E(x))=x$ with the chain rule reveals that $L'(y)=1/y$.
+    \item Since $L(1)=L(E(0))=0$, the FTC implies that $L(y)=\int_1^y\dd{x}/x$.
+    \item If $E(x)=u$ and $E(y)=v$, then
+    \begin{align*}
+        L(uv) &= L(E(x)E(y))\\
+        &= L(E(x+y))\\
+        &= x+y\\
+        &= L(u)+L(v)
+    \end{align*}
+    \item We define $x^n=E(nL(x))$ for all $x>0$ and $n\in\N$, which we can extend analogously to before to $x^y$ for any $x>0$ and $y\in\R$.
+    \item In the same vein, we have that
+    \begin{equation*}
+        (x^\alpha)' = E(\alpha L(x))\cdot\frac{\alpha}{x}
+        = \alpha x^{\alpha-1}
+    \end{equation*}
+    \item We also have $\lim_{x\to\infty}x^{-\alpha}\log x=0$, i.e., that $\log x\to\infty$ slower than any positive power of $x$.
+    \item We define
+    \begin{align*}
+        C(x) &= \frac{1}{2}[E(ix)+E(-ix)]&
+        S(x) &= \frac{1}{2i}[E(ix)-E(-ix)]
+    \end{align*}
+    \item We know that $E(\bar{z})=\overline{E(z)}$, so $C(x),S(x)$ are real for real $x$.
+    \item Also, $E(ix)=C(x)+iS(x)$.
+    \item We have $|E(ix)|=1$ for all $x\in\R$.
+    \item We have $C(0)=1$ and $S(0)=0$.
+    \item We have
+    \begin{align*}
+        C'(x) &= -S(x)&
+        S'(x) &= C(x)
+    \end{align*}
+    \item \textcite{bib:Rudin} proves, as in class, that there exist positive numbers $x$ for which $C(x)=0$.
+    \item A smallest positive number such that $C(x)=0$ exists since $f^{-1}(\{0\})$ is closed as the preimage of a closed set under a continuous function.
+    \item We can prove as in class that $C(\pi/2)=0$ and $S(\pi/2)=1$. It follows that
+    \begin{equation*}
+        E(i\frac{\pi}{2}) = i
+    \end{equation*}
+    so that, by the addition formula, $E(2\pi i)=1$, and hence $E(z+2\pi i)=E(z)$ by the addition formula for all $z\in\C$.
+    \item Theorem 8.7:
+    \begin{enumerate}[label={(\alph*)}]
+        \item $E$ is periodic with period $2\pi i$.
+        \item $C,S$ are periodic with period $2\pi$.
+        \item $0<t<2\pi$ implies that $E(it)\neq 1$.
+        \item $z\in\C$ with $|z|=1$ implies there is a unique $t\in[0,2\pi)$ with $E(it)=z$.
+    \end{enumerate}
+    \item Calculating the circumference of a circle.
+    \begin{itemize}
+        \item Consider the curve $\gamma:[0,2\pi]\to\C$ defined by
+        \begin{equation*}
+            \gamma(t) = E(it)
+        \end{equation*}
+        \item This is a simple closed curve in the plane whose range is exactly the unit circle in the plane.
+        \item Thus, since $\gamma'(t)=iE(it)$, the length of $\gamma$ (i.e., the circumference of the unit circle) is
+        \begin{equation*}
+            \int_0^{2\pi}|\gamma'(t)|\dd{t} = 2\pi
+        \end{equation*}
+        \item This shows that $\pi$ has the same geometric significance in analysis with which it was originally defined in geometry.
+    \end{itemize}
+    \item Similarly, we can consider the triangle with vertices at $z_1=0$, $z_2=\gamma(t_0)$, and $z_3=C(t_0)$ to recover the original geometric definition of $C(t)$.
+    \begin{itemize}
+        \item We can do the same with $S$.
+    \end{itemize}
+\end{itemize}
+
+
+
 
 \end{document}
