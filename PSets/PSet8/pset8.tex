@@ -22,6 +22,43 @@
         \end{cases}
     \end{equation*}
     Prove that $f$ has derivatives of all orders at $x=0$, and that $f^{(n)}(0)=0$ for $n=1,2,\dots$.
+    \begin{proof}
+        We induct on $n$. For the base case $n=1$, we have that
+        \begin{align*}
+            f^{(1)}(0) &= \lim_{h\to 0}\frac{f^{(0)}(h)-f^{(0)}(0)}{h}\\
+            &= \lim_{h\to 0}\frac{\e[-1/h^2]}{h}\\
+            &= \lim_{h\to 0}h^{-1}\e[-1/h^2]
+        \end{align*}
+        Let $x=h^{-2}$. Then $h=x^{-1/2}$. Additionally, as $h\to 0$, $x\to\infty$. Thus, the above limit is equal to
+        \begin{equation*}
+            \lim_{x\to\infty}x^{1/2}\e[-x]
+        \end{equation*}
+        which equals zero by Theorem 8.6e. Furthermore, we can calculate by the rules of derivatives that if $x\neq 0$, then
+        \begin{equation*}
+            f^{(1)}(x) = 2x^{-3}\e[-1/x^2]
+        \end{equation*}
+        Thus, $f^{(1)}(x)$ is of the form $\sum_{i=1}^ma_ix^{-b_i}\e[-1/x^2]$ where $a_i,b_i\in\N_0$ for all $i=1,\dots,m$\footnote{Although this expression may look a bit esoteric, one can readily confirm that $f=f^{(0)}$ satisfies it with $m=1$, $a_1=1$, $b_1=0$ and $f'=f^{(1)}$ satisfies it with $m=1$, $a_1=2$, $b_1=3$.}. Now suppose inductively that
+        \begin{equation*}
+            f^{(n-1)}(x) =
+            \begin{cases}
+                0 & x=0\\
+                \sum_{i=1}^ma_ix^{-b_i}\e[-1/x^2] & x\neq 0
+            \end{cases}
+        \end{equation*}
+        Then
+        \begin{align*}
+            f^{(n)}(0) &= \lim_{h\to 0}\frac{f^{(n-1)}(h)-f^{(n-1)}(0)}{h}\\
+            &= \lim_{h\to 0}\frac{\sum_{i=1}^ma_ih^{-b_i}\e[-1/h^2]}{h}\\
+            &= \sum_{i=1}^ma_i\lim_{h\to 0}h^{-b_i-1}\e[-1/h^2]\\
+            &= \sum_{i=1}^ma_i\cdot 0\tag*{Theorem 8.6e}\\
+            &= 0
+        \end{align*}
+        Furthermore, we can calculate by the rules of derivatives that if $x\neq 0$, then
+        \begin{equation*}
+            f^{(n)}(x) = \sum_{i=1}^ma_i\left[ -b_ix^{-b_i-1}\e[-1/x^2]+2x^{-b_i-3}\e[-1/x^2] \right]
+        \end{equation*}
+        which is of the form $\sum_{i=1}^ma_ix^{-b_i}\e[-1/x^2]$, as desired.
+    \end{proof}
     \setcounter{enumi}{5}
     \item Suppose $f(x)f(y)=f(x+y)$ for all real $x$ and $y$.
     \begin{enumerate}
@@ -30,7 +67,17 @@
             f(x) = \e[cx]
         \end{equation*}
         where $c$ is a constant.
+        \begin{proof}
+            By Theorem 5.2, if $f$ is differentiable, then $f$ is continuous. Thus, $f(x)=\e[cx]$ for some $c$ by part (b).
+        \end{proof}
         \item Prove the same thing, assuming only that $f$ is continuous.
+        \begin{proof}
+            $f(0)^2=f(0)$, so $f(0)=0,1$. If $f(0)=0$, then $f(x)=f(x)f(0)=0$ for all $x$. But $f$ is nonzero by hypothesis, so $f(0)=1$.
+
+            $f(x)f(-x)=f(0)=1$, so $f(x)\neq 0$ for any $x$. Continuity/IVT implies that $f$ is strictly positive.
+
+            $f$ can be strictly increasing, constant, or strictly decreasing.
+        \end{proof}
     \end{enumerate}
     \setcounter{enumi}{9}
     \item Prove that $\sum_{p\text{ prime}}1/p$ diverges. (This shows that the primes form a fairly substantial subset of the positive integers.) (Hint: Given $N$, let $p_1,\dots,p_k$ be those primes that divide at least one integer less than or equal to $N$. Then
@@ -44,6 +91,9 @@
         (1-x)^{-1} \leq \e[2x]
     \end{equation*}
     if $0\leq x\leq 1/2$.)
+    \begin{proof}
+        Since the harmonic series diverges, we can make $\sum_{n=1}^N1/n$ as big as necessary. This combined with the fact that $\log$ is strictly increasing proves that if we suppose the $\sum_{p\text{ prime}}1/p$ is bounded above by some $M$, then there exists $N$ such that $\log(\sum_{n=1}^N1/n)>2M$. For this $N$, then, the inequality proves that $2\sum_{j=1}^k1/p_k$ is necessarily greater, as desired.
+    \end{proof}
 \end{enumerate}
 
 
@@ -51,6 +101,22 @@
 \begin{enumerate}[label={\textbf{\arabic*.}}]
     \setcounter{enumi}{19}
     \item Take $n=m=1$ in the implicit function theorem, and interpret the theorem (as well as its proof) graphically.
+    \begin{proof}
+        If $n=m=1$, then $f(x,y)=0$ describes a set of points in the plane (namely $f^{-1}(\{0\})$). Since $f$ is continuous, this set could contain one or more connected lines and/or one or more entire connected regions. However, we are only interested in places where $f^{-1}(\{0\})$ is a connected line. We identify such places with a condition on the partial derivative of $f$, namely that it not equal to zero with respect to one coordinate or the other. WLOG, let this coordinate be $y$. Indeed, if $(a,b)$ makes $f(a,b)=0$ and $D_2f(a,b)\neq 0$, then visualizing the graph of $f$ as a surface in 3-space shows that the tangent line to $f$ at $(a,b)$ parallel to the $y$ axis has nonzero slope, and thus, $f(a,y)\neq 0$ for all $y$ sufficiently close to $b$. Thus, since $f\in\mathscr{C}^1$, and hence $D_2f\neq 0$ in some neighborhood ($U$) of $(a,b)$, there is a one-to-one correspondence between points $x,y$ such that $f(x,y)=0$ in this neighborhood.\par
+        As for the proof, the linear map $\mathbf{F}'(a,b)$ is invertible since its Jacobian is given by
+        \begin{equation*}
+            \begin{bmatrix}
+                D_1f(a,b) & D_2f(a,b)\\
+                D_1\pi_1(a,b) & D_2\pi_1(a,b)\\
+            \end{bmatrix}
+            =
+            \begin{bmatrix}
+                D_1f(a,b) & D_2f(a,b)\\
+                1 & 0\\
+            \end{bmatrix}
+        \end{equation*}
+        where $\pi_1$ denotes the map $(x,y)\mapsto x$ and $D_2f(a,b)\neq 0$ by definition. Thus, it also implies a 1-1 region for $F$ near $(a,b)$. Consequently, we can find a set of points $(x,y)$ near $(0,b)$ in the codomain such that $\mathbf{F}$ is 1-1 on this range. Considering only the points for which $x=0$ maintains one-to-oneness and allows us to identify our unique $(x,y)$ near $(a,b)$.
+    \end{proof}
 \end{enumerate}
 
 
